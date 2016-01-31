@@ -1,0 +1,5 @@
+This folder only contains game data. Deleting any folder will not harm the GameDev engine at all.
+This section will be completely modular and can be safely copied and pasted to another system to add new games to it.
+
+NOTE:
+config.json lists all the games that are currently being tracked by the tool. Refreshing the game list within the tool's home page will update this file.
