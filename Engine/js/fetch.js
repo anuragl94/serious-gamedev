@@ -1,4 +1,4 @@
-function fetch(module,absolutePath=false) {
+function fetch(module,absolutePath) {
 	/*
 	This function basically fetches the relevant module for use.
 	For example, fetch("Questions") will go to the modules folder and access the question generator module.
@@ -6,6 +6,7 @@ function fetch(module,absolutePath=false) {
 	Fetch will now call that particular function and return whatever data that function returns.
 	STATUS: Unfinished. chrome's policy does not allow xhr get on files that are stored locally. :(
 	*/
+	absolutePath = absolutePath||false;
 	var append = "\config.js";
 	if (absolutePath===true){
 		append = "";
