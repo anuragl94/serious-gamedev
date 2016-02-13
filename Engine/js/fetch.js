@@ -1,7 +1,7 @@
-function fetch(module,absolutePath) {
+function fetchModule(module,absolutePath) {
 	/*
 	This function basically fetches the relevant module for use.
-	For example, fetch("Questions") will go to the modules folder and access the question generator module.
+	For example, fetchModule("Questions") will go to the modules folder and access the question generator module.
 	Each module will have a config file that specifies which function must be called.
 	Fetch will now call that particular function and return whatever data that function returns.
 	STATUS: Unfinished. chrome's policy does not allow xhr get on files that are stored locally. :(
