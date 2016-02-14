@@ -1,0 +1,72 @@
+shapes0 = '[\
+{\
+ "id" : "fig001.png",\
+ "straightSides" : "3",\
+ "curvedSides" : "0",\
+ "sidesEqual" : "3",\
+ "rightAngles" : "0",\
+ "obtuseAngles" : "0",\
+ "acuteAngles" : "3",\
+ "reflexAngles" : "0"\
+},\
+{\
+ "id" : "fig002.png",\
+ "straightSides" : "3",\
+ "curvedSides" : "0",\
+ "sidesEqual" : "2",\
+ "rightAngles" : "0",\
+ "obtuseAngles" : "0",\
+ "acuteAngles" : "3",\
+ "reflexAngles" : "0"\
+},\
+{\
+ "id" : "fig003.png",\
+ "straightSides" : "3",\
+ "curvedSides" : "0",\
+ "sidesEqual" : "2",\
+ "rightAngles" : "1",\
+ "obtuseAngles" : "0",\
+ "acuteAngles" : "2",\
+ "reflexAngles" : "0"\
+},\
+{\
+ "id" : "fig004.png",\
+ "straightSides" : "3",\
+ "curvedSides" : "0",\
+ "sidesEqual" : "2",\
+ "rightAngles" : "0",\
+ "obtuseAngles" : "1",\
+ "acuteAngles" : "2",\
+ "reflexAngles" : "0"\
+},\
+{\
+ "id" : "fig005.png",\
+ "straightSides" : "3",\
+ "curvedSides" : "0",\
+ "sidesEqual" : "0",\
+ "rightAngles" : "0",\
+ "obtuseAngles" : "0",\
+ "acuteAngles" : "3",\
+ "reflexAngles" : "0"\
+},\
+{\
+ "id" : "fig006.png",\
+ "straightSides" : "3",\
+ "curvedSides" : "0",\
+ "sidesEqual" : "0",\
+ "rightAngles" : "1",\
+ "obtuseAngles" : "0",\
+ "acuteAngles" : "2",\
+ "reflexAngles" : "0"\
+},\
+{\
+ "id" : "fig007.png",\
+ "straightSides" : "3",\
+ "curvedSides" : "0",\
+ "sidesEqual" : "0",\
+ "rightAngles" : "0",\
+ "obtuseAngles" : "1",\
+ "acuteAngles" : "2",\
+ "reflexAngles" : "0"\
+}\
+]';

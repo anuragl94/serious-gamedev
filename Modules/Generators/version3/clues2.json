@@ -1,0 +1,30 @@
+﻿clues2 = '[\
+{\
+  "property" : "pairsOfSidesEqual = 0",\
+  "English" : "no pair of equal sides",\
+  "Hindi" : "कोई भी भुजों की जोड़ी बराबर नहीं",\
+  "Kannada" : "unknown",\
+  "Telugu" : "unknown"\
+},\
+{\
+ "property" : "rightAngles = 0",\
+ "English" : "no right angle",\
+ "Hindi" : "कोई भी  समकोण नहीं",\
+ "Kannada" : "ಲಂಬ ಕೋನ ಇಲ್ಲವೇ ಇಲ್ಲ",\
+ "Telugu" : "లంబ కోణము లేదు"\
+},\
+{\
+ "property" : "rightAngles = 1",\
+ "English" : "exactly one right angle",\
+ "Hindi" : "केवल एक समकोण",\
+ "Kannada" : "ಒಂದೇ ಒಂದು ಲಂಬ ಕೋನ",\
+ "Telugu" : "ఒకే ఒక్కటి లంబ కోణము"\
+},\
+{\
+ "property" : "rightAngles >= 1",\
+ "English" : "at least one right angle",\
+ "Hindi" : "कम से कम एक समकोण",\
+ "Kannada" : "ಕನಿಷ್ಠ ಒಂದು ಲಂಬ ಕೋನ",\
+ "Telugu" : "ఒకటి లేదా ఒకటి కన్నా ఎక్కువ లంబ కోణము"\
+}\
+]';

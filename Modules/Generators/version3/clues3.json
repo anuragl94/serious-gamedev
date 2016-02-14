@@ -1,0 +1,72 @@
+﻿clues3 = '[\
+{\
+ "property" : "straightSides > 3",\
+ "English" : "more than three straight sides",\
+ "Hindi" : "तीन से ज़्यादा भुजाएँ",\
+ "Kannada" : "ಮೂರಕ್ಕಿಂತ ಹೆಚ್ಚು ನೇರ ಬಾಹುಗಳು",\
+ "Telugu" : "మూడుకన్న ఎక్కువ నిలువు వైపులు"\
+},\
+{\
+ "property" : "straightSides < 4",\
+ "English" : "less than four straight sides",\
+ "Hindi" : "चार से कम भुजाएँ",\
+ "Kannada" : "ನಾಲ್ಕಕ್ಕಿಂತ ಕಡಿಮೆ ನೇರ ಬಾಹುಗಳು",\
+ "Telugu" : "నాలుగు కన్నా తక్కువ నిలువు వైపులు"\
+},\
+{\
+ "property" : "straightSides > 4",\
+ "English" : "more than four straight sides",\
+ "Hindi" : "चार से ज़्यादा भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "straightSides < 5",\
+ "English" : "less than five straight sides",\
+ "Hindi" : "पांच से कम भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "straightSides > 5",\
+ "English" : "more than five straight sides",\
+ "Hindi" : "पांच से ज़्यादा भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "straightSides < 6",\
+ "English" : "less than six straight sides",\
+ "Hindi" : "छह से कम भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+  "property" : "pairsOfSidesEqual > 1",\
+  "English" : "more than one pair of equal sides",\
+  "Hindi" : "एक से ज़्यादा बराबर भुजों की जोड़ी",\
+  "Kannada" : "unknown",\
+  "Telugu" : "unknown"\
+},\
+{\
+  "property" : "pairsOfSidesEqual < 2",\
+  "English" : "less than two pairs of equal sides",\
+  "Hindi" : "दो से कम बराबर भुजों की जोड़ी",\
+  "Kannada" : "unknown",\
+  "Telugu" : "unknown"\
+},\
+{\
+ "property" : "rightAngles > 1",\
+ "English" : "more than one right angle",\
+ "Hindi" : "एक से ज़्यादा समकोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "rightAngles < 2",\
+ "English" : "less than two right angles",\
+ "Hindi" : "दो से कम समकोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+}\
+]';

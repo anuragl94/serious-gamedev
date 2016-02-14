@@ -1,0 +1,72 @@
+﻿clues5 = '[\
+{\
+ "property" : "acuteAngles < 2",\
+ "English" : "less than two acute angles",\
+ "Hindi" : "दो से कम न्यून कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "acuteAngles = 2",\
+ "English" : "exactly two acute angles",\
+ "Hindi" : "केवल दो न्यून कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "acuteAngles = 3",\
+ "English" : "exactly three acute angles",\
+ "Hindi" : "केवल तीन न्यून कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "acuteAngles > 2",\
+ "English" : "more than two acute angles",\
+ "Hindi" : "दो से ज़्यादा न्यून कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "acuteAngles < 3",\
+ "English" : "less than three acute angles",\
+ "Hindi" : "तीन से कम न्यून कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "obtuseAngles < 2",\
+ "English" : "less than two obtuse angles",\
+ "Hindi" : "दो से कम अधिक कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "obtuseAngles = 2",\
+ "English" : "exactly two obtuse angles",\
+ "Hindi" : "केवल दो अधिक कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "obtuseAngles = 3",\
+ "English" : "exactly three obtuse angles",\
+ "Hindi" : "केवल तीन अधिक कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "obtuseAngles > 2",\
+ "English" : "more than two obtuse angles",\
+ "Hindi" : "दो से ज़्यादा अधिक कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "obtuseAngles < 3",\
+ "English" : "less than three obtuse angles",\
+ "Hindi" : "तीन से कम अधिक कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+}\
+]';

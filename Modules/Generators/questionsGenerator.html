@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Police Quad Question Generator</title>
+
+    <!-- Bootstrap -->
+    <link href="../../Public/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="Jquery/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../../Public/js/bootstrap.min.js"></script>
+    <!-- Temporary -->
+    <script type="text/javascript" src="shapes3.json"></script>
+</head>
+<body>
+    <div class="navbar" style="color:white;background-color:rgba(31, 137, 224, 1);">
+        <h1>Question Generator</h1>
+    </div>
+    <h1 style="text-align:center;">Police Quad</h1>
+    <form class="form-horizontal">
+        <h2>Clues</h2>
+        <div id="ClueDiv" style="padding-left:5em;" class="form-group">
+            <label> No of clues:</label>
+            <select id="NoOfClues" onchange="generateClues()" style="width:3em;">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+            <div id="ClueParams"></div>
+        </div>
+        <h2>Option Parameters</h2>
+        <div id="OptionDiv" style="padding-left:3em;" class="form-inline">
+            <label> Shape:</label>
+            <select id="ShapeSelect" onchange="generateParameterTypes()" disabled>
+                <option>Triangle</option>
+                <option>Quadrilateral</option>
+                <option>Pentagon</option>
+                <option>Hexagon</option>
+                <option>Septagon</option>
+                <option>Octagon</option>
+                <option>Sphere</option>
+                <option>Cylinder</option>
+                <option>Cone</option>
+            </select>
+            <label style="padding-left:3em;"> Parameter Type:</label>
+            <select id="ParameterTypeSelect"  onchange="generateParameters()" disabled>
+                <option>Angles</option>
+                <option>Sides</option>
+                <option>Area</option>
+                <option>Volume</option>
+            </select>
+            <label style="padding-left:3em;"> Parameter:</label>
+            <select id="ParameterSelect"  onchange="generateCondition()" disabled>
+            </select>
+            <label style="padding-left:3em;"> Condition:</label>
+            <select id="ConditionSelect" disabled>
+                <option>=</option>
+                <option>&gt;</option>
+                <option>&lt;</option>
+                <option>!=</option>
+            </select>
+            <label style="padding-left:3em;"> Conditional Argument:</label>
+            <input id="ConditionalArgument" type="text" placeholder="Enter a value"/>
+            <input type="button" class="btn-primary" value="Add" onclick="generateSampleAnswer()" />
+        </div>
+        <!-- Sample Correct Answer Display -->
+        <div id="SampleCorrectAnswer" style="opacity:0;">
+            <h2>Sample Correct Answer</h2>
+            <img id="CorrectImage" width="250px" height="250px" style="border:1px red;"/>
+        </div>
+    </form>
+    <!-- Scripts Begins here -->
+    <script>
+        //Common variables to access dom elements
+        var clueParams = document.getElementById("ClueParams");
+        var shapeSelect = document.getElementById("ShapeSelect");
+        var parameterTypeSelect = document.getElementById("ParameterTypeSelect");
+        var parameterSelect = document.getElementById("ParameterSelect");
+        var conditionSelect = document.getElementById("ConditionSelect");
+        var conditionalArgument = document.getElementById("ConditionalArgument");
+        var correctImage = document.getElementById("CorrectImage");
+        
+        //Function to populate textfields for columns
+        function generateClues()
+        {
+            no = document.getElementById("NoOfClues").value;
+            document.getElementById("ClueParams").innerHTML = "";
+            for (i = 0; i < no; i++) {
+                l1 = document.createElement('label');
+                l1.innerHTML = "Clue "+ (i+1) +":";
+                l1.className ="col-sm-2 control-label";
+                t1 = document.createElement('input');
+                t1.type = "text";
+                t1.className = "form-control";
+                t1.id = "Clue" + i;
+                t1.placeholder = "Please enter clue no: "+ (i+1);
+                d1 = document.createElement("div");
+                d1.id="Clue_Div_"+(i+1);
+                d1.className = "col-sm-8";
+                clueParams.appendChild(l1);
+                d1.appendChild(t1);
+                clueParams.appendChild(d1);
+                clueParams.innerHTML+="<br/><br/>";
+            }
+            shapeSelect.disabled = false;
+        }
+        
+        //Function to populate parameter types for shapes
+        function generateParameterTypes()
+        {
+            var selectedShape = shapeSelect.selectedIndex;
+            var fig2Dlist = ["Angles","Area","Sides"];
+            var fig3Dlist = ["Angles","Area","Sides","Volume"];
+            parameterTypeSelect.innerHTML="";
+            if(selectedShape <=5)
+            {
+                for(i=0;i<fig2Dlist.length;i++)
+                {
+                    parameterTypeSelect.innerHTML+="<option>"+fig2Dlist[i]+"</option>"
+                }
+            }
+            else
+            {
+                for(i=0;i<fig3Dlist.length;i++)
+                {
+                    parameterTypeSelect.innerHTML+="<option>"+fig3Dlist[i]+"</option>"
+                }
+            }
+            parameterTypeSelect.disabled = false;
+        }
+        
+        //Function to populate parameters for shapes
+        function generateParameters()
+        {
+            var angtype = ["No of Acute Angles","No of Obtuse Angles","No of Right Angles"];
+            var sidtype = ["No of Equal Sides","No of Straight Sides","No of Curved Sides"];
+            var artype = ["Equal Areas","Unequal Areas"];
+            var selectedParmeterType = parameterTypeSelect.selectedIndex;
+            parameterSelect.innerHTML="";
+            if(selectedParmeterType == 0)
+            {
+                for(i=0;i<angtype.length;i++)
+                {
+                    parameterSelect.innerHTML+="<option>"+angtype[i]+"</option>"
+                }
+            }
+            else if(selectedParmeterType == 1)
+            {
+                for(i=0;i<angtype.length;i++)
+                {
+                    parameterSelect.innerHTML+="<option>"+artype[i]+"</option>"
+                }
+            }
+            else if(selectedParmeterType == 2)
+            {
+                for(i=0;i<angtype.length;i++)
+                {
+                    parameterSelect.innerHTML+="<option>"+sidtype[i]+"</option>"
+                }
+            }
+            parameterSelect.disabled = false;
+        }
+        
+        //Function to enable condition
+        function generateCondition()
+        {
+            conditionSelect.disabled=false;
+        }
+        
+        //Function to generate sample answer
+        function generateSampleAnswer()
+        {
+            var shapesJSON = JSON.parse(shapes3);
+            var correctImageSrc = ""; 
+            for(var i = 0; i < shapesJSON.length; i++)
+            {
+                var shape = shapesJSON[i];
+                if(parameterTypeSelect.selectedIndex == 0 && parameterSelect.selectedIndex == 0 && shape.acuteAngles == parseInt(conditionalArgument.value))
+                {
+                    correctImageSrc="version3/"+shape.id;
+                    //alert(shape.id);
+                    break;
+                }
+                else if(parameterTypeSelect.selectedIndex == 2 && parameterSelect.selectedIndex == 0 && shape.sidesEqual == parseInt(conditionalArgument.value))
+                {
+                    correctImageSrc="version3/"+shape.id;
+                    //alert(shape.id + "sides");
+                    break;
+                }
+             }
+//           "straightSides" : "3",\
+//  "sidesEqual" : "3",\
+//  "rightAngles" : "0",\
+//  "obtuseAngles" : "0",\
+//  "acuteAngles" : "3",\
+//  "reflexAngles" : "0"\
+            document.getElementById("SampleCorrectAnswer").style.opacity="100";
+            correctImage.src=correctImageSrc;
+            
+        }
+    </script>
+</body>
+</html>
