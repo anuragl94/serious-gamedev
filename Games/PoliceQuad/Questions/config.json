@@ -4,60 +4,70 @@
       "stage": "0",
       "noOfOptions": "2",
       "noOfCorrectOptions": "1",
+      "noOfClues": "1",
       "passLimit": "3"
     },
     {
       "stage": "1",
       "noOfOptions": "4",
       "noOfCorrectOptions": "1",
+      "noOfClues": "2",
       "passLimit": "3"
     },
     {
       "stage": "2",
       "noOfOptions": "4",
       "noOfCorrectOptions": "1",
+      "noOfClues": "2",
       "passLimit": "5"
     },
     {
       "stage": "3",
       "noOfOptions": "4",
       "noOfCorrectOptions": "1",
+      "noOfClues": "2",
       "passLimit": "5"
     },
     {
       "stage": "4",
       "noOfOptions": "6",
       "noOfCorrectOptions": "1",
+      "noOfClues": "3",
       "passLimit": "10"
     },
     {
       "stage": "5",
       "noOfOptions": "6",
       "noOfCorrectOptions": "1",
+      "noOfClues": "3",
       "passLimit": "10"
     },
     {
       "stage": "6",
       "noOfOptions": "6",
       "noOfCorrectOptions": "1",
+      "noOfClues": "3",
       "passLimit": "10"
     },
     {
       "stage": "7",
       "noOfOptions": "8",
       "noOfCorrectOptions": "2",
+      "noOfClues": "4",
       "passLimit": "15"
     },
     {
       "stage": "8",
       "noOfOptions": "8",
       "noOfCorrectOptions": "2",
+      "noOfClues": "4",
       "passLimit": "15"
     },
     {
       "stage": "9",
       "noOfOptions": "8",
       "noOfCorrectOptions": "2",
+      "noOfClues": "4",
       "passLimit": "15"
     }
   ]
