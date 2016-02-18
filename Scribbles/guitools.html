@@ -32,7 +32,7 @@
 <script src="jquery-1.12.0.min.js"></script>
 </head>
 
-<object type="image/svg+xml" data="fig011.svg" id="option1" onload="ffify(this)"></object>
+<object type="image/svg+xml" data="fig011.svg" id="option1"></object>
 <!-- $($("#option1 g g clippath path")[0]).attr("d"); -->
 <!-- The above code seems to do the trick -->
 <!-- "M 0.0000 0.0000 L 0.0000 560.00 L 1355.0 560.00 L 1355.0 0.0000 z" -->
@@ -41,100 +41,96 @@
 	// This code will extract coordinates from the svg file as intended.
 	// Please note that jquery only parses HTML DOM and not SVG DOM. Hence, query selector will never work on the object tag, no matter what. So don't try optimizing code over there.
 	//Thoughts: Would it be okay to get the svg object document content and replace the object with the svg code in the content itself? This can be done in the module that renders the options onto the gamescreen.
-	
-	function ffify(item){
-		var theta = item.contentDocument;
-		console.log(theta);
-		console.log($(theta).children());
-	};
-	
-	var theta = document.getElementById('option1').contentDocument;
-	var coords = $($(theta).find("svg g g clipPath path")[0]).attr("d");
-	coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
-	coords = $.map(sets,function(value){
-		var temp = value.split(' ');
-		return {
-			instruction: temp[0],
-			x:temp[1],
-			y:temp[2]
-		}
-	});
-	console.log(coords);
+$(window).load(function() {
 
-	function angle(cx, cy, ex, ey) {
-  var dy = ey - cy;
-  var dx = ex - cx;
-  var theta = Math.atan2(dy, dx); // range (-PI, PI]
-  theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
-  //if (theta < 0) theta = 360 + theta; // range [0, 360)
-  return theta;
-}
+    function ffify(item) {
+        var theta = item.contentDocument;
+        console.log(theta);
+        console.log($(theta).children());
+    };
 
-	$(document).on("click", function(){
-	if ($("#point1").length==0)
-	{
-		point1 = document.createElement("div");
-		$(point1).addClass("points");
-		$(point1).attr("id","point1");
-		$(point1).css({
-		"left":event.pageX,
-		"top":event.pageY
-		});
-		$(point1).attr("coord-x",event.pageX);
-		$(point1).attr("coord-y",event.pageY);
-		document.body.appendChild(point1);
-	}
-	else if ($("#point2").length==0)
-	{
-		point2 = document.createElement("div");
-		$(point2).addClass("points");
-		$(point2).attr("id","point2");
-		$(point2).css({
-		"left":event.pageX,
-		"top":event.pageY
-		});
-		$(point2).attr("coord-x",event.pageX);
-		$(point2).attr("coord-y",event.pageY);
-		document.body.appendChild(point2);
-		
-		baseLine = document.createElement("div");
-		$(baseLine).attr("id","baseLine");
-		mouseangle = angle($(point1).attr("coord-x"),$(point1).attr("coord-y"),$(point2).attr("coord-x"),$(point2).attr("coord-y"));
-		$(baseLine).css({
-		'-webkit-transform':'rotate('+mouseangle+'deg)',
-		"left":$(point1).attr("coord-x"),
-		"top":$(point1).attr("coord-y")
-		});
-		document.body.appendChild(baseLine);
-		
-		perpendicularLine = document.createElement("div");
-		$(perpendicularLine).attr("id","perpendicularLine");
-		mouseangle = angle($(point1).attr("coord-x"),$(point1).attr("coord-y"),$(point2).attr("coord-x"),$(point2).attr("coord-y"));
-		$(perpendicularLine).css({
-		'-webkit-transform':'rotate('+(90+mouseangle)+'deg)'
-		});
-		document.body.appendChild(perpendicularLine);
-	}
-	else 
-	{
-	$("#point1").remove();
-	$("#point2").remove();
-	$("#baseLine").remove();
-	$("#perpendicularLine").remove();
-	}
-	});
-	
-	$(document).mousemove(function(){
-	if ($("#perpendicularLine").length)
-	{
-	$("#perpendicularLine").attr("coord-x",event.pageX);
-	$("#perpendicularLine").attr("coord-y",event.pageY);
-	$("#perpendicularLine").css({
-	"left":event.pageX,
-	"top":event.pageY
-	});
-	}
-	});
+    var theta = document.getElementById('option1').contentDocument;
+    var coords = $($(theta).find("svg g g clipPath path")[0]).attr("d");
+    coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
+    coords = $.map(coords, function(value) {
+        var temp = value.split(' ');
+        return {
+            instruction: temp[0],
+            x: temp[1],
+            y: temp[2]
+        }
+    });
+    console.log(JSON.stringify(coords));
+
+    function angle(cx, cy, ex, ey) {
+        var dy = ey - cy;
+        var dx = ex - cx;
+        var theta = Math.atan2(dy, dx); // range (-PI, PI]
+        theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
+        //if (theta < 0) theta = 360 + theta; // range [0, 360)
+        return theta;
+    }
+
+    $(document).on("click", function() {
+        if ($("#point1").length == 0) {
+            point1 = document.createElement("div");
+            $(point1).addClass("points");
+            $(point1).attr("id", "point1");
+            $(point1).css({
+                "left": event.pageX,
+                "top": event.pageY
+            });
+            $(point1).attr("coord-x", event.pageX);
+            $(point1).attr("coord-y", event.pageY);
+            document.body.appendChild(point1);
+        } else if ($("#point2").length == 0) {
+            point2 = document.createElement("div");
+            $(point2).addClass("points");
+            $(point2).attr("id", "point2");
+            $(point2).css({
+                "left": event.pageX,
+                "top": event.pageY
+            });
+            $(point2).attr("coord-x", event.pageX);
+            $(point2).attr("coord-y", event.pageY);
+            document.body.appendChild(point2);
+
+            baseLine = document.createElement("div");
+            $(baseLine).attr("id", "baseLine");
+            mouseangle = angle($(point1).attr("coord-x"), $(point1).attr("coord-y"), $(point2).attr("coord-x"), $(point2).attr("coord-y"));
+            $(baseLine).css({
+                '-webkit-transform': 'rotate(' + mouseangle + 'deg)',
+                "left": $(point1).attr("coord-x"),
+                "top": $(point1).attr("coord-y")
+            });
+            document.body.appendChild(baseLine);
+
+            perpendicularLine = document.createElement("div");
+            $(perpendicularLine).attr("id", "perpendicularLine");
+            mouseangle = angle($(point1).attr("coord-x"), $(point1).attr("coord-y"), $(point2).attr("coord-x"), $(point2).attr("coord-y"));
+            $(perpendicularLine).css({
+                '-webkit-transform': 'rotate(' + (90 + mouseangle) + 'deg)'
+            });
+            document.body.appendChild(perpendicularLine);
+        } else {
+            $("#point1").remove();
+            $("#point2").remove();
+            $("#baseLine").remove();
+            $("#perpendicularLine").remove();
+        }
+    });
+
+    $(document).mousemove(function() {
+        if ($("#perpendicularLine").length) {
+            $("#perpendicularLine").attr("coord-x", event.pageX);
+            $("#perpendicularLine").attr("coord-y", event.pageY);
+            $("#perpendicularLine").css({
+                "left": event.pageX,
+                "top": event.pageY
+            });
+        }
+    });
+});
 </script>
 
 </html>
