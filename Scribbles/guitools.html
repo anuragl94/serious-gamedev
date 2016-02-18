@@ -32,7 +32,7 @@
 <script src="jquery-1.12.0.min.js"></script>
 </head>
 
-<object type="image/svg+xml" data="fig011.svg" id="option1"></object>
+<object type="image/svg+xml" data="fig011.svg" id="option1" onload="ffify(this)"></object>
 <!-- $($("#option1 g g clippath path")[0]).attr("d"); -->
 <!-- The above code seems to do the trick -->
 <!-- "M 0.0000 0.0000 L 0.0000 560.00 L 1355.0 560.00 L 1355.0 0.0000 z" -->
@@ -40,6 +40,14 @@
 <script>
 	// This code will extract coordinates from the svg file as intended.
 	// Please note that jquery only parses HTML DOM and not SVG DOM. Hence, query selector will never work on the object tag, no matter what. So don't try optimizing code over there.
+	//Thoughts: Would it be okay to get the svg object document content and replace the object with the svg code in the content itself? This can be done in the module that renders the options onto the gamescreen.
+	
+	function ffify(item){
+		var theta = item.contentDocument;
+		console.log(theta);
+		console.log($(theta).children());
+	};
+	
 	var theta = document.getElementById('option1').contentDocument;
 	var coords = $($(theta).find("svg g g clipPath path")[0]).attr("d");
 	coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
@@ -51,7 +59,7 @@
 			y:temp[2]
 		}
 	});
-	console.log();
+	console.log(coords);
 
 	function angle(cx, cy, ex, ey) {
   var dy = ey - cy;
