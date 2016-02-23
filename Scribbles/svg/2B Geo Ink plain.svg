@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg2"
+   viewBox="0 0 152.00727 153.04273"
+   height="191.30341"
+   width="190.00909"
+   version="1.1">
+  <metadata
+     id="metadata94">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs92" />
+  <g
+     transform="translate(-36.49985,-34.478636)"
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     id="g6"
+     stroke-miterlimit="10.000">
+    <g
+       id="misc" />
+    <!-- misc -->
+    <g
+       id="layer0" />
+    <!-- layer0 -->
+    <g
+       id="layer1">
+      <clipPath
+         id="clip1">
+        <path
+           id="path12"
+           d="m 0,0 0,223 223,0 0,-223 z" />
+      </clipPath>
+      <g
+         id="g14"
+         clip-path="url(#clip1)">
+        <g
+           style="fill:#993300;fill-opacity:0.10196001;fill-rule:evenodd;stroke:none"
+           id="g16">
+          <path
+             id="path18"
+             d="m 38,36 150,0 0,150 -150,0 z" />
+          <title
+             id="title20">Quadrilateral poly27_2</title>
+          <desc
+             id="desc22">Quadrilateral poly27_2: Polygon W_2, Z_2, A_2, B_2</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip1 -->
+      <clipPath
+         id="clip2">
+        <path
+           id="path25"
+           d="m 0,0 0,223 223,0 0,-223 z" />
+      </clipPath>
+      <g
+         id="g27"
+         clip-path="url(#clip2)">
+        <g
+           style="fill:none;stroke:#993300;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+           id="g29">
+          <path
+             id="path31"
+             d="m 38,36 150,0" />
+          <title
+             id="title33">Segment w_2</title>
+          <desc
+             id="desc35">Segment w_2: Segment [W_2, Z_2] of Quadrilateral poly27_2</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip2 -->
+      <clipPath
+         id="clip3">
+        <path
+           id="path38"
+           d="m 0,0 0,223 223,0 0,-223 z" />
+      </clipPath>
+      <g
+         id="g40"
+         clip-path="url(#clip3)">
+        <g
+           style="fill:none;stroke:#993300;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+           id="g42">
+          <path
+             id="path44"
+             d="m 188,36 0,150" />
+          <title
+             id="title46">Segment z_2</title>
+          <desc
+             id="desc48">Segment z_2: Segment [Z_2, A_2] of Quadrilateral poly27_2</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip3 -->
+      <clipPath
+         id="clip4">
+        <path
+           id="path51"
+           d="m 0,0 0,223 223,0 0,-223 z" />
+      </clipPath>
+      <g
+         id="g53"
+         clip-path="url(#clip4)">
+        <g
+           style="fill:none;stroke:#993300;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+           id="g55">
+          <path
+             id="path57"
+             d="M 188,186 38,186" />
+          <title
+             id="title59">Segment a_2</title>
+          <desc
+             id="desc61">Segment a_2: Segment [A_2, B_2] of Quadrilateral poly27_2</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip4 -->
+      <clipPath
+         id="clip5">
+        <path
+           id="path64"
+           d="m 0,0 0,223 223,0 0,-223 z" />
+      </clipPath>
+      <g
+         id="g66"
+         clip-path="url(#clip5)">
+        <g
+           style="fill:none;stroke:#993300;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.39216003"
+           id="g68">
+          <path
+             id="path70"
+             d="M 38,186 38,36" />
+          <title
+             id="title72">Segment b_2</title>
+          <desc
+             id="desc74">Segment b_2: Segment [B_2, W_2] of Quadrilateral poly27_2</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip5 -->
+      <clipPath
+         id="clip6">
+        <path
+           id="path77"
+           d="m 0,0 0,223 223,0 0,-223 z" />
+      </clipPath>
+      <g
+         id="g79"
+         clip-path="url(#clip6)">
+        <g
+           style="fill:none;stroke:#993300;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+           id="g81">
+          <path
+             id="path83"
+             d="M 38,186 38,36" />
+          <title
+             id="title85">Segment b_2</title>
+          <desc
+             id="desc87">Segment b_2: Segment [B_2, W_2] of Quadrilateral poly27_2</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip6 -->
+    </g>
+    <!-- layer1 -->
+    <g
+       id="layer2" />
+    <!-- layer2 -->
+  </g>
+  <!-- default stroke -->
+</svg>

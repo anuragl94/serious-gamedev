@@ -26,41 +26,74 @@
 #parallelLine {
 	position: absolute;
 }
+
+.optionWrapper {
+	display: inline-block;
+	position: absolute;
+	top:0;
+	left:0;
+}
+
+.canvasOverlay {
+	position: absolute;
+	z-index: 1;
+}
+
+.imageUnderlay {
+	position: relative;
+	height: 400px;
+	z-index: 1;
+}
 </style>
 
 <head>
 <script src="jquery-1.12.0.min.js"></script>
 </head>
 
-<object type="image/svg+xml" data="fig011.svg" id="option1"></object>
-<!-- $($("#option1 g g clippath path")[0]).attr("d"); -->
-<!-- The above code seems to do the trick -->
-<!-- "M 0.0000 0.0000 L 0.0000 560.00 L 1355.0 560.00 L 1355.0 0.0000 z" -->
+<body>
+
+<div class="optionWrapper">
+<canvas class="canvasOverlay"></canvas>
+<object type="image/svg+xml" data="svg\drawing.svg" id="option1"></object>
+</div>
+
+<br>
+X: <p id="mouse_x">0</p>
+Y: <p id="mouse_y">0</p>
 
 <script>
 	// This code will extract coordinates from the svg file as intended.
 	// Please note that jquery only parses HTML DOM and not SVG DOM. Hence, query selector will never work on the object tag, no matter what. So don't try optimizing code over there.
 	//Thoughts: Would it be okay to get the svg object document content and replace the object with the svg code in the content itself? This can be done in the module that renders the options onto the gamescreen.
 $(window).load(function() {
-
-    function ffify(item) {
-        var theta = item.contentDocument;
-        console.log(theta);
-        console.log($(theta).children());
-    };
-
+	var coordinates = {};
     var theta = document.getElementById('option1').contentDocument;
-    var coords = $($(theta).find("svg g g clipPath path")[0]).attr("d");
-    coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
-    coords = $.map(coords, function(value) {
-        var temp = value.split(' ');
-        return {
-            instruction: temp[0],
-            x: temp[1],
-            y: temp[2]
-        }
-    });
-    console.log(JSON.stringify(coords));
+	var paths = $(theta).find("path");	// Common to all the tools one can usemap
+	
+	//Following will be the regex to filter exact coordinates from the path
+	//Inkscape
+	
+	
+	//Adobe Illustrator
+	
+	//Geogebra
+	//NOTE: This seems to be wrong, as it's only extracting the bounding box
+    var coords = $($(theta).find("svg g g g path")[0]).attr("d");
+    //coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
+    //coordinates['option1'] = $.map(coords, function(value) {
+    //    var temp = value.split(' ');
+    //    return [[temp[1],temp[2]]];
+    //});
+	//Tool specific code ends here
+	
+    console.log(coordinates);
+	$(".optionWrapper").append('<img src="'+document.getElementById('option1').data+'" class="imageUnderlay"/>');
+	$("object").remove();
+	$(".canvasOverlay").each(function(){
+		var underlay = $(this).closest(".objectWrapper").find("img");
+		$(this).prop('width',underlay.clientWidth);
+		$(this).prop('height',underlay.clientHeight);
+	});
 
     function angle(cx, cy, ex, ey) {
         var dy = ey - cy;
@@ -121,6 +154,8 @@ $(window).load(function() {
     });
 
     $(document).mousemove(function() {
+		$("#mouse_x").html(event.pageX);
+		$("#mouse_y").html(event.pageY);
         if ($("#perpendicularLine").length) {
             $("#perpendicularLine").attr("coord-x", event.pageX);
             $("#perpendicularLine").attr("coord-y", event.pageY);
@@ -132,5 +167,7 @@ $(window).load(function() {
     });
 });
 </script>
+
+</body>
 
 </html>
