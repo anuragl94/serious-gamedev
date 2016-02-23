@@ -1,6 +1,3 @@
-//alert("It works!");
-
-
 question = document.getElementById("question").value();
 clues = document.getElementsByClassName("clues");
 currentClue = document.getElementById("currentClue").value();
@@ -31,3 +28,4 @@ var dynamicParamaters = {
 var Aggregate = [staticParameters,dynamicParameters] ;
 
 localStorage.setItem("stateVariables", JSON.stringify(Aggregate));
+

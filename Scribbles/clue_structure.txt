@@ -1,0 +1,4 @@
+{
+"English": "<comparer><quantity><property>",
+"Hindi": "<comparer><quantity><property>"
+}
