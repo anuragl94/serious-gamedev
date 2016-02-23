@@ -26,6 +26,7 @@
         <div id="ClueDiv" style="padding-left:5em;" class="form-group">
             <label> No of clues:</label>
             <select id="NoOfClues" onchange="generateClues()" style="width:3em;">
+                <option> </option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -36,6 +37,7 @@
         <div id="OptionDiv" style="padding-left:3em;" class="form-inline">
             <label> Shape:</label>
             <select id="ShapeSelect" onchange="generateParameterTypes()" disabled>
+                <option>        </option>
                 <option>Triangle</option>
                 <option>Quadrilateral</option>
                 <option>Pentagon</option>
@@ -45,6 +47,7 @@
                 <option>Sphere</option>
                 <option>Cylinder</option>
                 <option>Cone</option>
+                <option>Any</option>
             </select>
             <label style="padding-left:3em;"> Parameter Type:</label>
             <select id="ParameterTypeSelect"  onchange="generateParameters()" disabled>
@@ -75,6 +78,10 @@
     </form>
     <!-- Scripts Begins here -->
     <script>
+        //Question config parameters
+        //var qConfig = "";
+        //$.getJSON("../../Games/PoliceQuad/Questions/confid.json", function (result) { this.qConfig = result.questionRepo; alert(result.questionRepo); });
+        //alert(qConfig);
         //Common variables to access dom elements
         var clueParams = document.getElementById("ClueParams");
         var shapeSelect = document.getElementById("ShapeSelect");
@@ -116,7 +123,7 @@
             var fig2Dlist = ["Angles","Area","Sides"];
             var fig3Dlist = ["Angles","Area","Sides","Volume"];
             parameterTypeSelect.innerHTML="";
-            if(selectedShape <=5)
+            if(selectedShape <=6)
             {
                 for(i=0;i<fig2Dlist.length;i++)
                 {
