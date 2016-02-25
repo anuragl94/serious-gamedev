@@ -1,42 +1,127 @@
 ﻿{
-  "1": [
-    { "clue1": "c1" },
-    { "clue1": "c8" }
+  "q1": [
+    {
+      "attribute": "straightSides",
+      "comparator": "=",
+      "quantity": "4"
+    },
+    {
+      "attribute": "pairsOfSidesEqual",
+      "comparator": "=",
+      "quantity": "2"
+    },
+    {
+      "attribute": "obtuseAngles",
+      "comparator": "=",
+      "quantity": "2"
+    }
   ],
-  "2": [
-    { "clue1": "c4" },
-    { "clue1": "c2" }
+  "q2": [
+    {
+      "attribute": "straightSides",
+      "comparator": "=",
+      "quantity": "1"
+    },
+    {
+      "attribute": "equalSides",
+      "comparator": "=",
+      "quantity": "2"
+    }
   ],
-  "3": [
-    { "clue1": "c9" },
-    { "clue1": "c6" }
+  "q3": [
+    {
+      "attribute": "straightSides",
+      "comparator": "=",
+      "quantity": "1"
+    },
+      {
+        "attribute": "equalSides",
+        "comparator": "=",
+        "quantity": "2"
+      }
   ],
-  "4": [
-    { "clue1": "c4" },
-    { "clue1": "c3" }
+  "q4": [
+    {
+      "attribute": "straightSides",
+      "comparator": "=",
+      "quantity": "1"
+    },
+      {
+        "attribute": "equalSides",
+        "comparator": "=",
+        "quantity": "2"
+      }
   ],
-  "5": [
-    { "clue1": "c9" },
-    { "clue1": "c5" }
+  "q5": [
+    {
+      "attribute": "straightSides",
+      "comparator": "=",
+      "quantity": "1"
+    },
+      {
+        "attribute": "equalSides",
+        "comparator": "=",
+        "quantity": "2"
+      }
   ],
-  "6": [
-    { "clue1": "c1" },
-    { "clue1": "c8" }
+  "q6": [
+    {
+      "attribute": "straightSides",
+      "comparator": "=",
+      "quantity": "1"
+    },
+      {
+        "attribute": "equalSides",
+        "comparator": "=",
+        "quantity": "2"
+      }
   ],
-  "7": [
-    { "clue1": "c4" },
-    { "clue1": "c2" }
+  "q7": [
+    {
+      "attribute": "straightSides",
+      "comparator": "=",
+      "quantity": "1"
+    },
+      {
+        "attribute": "equalSides",
+        "comparator": "=",
+        "quantity": "2"
+      }
   ],
-  "8": [
-    { "clue1": "c9" },
-    { "clue1": "c6" }
+  "q8": [
+    {
+      "attribute": "straightSides",
+      "comparator": "=",
+      "quantity": "1"
+    },
+    {
+      "attribute": "equalSides",
+      "comparator": "=",
+      "quantity": "2"
+    }
   ],
-  "9": [
-    { "clue1": "c4" },
-    { "clue1": "c3" }
+  "q9": [
+    {
+      "attribute": "straightSides",
+      "comparator": "=",
+      "quantity": "1"
+    },
+    {
+      "attribute": "equalSides",
+      "comparator": "=",
+      "quantity": "2"
+    }
   ],
-  "10": [
-    { "clue1": "c9" },
-    { "clue1": "c5" }
+  "q10": [
+    {
+      "attribute": "straightSides",
+      "comparator": "=",
+      "quantity": "1"
+    },
+    {
+      "attribute": "equalSides",
+      "comparator": "=",
+      "quantity": "2"
+    }
   ]
 }

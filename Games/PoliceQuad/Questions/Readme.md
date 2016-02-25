@@ -15,3 +15,5 @@ The format for the json is as follows :
 Each stage will have a sets of Questions (qset1...n)
   Each qset will have n questions, where n = passLimit property of that stage.
   Each qset will have m clues, where m = noOfClues property of that stage
+
+PS: Stage 4 modified to work with option renderer.
