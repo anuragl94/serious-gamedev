@@ -10,13 +10,117 @@
         <script src="js/jquery-1.11.3.min.js"></script>
         <script src="../Engine/js/fetch.js"></script>
         <script>
+            //Global gameData. Store all important attributes/module data here
+            gameData = {
+                'includedModules': []
+            };
+
             $.getScript("options_renderer.js", function () {
                 // Do what we must to render the options
-                //console.log(returnValue);
-                $(returnValue['options_markup']).each(function () {
-                    //console.log(this);
-                    $("#options").append(this);
+                $("#optionsWrapper").append(returnValue['options_markup']);
+
+                //~~These are the custom events for options
+                $("#optionsWrapper").on("change", function () {
+                    //Here we use statetracker module to capture the new state of the set of options
+                    //It may be heavy on the processor if we check state of ALL options at every interaction with a single option
                 });
+                $("#optionsWrapper").on("disableSelected", function () {
+                    $(this).find("input:checked").prop('disabled', true);
+                    $(this).trigger("clearSelection");
+                });
+                $("#optionsWrapper").on("clearSelection", function () {
+                    $(this).find("input:checked").prop('checked', false);
+                });
+                // This event listener comes from the tools section
+                $("#optionsWrapper").on("investigate", function () {
+                    //Here we get a list of selected options along with their attributes
+                    var selectedOptions = $(this).find("input:checked").map(function () {
+                        return $(this).attr("index");
+                    });
+                    $("#cluesWrapper").trigger("checkIfCorrectOptions", [selectedOptions]);
+                });
+                // This event listener comes from the tools section
+                $("#optionsWrapper").on("arrest", function () {
+                    //Here we get a list of selected options along with their attributes
+                    var selectedOptions = $(this).find("input:checked").map(function () {
+                        return $(this).attr("index");
+                    });
+                    console.log(selectedOptions);
+                });
+
+                //~~These are the custom events for clues
+                $("#cluesWrapper").on("checkIfCorrectOptions", function (event, selectedOptions) {
+                    //Here we get a list of selected options along with their attributes
+                    var currentClueIndex = $("#cluesWrapper").find(".clue:visible").length - 1;
+                    var currentClue = gameData['clues'][currentClueIndex];
+                    console.log("Current clue", currentClue);
+                    var correctOptions = $(gameData['options']).map(function (index) {
+                        var option = this;
+                        switch (currentClue['comparator']) {
+                            case '=':
+                                if (option[currentClue['attribute']] === currentClue['quantity'])
+                                    return index;
+                                break;
+                            case '>':
+                                if (option[currentClue['attribute']] > currentClue['quantity'])
+                                    return index;
+                                break;
+                            case '<':
+                                if (option[currentClue['attribute']] < currentClue['quantity'])
+                                    return index;
+                                break;
+                            default:
+                                break;
+                        }
+                        return null;
+                    });
+                    correctOptions = $(correctOptions).filter(function (index) {
+                        if (this !== null)
+                            return true;
+                    });
+                    //To convert pseudo array to regular array
+                    selectedOptions = Array.prototype.slice.call(selectedOptions);
+                    correctOptions = Array.prototype.slice.call(correctOptions);
+
+                    console.log("Selected", selectedOptions.sort().join(','));
+                    console.log("Actually correct", correctOptions.sort().join(','));
+
+                    if (selectedOptions.sort().join(',') === correctOptions.sort().join(',')) {
+                        //Success
+                        console.log("Success! Good job!");
+                        //$("#battery").trigger("refresh");
+                        $("#cluesWrapper").trigger("getNextClue");
+                        $("#optionsWrapper").trigger("disableSelected");
+                        gameData['solvedClues'].push(currentClueIndex);
+                    } else {
+                        $("#battery").trigger("drain");
+                    }
+                });
+
+                $("#cluesWrapper").on("getNextClue", function () {
+                    if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
+                        $("#cluesWrapper").find(".clue:not(:visible)").first().toggle();
+                    } else {
+                        //No more clues! You can make an arrest!!
+                        console.log("You have sufficient clues!");
+                    }
+                });
+
+                // The following lines render HTML markup for the clues. The code will be pushed into the relevant module
+                var cluesBox = document.createElement("div");
+                $(cluesBox).attr("id", "clues");
+                $(returnValue['clues']).each(function () {
+                    //This next line must go through the language API for translation. Not translating into any language for now
+                    var clue_text = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'] + "<br />";
+                    var property = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'] + "<br />";
+                    var clue = '<div class="clue" data-attr="' + property + '">' + clue_text + '</div>';
+                    $(cluesBox).append(clue);
+                });
+                $("#cluesWrapper").append(cluesBox);
+                $("#cluesWrapper").find(".clue:not(:first-child)").each(function () {
+                    $(this).toggle();
+                });
+                gameData['solvedClues'] = [];
             });
         </script>
         <style>
@@ -41,13 +145,12 @@
             The last one left is the culprit – ARREST IT!
         </h3>
         <div class="row">
-            <div class="col-md-9 moduleWrapper">
-                <div id="options" class="row">
-                </div>
+            <div class="col-md-9 moduleWrapper" id="optionsWrapper">
             </div>
-            <div class="col-md-3 moduleWrapper">
+            <div class="col-md-3">
                 <h2>Clues</h2>
-                <div id="Clues"></div>
+                <div class="moduleWrapper" id="cluesWrapper">
+                </div>
                 <h2>Tools</h2>
                 <!--Insert tools here-->
                 <button onclick="genClue()">

@@ -450,7 +450,6 @@ returnValue = (function () {
     var noOfCorrectOptions = parseInt(config.questionsRepo[4].noOfCorrectOptions);
     var Options = new Array(noOfOptions);
     var correctOptions = new Array(noOfCorrectOptions);
-    var optionDoms = new Array(noOfOptions);
     //var shapesJSON = JSON.parse(shapes3);
     var shapesJSON = shapes3['data'];
     var fitCount = 0;
@@ -510,21 +509,26 @@ returnValue = (function () {
         //console.log(Options[i]);
     }
     //Options = shuffle(Options);
+    var optionsMarkup = document.createElement("div");
+    $(optionsMarkup).addClass("row");
     for (var i = 0; i < noOfOptions; i++)
     {
         var markup = document.createElement("div");
         $(markup).addClass("col-lg-4 col-md-4");
         var label = document.createElement("label");
+        $(label).addClass("option");
         var temp = document.createElement("img");
         temp.class = "option"
         temp.src = "../Modules/Generators/version3/" + Options[i].id;
         label.appendChild(temp);
         temp = document.createElement("input");
         temp.type = "checkbox";
+        $(temp).attr("index", i);
         label.appendChild(temp);
         markup.appendChild(label);
-        optionDoms[i] = markup;
+        optionsMarkup.appendChild(markup);
     }
+
 //Fisher-Yates Shuffle.
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -544,12 +548,16 @@ returnValue = (function () {
 
 
     //console.log("This is the options :" + Options);
-    //console.log(" This is doms :" + optionDoms[0].src);
+    //console.log(" This is doms :" + optionsDOM[0].src);
+
+    gameData['clues'] = qset['q1'];
+    gameData['options'] = Options;
+    gameData['includedModules'].push('options_renderer');
 
     var returnValues = {
-        "clues": qset,
+        "clues": qset['q1'],
         "options": Options,
-        "options_markup": optionDoms
+        "options_markup": optionsMarkup
     }
     return returnValues;
 }());
