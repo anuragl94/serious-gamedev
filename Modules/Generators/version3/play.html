@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shapes</title>
+    <style type="text/css">
+      label {width: 20%; float: right; font-family: 'Trebuchet MS';}
+    </style>
+  </head>
+  <body>
+    <!--Read the JSON files-->
+    <script type="text/javascript" src="shapes0.json"></script>
+    <script type="text/javascript" src="clues0.json"></script>
+    <script type="text/javascript" src="shapes1.json"></script>
+    <script type="text/javascript" src="clues1.json"></script>
+    <script type="text/javascript" src="shapes2.json"></script>
+    <script type="text/javascript" src="clues2.json"></script>
+    <script type="text/javascript" src="shapes3.json"></script>
+    <script type="text/javascript" src="clues3.json"></script>
+    <script type="text/javascript" src="shapes4.json"></script>
+    <script type="text/javascript" src="clues4.json"></script>
+    <script type="text/javascript" src="clues5.json"></script>
+    <script type="text/javascript" src="clues6.json"></script>
+    <script type="text/javascript" src="clues7.json"></script>
+    <script type="text/javascript" src="clues8.json"></script>
+    <script type="text/javascript" src="shapes9.json"></script>
+
+    <table>
+      <tr>
+        <td>
+          <table>
+            <tr>
+              <td><img src="" id="r11"></td>
+              <td><img src="" id="r12"></td>
+              <td><img src="" id="r13"></td>
+              <td><img src="" id="r14"></td>
+            </tr>
+            <tr>
+              <td><img src="" id="r21"></td>
+              <td><img src="" id="r22"></td>
+              <td><img src="" id="r23"></td>
+              <td><img src="" id="r24"></td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <p id="feedback"
+            style="font-size:15px; font-family:cursive; color:red">
+          </p>
+          <p id="clueList"
+            style="font-size:15px; font-family:cursive">
+            The culprit has:
+          </p>
+          <button onclick="genClue()">
+          <img src="needClue.jpg" height=70/>
+          </button>
+          <button onclick="makeArrest()">
+            <img src="makeArrest.jpg" height=70/>
+          </button>
+          <img id="energyImage" src="battery4.jpg"/>
+        </td>
+      </tr>
+    </table>
+
+    <script type="text/javascript">
+      var clueLanguage = getParameterByName("language");
+      var stage = eval(getParameterByName("stage"));
+      var currentClue = "";
+      var culprit;
+      var lineup;
+      var clueList;
+
+      while(true) {
+        // culprits
+        var thisStage = stage;
+        if(stage >= 5 && stage <= 8) {
+          thisStage = 4;
+        } else if(stage == 9) {
+          stage = 8;
+        }
+        var cList = JSON.parse(eval("shapes" + thisStage));
+        thisStage = stage;
+        lineup = [];
+        clueList = [];
+        var clues = JSON.parse(eval("clues" + stage));
+        for(thisStage = 1; thisStage < stage; thisStage++) {
+          clues =
+            clues.concat(JSON.parse(eval("clues" + thisStage)));
+        }
+
+        while(clues.length > 0) {
+          var j = Math.floor(Math.random()*clues.length);
+          var thisClue = clues[j]["property"];
+          var newCList = [];
+          var dList = [];
+          for(var i = 0; i < cList.length; i++) {
+            var shape = cList[i];
+            var hp = hasProperty(shape, thisClue);
+            if(hp == true) {
+              newCList.push(shape);
+            } else if(hp == false) {
+              dList.push(shape);
+            }
+          }
+          if(newCList.length > 0) {
+            for(var i = 0; i < lineup.length; i++) {
+              if(hasProperty(lineup[i], thisClue) != null) {
+                dList.push(lineup[i]);
+              }
+            }
+            if(dList.length > 1) {
+              clueList.push(clues[j]);
+              cList = newCList;
+              lineup = dList;
+            }
+          }
+          clues.splice(j, 1);
+        }
+
+        if(cList.length > 0 && lineup.length > 1
+           && clueList.length > 0) {
+          culprit = cList[Math.floor(Math.random()*cList.length)];
+          break;
+        }
+      }
+
+      var numSuspects = stage + 3;
+      if(numSuspects > 8) {
+        numSuspects = 8;
+      }
+      if(lineup.length + 1 < numSuspects) {
+        numSuspects = lineup.length + 1;
+      }
+
+      var selection = [];
+      for(var i = 0; i < numSuspects-1; i++) {
+        var j = Math.floor(Math.random()*lineup.length);
+        selection.push(lineup[j]);
+        lineup.splice(j, 1);
+      }
+
+      selection.splice(Math.floor(Math.random()*(numSuspects-1)),
+                    0, culprit);
+      var img_id = ["r11","r12","r13","r14",
+                    "r21","r22","r23","r24"];
+      var img_info = [];
+
+      for(var i = 0; i < numSuspects; i++) {
+        var img = document.getElementById(img_id[i]);
+        img.style.cursor = "crosshair";
+        img.onclick = change;
+        img.src = selection[i]["id"];
+        img_info[img_id[i]] = {state:"0", shape:selection[i]};
+      }
+      for(var i = numSuspects; i < img_id.length; i++) {
+        var img = document.getElementById(img_id[i]);
+        img.onclick = change;
+        img.src = "fig000.png";
+        img_info[img_id[i]] = {state:"2", shape:null};
+      }
+
+      var clueBox = document.getElementById("clueList");
+      var feedbackBox = document.getElementById("feedback");
+      var energyLevel = 4;
+      var energyImage = document.getElementById("energyImage");
+      genClue();
+
+      function change() {
+        var clicked = "";
+        for(var i = 0; i < img_id.length; i++) {
+          if(this == document.getElementById(img_id[i])) {
+            clicked = img_id[i];
+            break;
+          }
+        }
+        if(clicked == "") { return; }
+
+        var state = img_info[clicked]["state"];
+        if(state != 2) {
+          img_info[clicked]["state"] = (1 - state);
+
+          if(this.style.opacity == "0.5") {
+            this.style.opacity = "1.0";
+            this.style.filter = "alpha(opacity=100)"; 
+          } else {
+            this.style.opacity = "0.5";
+            this.style.filter = "alpha(opacity=50)"; 
+          }
+        }
+      }
+
+      // Returns true, false or null
+      function hasProperty(shape, clue) {
+        var propEqn = clue.split(" ");
+        if(!shape.hasOwnProperty(propEqn[0])) {
+          return null;  // unusable
+        }
+
+        if(propEqn[2] == "allSides") {
+          propEqn[2] = shape["straightSides"];
+        }
+
+        if(propEqn[1] == "=") {
+          return (shape[propEqn[0]] == propEqn[2]);
+        } else if(propEqn[1] == "!=") {
+          return (shape[propEqn[0]] != propEqn[2]);
+        } else if(propEqn[1] == "<=") {
+          return (shape[propEqn[0]] <= propEqn[2]);
+        } else if(propEqn[1] == ">=") {
+          return (shape[propEqn[0]] >= propEqn[2]);
+        } else if(propEqn[1] == "<") {
+          return (shape[propEqn[0]] < propEqn[2]);
+        } else if(propEqn[1] == ">") {
+          return (shape[propEqn[0]] > propEqn[2]);
+        }
+        return null;
+      }
+
+      // Returns null if currentClue is unusable;
+      // otherwise returns the (possibly empty)
+      // list of people who are innocent (i.e.,
+      // can be eliminated) based on currentClue
+      function getInnocent() {
+        if(currentClue == "") {
+          return null;  // unusable
+        }
+
+        var innocent = [];
+        for(var id in img_info) {
+          if(img_info[id]["state"] != 2) {
+            if(!hasProperty(img_info[id]["shape"], currentClue)) {
+              innocent.push(id);
+            }
+          }
+        }
+        return innocent;
+      }
+
+      // Checks if the non-null list of innocent
+      // people are correctly marked (state = 1)
+      function innocentOK(innocent) {
+        var j = 0;
+        for(var id in img_info) {
+          var state = img_info[id]["state"];
+          if(state != 2) {
+            if(state == 0 && j < innocent.length
+                          && id == innocent[j]) {
+//alert("id: " + id + ", shape: " + img_info[id]["shape"]["id"]);
+              feedbackBox.innerHTML =
+                "Oops... someone else is innocent! Try again.";
+              return false;
+            } else if(state == 1) {
+              if(j < innocent.length && id == innocent[j]) {
+                j++;
+              } else {
+//alert("id: " + id + ", shape: " + img_info[id]["shape"]["id"]);
+                feedbackBox.innerHTML =
+                  "Oops... who else can be the culprit? Try again.";
+                return false;
+              }
+            }
+          }
+        }
+        for(var i in innocent) {
+          img_info[innocent[i]]["state"] = 2;
+          var img = document.getElementById(innocent[i]);
+          img.style.cursor = "not-allowed";
+          img.style.opacity = "0.2";
+          img.style.filter  = "alpha(opacity=20)";
+        }
+        return true;
+      }
+
+      function decreaseEnergy() {
+        energyLevel--;
+        if(energyLevel <= 0) {
+          feedbackBox.innerHTML = "Game Over!";
+          energyImage.src = "battery0.jpg";
+        } else {
+          energyImage.src = "battery" + energyLevel + ".jpg";
+        }
+      }
+
+      function increaseEnergy() {
+        if(energyLevel < 4) {
+          energyLevel++;
+          energyImage.src = "battery" + energyLevel + ".jpg";
+        }
+      }
+
+      function genClue() {
+        if(energyLevel <= 0) { return; }
+        feedbackBox.innerHTML = "These are your clues...";
+        var innocent = getInnocent();
+        if(innocent != null) {
+          if(!innocentOK(innocent)) {
+            decreaseEnergy();
+            return;
+          }
+          numSuspects = numSuspects - innocent.length;
+        }
+        if(numSuspects <= 1) {
+          feedbackBox.innerHTML =
+            "You have sufficient clues to make an arrest!";
+          return;
+        }
+        //Append the next clue to the HTML page
+        var clueObject = clueList.splice(getBestClue(), 1)[0];
+        currentClue = clueObject["property"];
+        clueBox.innerHTML += "<br>"
+                      + clueObject["English"] + " ("
+                      + clueObject[clueLanguage] + ")";
+        increaseEnergy();
+      }
+
+      function getBestClue() {
+        var bestClueIndex = -1;
+        var bestClueValue = numSuspects;
+        for(var i = 0; i < clueList.length; i++) {
+          currentClue = clueList[i]["property"];
+          var len = getInnocent().length;
+          if(len > 0 && len < bestClueValue) {
+            bestClueIndex = i;
+            bestClueValue = len;
+          }
+        }
+        return bestClueIndex;
+      }
+
+      function makeArrest() {
+        if(energyLevel <= 0) { return; }
+        feedbackBox.innerHTML = "These are your clues...";
+        var innocent = getInnocent();
+        var numUnmarked = 0;
+        for(var id in img_info) {
+          if(img_info[id]["state"] == 0) {
+            numUnmarked++;
+          }
+        }
+        if(numUnmarked != 1 || innocent == null) {
+          if(numUnmarked == 0) {
+            feedbackBox.innerHTML =
+              "Oops... you have made everyone innocent! Try again.";
+          } else {
+            feedbackBox.innerHTML =
+              "Oops... you cannot make an arrest yet! Try again.";
+          }
+          decreaseEnergy();
+          return;
+        }
+        if(!innocentOK(innocent)) {
+          decreaseEnergy();
+          return;
+        }
+        feedbackBox.innerHTML = "You win!!";
+        numSuspects = 0;
+      }
+
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" :
+               decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+    </script>
+  </body>
+</html>

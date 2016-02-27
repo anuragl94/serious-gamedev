@@ -1,0 +1,9 @@
+﻿{
+  "clue": [
+    { "property": "straightSides = 1" },
+    { "English": "exactly one straight side" },
+    { "Hindi": "केवल एक भुज" },
+    { "Kannada": "ನಿಖರವಾಗಿ ಒಂದು ನೇರ ಅಡ್ಡ" },
+    { "Telugu": "సరిగ్గా ఒక నేరుగా వైపు" }
+  ]
+}

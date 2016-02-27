@@ -1,0 +1,128 @@
+﻿clues8 = '[\
+{\
+ "property" : "reflexAngles > 1",\
+ "English" : "more than one reflex angle",\
+ "Hindi" : "एक से ज़्यादा प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "reflexAngles < 2",\
+ "English" : "less than two reflex angles",\
+ "Hindi" : "दो से कम प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "reflexAngles <= 2",\
+ "English" : "at most two reflex angles",\
+ "Hindi" : "ज़्यादा से ज़्यादा दो प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "reflexAngles >= 2",\
+ "English" : "at least two reflex angles",\
+ "Hindi" : "कम से कम दो प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "reflexAngles > 2",\
+ "English" : "more than two reflex angles",\
+ "Hindi" : "दो से ज़्यादा प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "reflexAngles < 3",\
+ "English" : "less than three reflex angles",\
+ "Hindi" : "तीन से कम प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "reflexAngles <= 3",\
+ "English" : "at most three reflex angles",\
+ "Hindi" : "ज़्यादा से ज़्यादा तीन प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "reflexAngles >= 3",\
+ "English" : "at least three reflex angles",\
+ "Hindi" : "कम से कम तीन प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "reflexAngles > 3",\
+ "English" : "more than three reflex angles",\
+ "Hindi" : "तीन से ज़्यादा प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel > 1",\
+ "English" : "more than one pair of opposite sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel < 2",\
+ "English" : "less than two pairs of opposite sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel <= 2",\
+ "English" : "at most two pairs of opposite sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel >= 2",\
+ "English" : "at least two pairs of opposite sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel > 2",\
+ "English" : "more than two pairs of opposite sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel < 3",\
+ "English" : "less than three pairs of opposite sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel <= 3",\
+ "English" : "at most three pairs of opposite sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel >= 3",\
+ "English" : "at least three pairs of opposite sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel > 3",\
+ "English" : "more than three pairs of opposite sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+}\
+]';

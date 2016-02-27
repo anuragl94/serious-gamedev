@@ -1,0 +1,9 @@
+﻿clues0 = '[\
+{\
+ "property" : "sidesEqual = 3",\
+ "English" : "three sides, all of equal length",\
+ "Hindi" : "तीन बराबर भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+}\
+]';

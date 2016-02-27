@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Police Quad</title>
+  </head>
+  <body>
+    <label>Select the language for clues
+      <select id="clueLanguage">
+          <option>Hindi</option>
+          <option>Kannada</option>
+          <option>Telugu</option>
+      </select>
+    </label>
+    <br>
+    <label>Select the stage
+      <select id="stage">
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+      </select>
+    </label>
+    <br>
+
+    <h3>One of the shapes is the culprit.<br>
+        Click on the innocent shapes to ELIMINATE them.<br>
+        The last one left is the culprit – ARREST IT!
+    </h3>
+
+    <button onclick="play()">Let's Play!</button>
+
+    <script type="text/javascript">
+      function play() {
+        window.open("play.html?language="+clueLanguage.value+
+                     "&stage="+stage.value);
+      }
+    </script>
+  </body>
+</html>

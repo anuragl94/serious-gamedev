@@ -1,0 +1,114 @@
+﻿clues1 = '[\
+{\
+ "property" : "straightSides = 1",\
+ "English" : "exactly one straight side",\
+ "Hindi" : "केवल एक भुज",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "straightSides = 2",\
+ "English" : "exactly two straight sides",\
+ "Hindi" : "केवल दो भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "straightSides = 3",\
+ "English" : "exactly three straight sides",\
+ "Hindi" : "केवल तीन भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "straightSides = 4",\
+ "English" : "exactly four straight sides",\
+ "Hindi" : "केवल चार भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "straightSides = 5",\
+ "English" : "exactly five straight sides",\
+ "Hindi" : "केवल पांच भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "straightSides = 6",\
+ "English" : "exactly six straight sides",\
+ "Hindi" : "केवल छह भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "curvedSides = 0",\
+ "English" : "no curved sides",\
+ "Hindi" : "कोई घुमावदार भुजाएँ नहीं",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "curvedSides = yes",\
+ "English" : "a curved side",\
+ "Hindi" : "घुमावदार भुज",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "sidesEqual = 3",\
+ "English" : "three sides, all of equal length",\
+ "Hindi" : "तीन बराबर भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "sidesEqual = 4",\
+ "English" : "four sides, all of equal length",\
+ "Hindi" : "चार बराबर भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "sidesEqual = 5",\
+ "English" : "five sides, all of equal length",\
+ "Hindi" : "पांच बराबर भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "sidesEqual = 6",\
+ "English" : "six sides, all of equal length",\
+ "Hindi" : "छह बराबर भुजाएँ",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "sidesEqual = allSides",\
+ "English" : "all sides of equal length",\
+ "Hindi" : "सभी भुजाएँ बराबर",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+  "property" : "pairsOfSidesEqual = 1",\
+  "English" : "exactly one pair of sides equal",\
+  "Hindi" : "केवल एक भुजों की जोड़ी बराबर",\
+  "Kannada" : "ನಿಖರವಾಗಿ ಒಂದು ಜೋಡಿ ಸಮಾನ ಬಾಹುಗಳು",\
+  "Telugu" : "సమానమైన జత బుజాలు ఒకటి "\
+},\
+{\
+  "property" : "pairsOfSidesEqual = 2",\
+  "English" : "exactly two pairs of sides equal",\
+  "Hindi" : "केवल दो भुजों की जोड़ी बराबर",\
+  "Kannada" : "unknown",\
+  "Telugu" : "unknown"\
+},\
+{\
+  "property" : "pairsOfSidesEqual = 3",\
+  "English" : "exactly three pairs of sides equal",\
+  "Hindi" : "केवल तीन भुजों की जोड़ी बराबर",\
+  "Kannada" : "unknown",\
+  "Telugu" : "unknown"\
+}\
+]';

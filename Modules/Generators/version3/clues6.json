@@ -1,0 +1,23 @@
+﻿clues6 = '[\
+{\
+ "property" : "reflexAngles = 0",\
+ "English" : "no reflex angle",\
+ "Hindi" : "कोई भी  प्रतिवर्त कोण नहीं",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "reflexAngles = 1",\
+ "English" : "exactly one reflex angle",\
+ "Hindi" : "केवल एक प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "reflexAngles >= 1",\
+ "English" : "at least one reflex angle",\
+ "Hindi" : "कम से कम एक प्रतिवर्त कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+}\
+]';

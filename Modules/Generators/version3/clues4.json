@@ -1,0 +1,44 @@
+﻿clues4 = '[\
+{\
+ "property" : "acuteAngles = 0",\
+ "English" : "no acute angles",\
+ "Hindi" : "कोई भी न्यून कोण नहीं",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "acuteAngles = 1",\
+ "English" : "exactly one acute angle",\
+ "Hindi" : "केवल एक न्यून कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "acuteAngles >= 1",\
+ "English" : "at least one acute angle",\
+ "Hindi" : "कम से कम एक न्यून कोण",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "obtuseAngles = 0",\
+ "English" : "no obtuse angle",\
+ "Hindi" : "कोई भी  अधिक कोण नहीं",\
+ "Kannada" : "ಅಧಿಕ ಕೋನ ಇಲ್ಲವೇ ಇಲ್ಲ",\
+ "Telugu" : "గురు కోణము లేదు"\
+},\
+{\
+ "property" : "obtuseAngles = 1",\
+ "English" : "exactly one obtuse angle",\
+ "Hindi" : "केवल एक अधिक कोण",\
+ "Kannada" : "ನಿಖರವಾಗಿ ಒಂದು ಅಧಿಕ ಕೋನ",\
+ "Telugu" : "ఒకే ఒక గురు కోణము"\
+},\
+{\
+ "property" : "obtuseAngles >= 1",\
+ "English" : "at least one obtuse angle",\
+ "Hindi" : "कम से कम एक अधिक कोण",\
+ "Kannada" : "ಕನಿಷ್ಠ ಒಂದು ಅಧಿಕ ಕೋನ",\
+ "Telugu" : "ఒకటి లేదా ఒకటి కన్నా ఎక్కువ గురు కోణాలు"\
+}\
+]';

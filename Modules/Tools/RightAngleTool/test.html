@@ -1,0 +1,86 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Right Angle Tool</title>
+        <script src="fabric.min.js"></script>
+    </head>
+    <body>
+        <h1> Right Angle Tool Sample </h1>
+        <canvas id="c" width="1000px" height="400px" style="border:1px solid black"></canvas>
+        <br/>
+         <script>
+             var vis = 1;
+            //Declare canvas
+            var canvas = new fabric.Canvas('c');
+            //Options
+            var im1 = document.createElement('img');
+            im1.src = "fig001.png";
+            var im2 = document.createElement('img');
+            im2.src = "fig002.png";
+            var im3 = document.createElement('img');
+            im3.src = "fig003.png";
+            var im4 = document.createElement('img');
+            im4.src = "fig004.png";
+            // Right Angle tool
+            var rtToolPic = document.createElement('img');
+           rtToolPic.src="rtang1.png";
+            var rtTool = new fabric.Image(rtToolPic, {
+            left: 800,
+            top: 100,
+            angle: 0,
+            opacity: 1
+            });
+            var op1 = new fabric.Image(im1, {
+            left: 0,
+            top: 100,
+            angle: 20,
+            opacity: 1
+            });
+            var op2 = new fabric.Image(im2, {
+            left: 250,
+            top: 100,
+            angle: 40,
+            opacity: 1
+            });
+            var op3 = new fabric.Image(im3, {
+            left: 400,
+            top: 100,
+            angle: 50,
+            opacity: 1
+            });
+            var op4 = new fabric.Image(im4, {
+            left: 650,
+            top: 100,
+            angle: 70,
+            opacity: 1
+            });
+            
+            //Add elements to canvas
+            canvas.add(op1);
+            canvas.add(op2);
+            canvas.add(op3);
+            canvas.add(op4);
+            canvas.add(rtTool);
+            //Make cursor a pointer
+            canvas.hoverCursor = 'pointer';
+            //Disable movement for options
+            canvas.item(1).selectable = false;
+            canvas.item(2).selectable = false;
+            canvas.item(3).selectable = false;
+            canvas.item(0).selectable = false;
+            // var canvas1 = document.getElementById("c");
+            //   var context = canvas1.getContext("2d");
+            // context.drawImage(im, 0, 0);
+
+          function showTool()
+          {
+              //canvas.item(0).opacity = vis;
+              if(vis == 1)
+                vis = 0;
+              else
+                vis = 1;
+          }
+         </script>
+         
+    </body>
+</html>

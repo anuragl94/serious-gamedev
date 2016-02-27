@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+<head>
+	<title>Login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="Jquery/jquery.mobile-1.4.5.min.css" />
+	<script src="Jquery/jquery-1.11.3.min.js"></script>
+	<script src="Jquery/jquery.mobile-1.4.5.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html;" charset="utf-8">
+</head>
+<body onload="pop()">
+<div style="padding-top:0px;">
+	<div style="height:60px;color:white;background-color:rgba(31, 137, 224, 1);">
+		<h1 style="font-family:Lucida Calligraphy;padding-top:5px;padding-left:5px;">Question Generation</h1>
+	</div><!-- /header -->
+
+	<div>
+        <div class="ui-grid-a" style="height:100%;">
+            <div class="ui-block-a" style="height:100%;max-width:50%;">
+                <img src="assets/images/indstuds1.jpg" style="height:700px;width:100%;" />
+            </div>
+            <div class="ui-block-b">
+                <div class="" style="font-size:50px;color:blue;font-family:Lucida Calligraphy;color:rgba(31, 137, 224, 1);padding:1em;">
+                    <center>
+                        Join the adventure!
+                    </center>
+                    <br/>
+                    <label id="uname" style="font-size:20px;">Username</label><input style="font-size:20px;" type="text" />
+                    <label id="paswd"style="font-size:20px;">Password</label><input style="font-size:20px;" type="password" />
+                    <a href="version3/PoliceQuad.html" class="ui-btn ui-btn-inline" id="login">Login</a><a class="ui-btn ui-btn-inline" id="fpswd">Forgot Password</a>
+                </div>
+                <center>
+                        <a href="#" id="L1" onclick="hind()">Hindi</a>&nbsp<a href="#">Telugu</a>&nbsp<a href="#">Kannada</a>
+                </center>
+                
+            </div>
+        </div>
+
+	</div><!-- /content -->
+</div><!-- /page -->
+<script type="text/javascript">
+function pop()
+{
+    if(localStorage.lang)
+    {
+        if(localStorage.lang=="hin")
+        {
+            document.getElementById("uname").innerText = "उपयोगकर्ता नाम";
+            document.getElementById("paswd").innerText = "पासवर्ड";
+            document.getElementById("login").innerHTML = "लॉगिन";
+            document.getElementById("fpswd").innerHTML = "पासवर्ड भूल गया";
+            document.getElementById("L1").innerHTML="English"
+        }
+        else if(localStorage.lang=="eng")
+        {
+            document.getElementById("uname").innerText="Username";
+            document.getElementById("paswd").innerText="Password";
+            document.getElementById("login").innerHTML="Login";
+            document.getElementById("fpswd").innerHTML="Forgot Password";
+            document.getElementById("L1").innerHTML="Hindi"
+        }
+    }
+    else
+    {
+        localStorage.lang="eng";
+        document.getElementById("uname").innerText="Username";
+        document.getElementById("paswd").innerText="Password";
+    }
+}
+function hind()
+{
+    if(localStorage.lang!="hin")
+        localStorage.lang="hin";
+    else
+        localStorage.lang="eng";
+    pop();
+}
+function eng()
+{
+    localStorage.lang="eng";
+    pop();
+}
+</script>
+</body>
+</html>
