@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Police Quad Question Generator</title>
+        <!-- Bootstrap -->
+        <link href="../Public/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="../Public/js/jquery-1.11.3.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../Public/js/bootstrap.min.js"></script>
+        <!-- Temporary -->
+        <script type="text/javascript" src="shapes3.json"></script>
+
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <script src="../Engine/js/fetch.js"></script>
+        <script>
+            var options = $.getScript("options_renderer.js");
+            //console.log("All data", options);
+        </script>
+        <style>
+            .opimg
+            {
+                width:200px;
+                height:200px;
+                border:solid 1px black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navbar" style="color:white;background-color:rgba(31, 137, 224, 1);">
+            <h1>Police Quad</h1>
+        </div>
+        <h3 style="padding-left:4em;">
+            One of the shapes is the culprit.<br>
+            Click on the innocent shapes to ELIMINATE them.<br>
+            The last one left is the culprit – ARREST IT!
+        </h3>
+        <div class="row">
+            <div class="col-md-9">
+                <div id="oprow1" class="row">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h2>Clues</h2>
+                <div id="Clues"></div>
+                <h2>Tools</h2>
+                <!--Insert tools here-->
+                <button onclick="genClue()">
+                    <img src="inspect.jpg" height=70 />
+                </button>
+                <button onclick="makeArrest()">
+                    <img src="makeArrest.gif" height=70 />
+                </button>
+                <img id="energyImage" src="battery4.jpg" />
+            </div>
+        </div>
+    </body>
+</html>
