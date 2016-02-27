@@ -514,14 +514,6 @@
         optionDoms[i].class = "opimg"
         optionDoms[i].src = "../Modules/Generators/version3/" + Options[i].id;
     }
-    function optionGen()
-    {
-        return Options;
-    }
-    function optionRend()
-    {
-        return optionDoms;
-    }
 //Fisher-Yates Shuffle.
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -543,8 +535,9 @@
     //console.log("This is the options :" + Options);
     //console.log(" This is doms :" + optionDoms[0].src);
 
-    return {
+    var returnValues = {
         "options": Options,
-        "options_markup": optionDoms[0].src
-    };
+        "options_markup": optionDoms
+    }
+    return returnValues;
 }());
