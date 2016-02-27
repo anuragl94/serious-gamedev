@@ -44,6 +44,11 @@
 	height: 400px;
 	z-index: 1;
 }
+
+.vertex {
+	position: relative;
+	z-index: 1;
+}
 </style>
 
 <head>
@@ -53,8 +58,8 @@
 <body>
 
 <div class="optionWrapper">
-<canvas class="canvasOverlay"></canvas>
-<object type="image/svg+xml" data="svg\drawing.svg" id="option1"></object>
+<canvas class="canvasOverlay" height="400px" width="400px"></canvas>
+<object type="image/svg+xml" data="svg\6C Simple.svg" id="option1"></object>
 </div>
 
 <br>
@@ -67,41 +72,49 @@ Y: <p id="mouse_y">0</p>
 	//Thoughts: Would it be okay to get the svg object document content and replace the object with the svg code in the content itself? This can be done in the module that renders the options onto the gamescreen.
 $(window).load(function() {
 	var coordinates = {};
-    var theta = document.getElementById('option1').contentDocument;
-	var paths = $(theta).find("path");	// Common to all the tools one can usemap
 	
-	//Following will be the regex to filter exact coordinates from the path
-	//Inkscape
+	$(".optionWrapper").append('<img src="'+document.getElementById('option1').data+'" class="imageUnderlay" id="option1"/>');
+	$(".canvasOverlay").each(function(){
+		var svgObject = document.getElementById('option1').contentDocument;
+		var paths = $(svgObject).find("path");	// Common to all the tools one can usemap
+		
+		//Following will be the regex to filter exact coordinates from the path
+		//Inkscape
+		
+		//Adobe Illustrator
+		
+		//Geogebra
+		//NOTE: This seems to be wrong, as it's only extracting the bounding box
+		//var coords = $($(svgObject).find("svg g g g path")[0]).attr("d");
+		//coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
+		//coordinates['option1'] = $.map(coords, function(value) {
+		//    var temp = value.split(' ');
+		//    return [[temp[1],temp[2]]];
+		//});
+		
+		//Super minified
+		var coords = $($(svgObject).find("svg path")[0]).attr("d");
+		coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
+		coordinates['option1'] = $.map(coords, function(value) {
+			var temp = value.split(' ');
+			return [[temp[1],temp[2]]];
+		});
 	
+		//Tool specific code ends here
+		var underlay = $(this).closest(".objectWrapper").find("img");
+	});
 	
-	//Adobe Illustrator
-	
-	//Geogebra
-	//NOTE: This seems to be wrong, as it's only extracting the bounding box
-    var coords = $($(theta).find("svg g g g path")[0]).attr("d");
-    //coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
-    //coordinates['option1'] = $.map(coords, function(value) {
-    //    var temp = value.split(' ');
-    //    return [[temp[1],temp[2]]];
-    //});
-	//Tool specific code ends here
+	$("object").remove();
 	
     console.log(coordinates);
-	$(".optionWrapper").append('<img src="'+document.getElementById('option1').data+'" class="imageUnderlay"/>');
-	$("object").remove();
-	$(".canvasOverlay").each(function(){
-		var underlay = $(this).closest(".objectWrapper").find("img");
-		$(this).prop('width',underlay.clientWidth);
-		$(this).prop('height',underlay.clientHeight);
-	});
-
+	
     function angle(cx, cy, ex, ey) {
         var dy = ey - cy;
         var dx = ex - cx;
-        var theta = Math.atan2(dy, dx); // range (-PI, PI]
-        theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
-        //if (theta < 0) theta = 360 + theta; // range [0, 360)
-        return theta;
+        var svgObject = Math.atan2(dy, dx); // range (-PI, PI]
+        svgObject *= 180 / Math.PI; // rads to degs, range (-180, 180]
+        //if (svgObject < 0) svgObject = 360 + svgObject; // range [0, 360)
+        return svgObject;
     }
 
     $(document).on("click", function() {
