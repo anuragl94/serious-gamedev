@@ -100,14 +100,20 @@
                     if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
                         $("#cluesWrapper").find(".clue:not(:visible)").first().toggle();
                     } else {
-                        console.log("You have sufficient clues to make an arrest!");
+                        //Do nothing. You're out of clues!
                     }
                 });
 
                 //~~These are the custom events for buttons
-                //This is one pointless event. Need good advice
                 $("#inspect").on('click', function () {
-                    $("#optionsWrapper").trigger("inspect");
+                    if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
+                        $("#optionsWrapper").trigger("inspect");
+                    } else {
+                        console.log("You have sufficient clues to make an arrest!");
+                    }
+                });
+                $("#arrest").on('click', function () {
+                    //Must write logic for arrest tool
                 });
 
                 //~~These are the custom events for battery
@@ -117,6 +123,7 @@
                         $("#battery").attr("data-value", charge);
                         $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
                     } else {
+                        alert("Game over! Battery was drained!");
                         console.log("Game over! Battery was drained!!");
                     }
                 });
@@ -152,43 +159,44 @@
                 gameData['solvedClues'] = [];
             });
         </script>
-        <style>
-            .option
-            {
-                height: 220px;
-                border:solid 1px #eeeeee;
-            }
-
-            .moduleWrapper {
-                border:solid 1px #dddddd;
-            }
-        </style>
     </head>
     <body>
-        <div class="navbar" style="color:white;background-color:rgba(31, 137, 224, 1);">
-            <h1>Police Quad</h1>
-        </div>
-        <h3 style="padding-left:4em;">
-            One of the shapes is the culprit.<br>
-            Click on the innocent shapes to ELIMINATE them.<br>
-            The last one left is the culprit – ARREST IT!
-        </h3>
-        <div class="row">
-            <div class="col-md-9 moduleWrapper" id="optionsWrapper">
+        <div class="pageWrapper">
+            <div class="navbar">
+                <h1>PoliceQuad</h1>
             </div>
-            <div class="col-md-3">
-                <h2>Clues</h2>
-                <div class="moduleWrapper" id="cluesWrapper">
+            <div class="question">
+                <h4>
+                    One of the shapes is the culprit.
+                    Click on the innocent shapes to ELIMINATE them.
+                    The last one left is the culprit – ARREST IT!<br><br>
+                </h4>
+            </div>
+            <div class="row">
+                <div class="col-md-9 moduleWrapper" id="optionsWrapper">
                 </div>
-                <h2>Tools</h2>
-                <!--Insert tools here-->
-                <button id="inspect">
-                    <img src="inspect.jpg" height=70 />
-                </button>
-                <button id="arrest">
-                    <img src="makeArrest.gif" height=70 />
-                </button>
-                <img id="battery" src="battery4.jpg" data-value="4" data-max="4" />
+                <div class="col-md-3">
+                    <h2>Clues</h2>
+                    <div class="moduleWrapper" id="cluesWrapper">
+                    </div>
+                    <h2>Tools</h2>
+                    <!--Insert tools here-->
+                    <div class="row tools">
+                        <div class="col-lg-4 col-md-4">
+                            <button id="inspect">
+                                <img src="inspect.jpg" height=70 />
+                            </button>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <button id="arrest">
+                                <img src="makeArrest.gif" height=70 />
+                            </button>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <img id="battery" src="battery4.jpg" data-value="4" data-max="4" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
