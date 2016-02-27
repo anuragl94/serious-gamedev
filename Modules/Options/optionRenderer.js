@@ -92,6 +92,7 @@ var config = {
       }
     ]
 };
+
 function isInArray(value, array) {
     return array.indexOf(value) > -1;
 }
@@ -101,17 +102,15 @@ var noOfCorrectOptions = parseInt(config.questionsRepo[4].noOfCorrectOptions);
 var Options = new Array(noOfOptions);
 var correctOptions = new Array(noOfCorrectOptions);
 var shapesJSON = JSON.parse(shapes3);
-var optionDoms = new Array(noOfOptions);
+var optionDoms = document.getElementsByClassName("opimg");
 var shapesJSON = JSON.parse(shapes3);
 var fitCount = 0;
-for(var i = 0; i< noOfOptions && noOfClues >= 0;i++)
-{
+for (var i = 0; i < noOfOptions && noOfClues >= 0; i++) {
     for (var j = 0; j < shapesJSON.length; j++) {
         var shape = shapesJSON[j];
-        if(noOfClues==3)
-        {
-            if (qset.q1[0].attribute == "straightSides" && qset.q1[0].comparator == "=" && parseInt(qset.q1[0].quantity) == parseInt(shape.straightSides) && !isInArray(shape.id,Options) ) {
-                Options[i] = shape;
+        if (noOfClues == 3) {
+            if (qset.q1[0].attribute == "straightSides" && qset.q1[0].comparator == "=" && parseInt(qset.q1[0].quantity) == parseInt(shape.straightSides) && !isInArray(shape, Options)) {
+                Options[i] = shape; Options[i].id = shape.id;
                 fitCount++;
                 if (fitCount == 2) {
                     fitCount = 0;
@@ -120,12 +119,11 @@ for(var i = 0; i< noOfOptions && noOfClues >= 0;i++)
                 }
                 break;
             }
-                    
+
         }
-        else if(noOfClues==2)
-        {
+        else if (noOfClues == 2) {
             if (qset.q1[1].attribute == "pairsOfSidesEqual" && qset.q1[1].comparator == "=" && qset.q1[1].quantity == shape.pairsOfSidesEqual && !isInArray(shape.id, Options)) {
-                Options[i] = shape;
+                Options[i] = shape; Options[i].id = shape.id;
                 fitCount++;
                 if (fitCount == 2) {
                     fitCount = 0;
@@ -134,12 +132,11 @@ for(var i = 0; i< noOfOptions && noOfClues >= 0;i++)
                 }
                 break;
             }
-                    
+
         }
-        else if(noOfClues==1)
-        {
-            if (qset.q1[2].attribute == "obtuseAngles" && qset.q1[2].comparator == "=" && qset.q1[2].quantity == shape.obtuseAngles && !isInArray(shape.id, Options)) {
-                Options[i] = shape;
+        else if (noOfClues == 1) {
+            if (qset.q1[2].attribute == "obtuseAngles" && qset.q1[2].comparator == "=" && qset.q1[2].quantity == shape.obtuseAngles && !isInArray(shape, Options)) {
+                Options[i] = shape; Options[i].id = shape.id;
                 fitCount++;
                 if (fitCount == 1) {
                     fitCount = 0;
@@ -149,36 +146,18 @@ for(var i = 0; i< noOfOptions && noOfClues >= 0;i++)
                 break;
             }
         }
-        else
-        {
+        else {
             //Get answer
-            if (qset.q1[2].quantity == shape.obtuseAngles && qset.q1[1].quantity == shape.pairsOfSidesEqual && qset.q1[0].quantity == shape.straightSides && !isInArray(shape.id, Options))
-            {
-                Options[i] = shape; console.log(shape.id + "Answer");
+            if (qset.q1[2].quantity == shape.obtuseAngles && qset.q1[1].quantity == shape.pairsOfSidesEqual && qset.q1[0].quantity == shape.straightSides && !isInArray(shape, Options)) {
+                Options[i] = shape; console.log(shape.id + " is the Answer");
                 break;
             }
-                    
+
         }
     }
     console.log(Options[i]);
 }
 Options = shuffle(Options);
-for (var i = 0; i < noOfOptions; i++)
-{
-    optionDoms[i] = document.createElement("img");
-    optionDoms[i].class = "opimg"
-    optionDoms[i].src = "../Generators/version3/" + Options[i].id;
-}
-function optionGen()
-{
-    return Options;
-}
-function optionRend()
-{
-    return optionDoms;
-}
-console.log("This is the options :"+Options);
-console.log(" This is doms :"+ optionDoms[0].src);
 //Fisher-Yates Shuffle.
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -197,4 +176,24 @@ function shuffle(array) {
     }
 
     return array;
+}
+createDoms();
+function createDoms()
+{
+    for (var i = 0; i < noOfOptions; i++)
+    {
+        optionDoms[i] = document.createElement("img");
+        optionDoms[i].class = "opimg"
+        optionDoms[i].src = "../Generators/version3/" + Options[i].id;
+        console.log(" This is doms :" + optionDoms[i].src);
+    }
+    console.log("This is the options :" + Options);
+    console.log(" This is doms :" + optionDoms[0].src);
+}
+function optionGen()
+{
+    return Options;
+}
+function optionRend() {
+    return optionDoms;
 }
