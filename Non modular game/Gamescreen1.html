@@ -5,6 +5,7 @@
         <title>Police Quad Question Generator</title>
         <!-- Bootstrap -->
         <link href="../Public/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/gamedev.css" rel="stylesheet" />
         <script src="../Public/js/jquery-1.11.3.min.js"></script>
         <script src="../Public/js/bootstrap.min.js"></script>
         <script src="js/jquery-1.11.3.min.js"></script>
@@ -32,7 +33,7 @@
                     $(this).find("input:checked").prop('checked', false);
                 });
                 // This event listener comes from the tools section
-                $("#optionsWrapper").on("investigate", function () {
+                $("#optionsWrapper").on("inspect", function () {
                     //Here we get a list of selected options along with their attributes
                     var selectedOptions = $(this).find("input:checked").map(function () {
                         return $(this).attr("index");
@@ -45,7 +46,6 @@
                     var selectedOptions = $(this).find("input:checked").map(function () {
                         return $(this).attr("index");
                     });
-                    console.log(selectedOptions);
                 });
 
                 //~~These are the custom events for clues
@@ -53,7 +53,6 @@
                     //Here we get a list of selected options along with their attributes
                     var currentClueIndex = $("#cluesWrapper").find(".clue:visible").length - 1;
                     var currentClue = gameData['clues'][currentClueIndex];
-                    console.log("Current clue", currentClue);
                     var correctOptions = $(gameData['options']).map(function (index) {
                         var option = this;
                         switch (currentClue['comparator']) {
@@ -82,9 +81,6 @@
                     selectedOptions = Array.prototype.slice.call(selectedOptions);
                     correctOptions = Array.prototype.slice.call(correctOptions);
 
-                    console.log("Selected", selectedOptions.sort().join(','));
-                    console.log("Actually correct", correctOptions.sort().join(','));
-
                     if (selectedOptions.sort().join(',') === correctOptions.sort().join(',')) {
                         //Success
                         console.log("Success! Good job!");
@@ -93,17 +89,50 @@
                         $("#optionsWrapper").trigger("disableSelected");
                         gameData['solvedClues'].push(currentClueIndex);
                     } else {
+                        console.log("Investigation failed");
                         $("#battery").trigger("drain");
+                        $("#cluesWrapper").find(".clue:visible").last().addClass("failure");
                     }
                 });
 
                 $("#cluesWrapper").on("getNextClue", function () {
+                    $("#cluesWrapper").find(".clue:visible").last().removeClass("failure").addClass("success");
                     if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
                         $("#cluesWrapper").find(".clue:not(:visible)").first().toggle();
                     } else {
-                        //No more clues! You can make an arrest!!
-                        console.log("You have sufficient clues!");
+                        console.log("You have sufficient clues to make an arrest!");
                     }
+                });
+
+                //~~These are the custom events for buttons
+                //This is one pointless event. Need good advice
+                $("#inspect").on('click', function () {
+                    $("#optionsWrapper").trigger("inspect");
+                });
+
+                //~~These are the custom events for battery
+                $("#battery").on("drain", function () {
+                    var charge = parseInt($("#battery").attr("data-value")) - 1;
+                    if (charge > 0) {
+                        $("#battery").attr("data-value", charge);
+                        $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
+                    } else {
+                        console.log("Game over! Battery was drained!!");
+                    }
+                });
+                $("#battery").on("charge", function () {
+                    var charge = parseInt($("#battery").attr("data-value")) + 1;
+                    if (charge <= $("#battery").attr("data-max")) {
+                        $("#battery").attr("data-value", charge);
+                        $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
+                    } else {
+                        console.log("You're overcharging the battery!");
+                    }
+                });
+                $("#battery").on("refresh", function () {
+                    var charge = $("#battery").attr("data-max");
+                    $("#battery").attr("data-value", charge);
+                    $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
                 });
 
                 // The following lines render HTML markup for the clues. The code will be pushed into the relevant module
@@ -153,13 +182,13 @@
                 </div>
                 <h2>Tools</h2>
                 <!--Insert tools here-->
-                <button onclick="genClue()">
+                <button id="inspect">
                     <img src="inspect.jpg" height=70 />
                 </button>
-                <button onclick="makeArrest()">
+                <button id="arrest">
                     <img src="makeArrest.gif" height=70 />
                 </button>
-                <img id="energyImage" src="battery4.jpg" />
+                <img id="battery" src="battery4.jpg" data-value="4" data-max="4" />
             </div>
         </div>
     </body>

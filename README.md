@@ -7,3 +7,6 @@ The development branch will not follow this pattern. Everything will be strictly
 
 Generic structure of a module:
 Either renders some HTML, or updates the global variable gameData, or creates some event listeners
+
+IMPORTANT NOTE:
+Run "Non modular game/Gamescreen1.html", but with disable-web-security flag enabled on chrome.

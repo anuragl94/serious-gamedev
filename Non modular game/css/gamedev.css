@@ -1,2 +1,7 @@
-body {
+.failure {
+    color: red;
+}
+
+.success {
+    color: #99dd99;
 }
