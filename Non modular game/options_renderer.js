@@ -1,4 +1,6 @@
-(function () {
+// The following logic is really bad practice as I'm setting a global variable. The whole point of the IIFE was to avoid that, and to not have conflicts with variables in the caller's scope.
+// Must find a good alternative
+returnValue = (function () {
 //Qset Data
     var qset = {
         "q1": [
@@ -458,7 +460,7 @@
             var shape = shapesJSON[j];
             if (noOfClues == 3)
             {
-                if (qset.q1[0].attribute == "straightSides" && qset.q1[0].comparator == "=" && parseInt(qset.q1[0].quantity) == parseInt(shape.straightSides) && !isInArray(shape.id, Options)) {
+                if (qset.q1[0].attribute == "straightSides" && qset.q1[0].comparator == "=" && parseInt(qset.q1[0].quantity) == parseInt(shape.straightSides) && !isInArray(shape, Options)) {
                     Options[i] = shape;
                     fitCount++;
                     if (fitCount == 2) {
@@ -471,7 +473,7 @@
 
             } else if (noOfClues == 2)
             {
-                if (qset.q1[1].attribute == "pairsOfSidesEqual" && qset.q1[1].comparator == "=" && qset.q1[1].quantity == shape.pairsOfSidesEqual && !isInArray(shape.id, Options)) {
+                if (qset.q1[1].attribute == "pairsOfSidesEqual" && qset.q1[1].comparator == "=" && qset.q1[1].quantity == shape.pairsOfSidesEqual && !isInArray(shape, Options)) {
                     Options[i] = shape;
                     fitCount++;
                     if (fitCount == 2) {
@@ -483,7 +485,7 @@
                 }
             } else if (noOfClues == 1)
             {
-                if (qset.q1[2].attribute == "obtuseAngles" && qset.q1[2].comparator == "=" && qset.q1[2].quantity == shape.obtuseAngles && !isInArray(shape.id, Options)) {
+                if (qset.q1[2].attribute == "obtuseAngles" && qset.q1[2].comparator == "=" && qset.q1[2].quantity == shape.obtuseAngles && !isInArray(shape, Options)) {
                     Options[i] = shape;
                     fitCount++;
                     if (fitCount == 1) {
@@ -496,23 +498,32 @@
             } else
             {
 //Get answer
-                if (qset.q1[2].quantity == shape.obtuseAngles && qset.q1[1].quantity == shape.pairsOfSidesEqual && qset.q1[0].quantity == shape.straightSides && !isInArray(shape.id, Options))
+                if (qset.q1[2].quantity == shape.obtuseAngles && qset.q1[1].quantity == shape.pairsOfSidesEqual && qset.q1[0].quantity == shape.straightSides && !isInArray(shape, Options))
                 {
                     Options[i] = shape;
-                    console.log(shape.id + "Answer");
+                    //console.log(shape.id + "Answer");
                     break;
                 }
 
             }
         }
-        console.log(Options[i]);
+        //console.log(Options[i]);
     }
-    Options = shuffle(Options);
+    //Options = shuffle(Options);
     for (var i = 0; i < noOfOptions; i++)
     {
-        optionDoms[i] = document.createElement("img");
-        optionDoms[i].class = "opimg"
-        optionDoms[i].src = "../Modules/Generators/version3/" + Options[i].id;
+        var markup = document.createElement("div");
+        $(markup).addClass("col-lg-4 col-md-4");
+        var label = document.createElement("label");
+        var temp = document.createElement("img");
+        temp.class = "option"
+        temp.src = "../Modules/Generators/version3/" + Options[i].id;
+        label.appendChild(temp);
+        temp = document.createElement("input");
+        temp.type = "checkbox";
+        label.appendChild(temp);
+        markup.appendChild(label);
+        optionDoms[i] = markup;
     }
 //Fisher-Yates Shuffle.
     function shuffle(array) {
@@ -536,6 +547,7 @@
     //console.log(" This is doms :" + optionDoms[0].src);
 
     var returnValues = {
+        "clues": qset,
         "options": Options,
         "options_markup": optionDoms
     }
