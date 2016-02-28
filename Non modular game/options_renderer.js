@@ -751,7 +751,7 @@ returnValue = (function () {
     gameData['clues'] = qset['q1'];
     gameData['options'] = Options;
     gameData['includedModules'].push('options_renderer');
-
+    
     var returnValues = {
         "clues": qset['q1'],
         "options": Options,
