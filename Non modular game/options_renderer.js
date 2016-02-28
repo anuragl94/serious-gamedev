@@ -687,6 +687,23 @@ returnValue = (function () {
                 j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0) + 0);
             }
         }
+        // Fill properties not available for the shapes
+        if(!Options[i].straightSides)
+            Options[i].straightSides = -1;
+        if(!Options[i].curvedSides)
+            Options[i].curvedSides = -1;
+        if(!Options[i].pairsOfSidesEqual)
+            Options[i].pairsOfSidesEqual = -1;
+        if(!Options[i].rightAngles)
+            Options[i].rightAngles = -1;
+        if(!Options[i].obtuseAngles)
+            Options[i].obtuseAngles = -1;
+        if(!Options[i].acuteAngles)
+            Options[i].acuteAngles = -1;
+        if(!Options[i].reflexAngles)
+            Options[i].reflexAngles = -1;
+        if (!Options[i].oppositePairsParallel)
+            Option[i].oppositePairsParallel = -1;
         console.log(Options[i].id + " for "+ i);
     }
     //Options = shuffle(Options);

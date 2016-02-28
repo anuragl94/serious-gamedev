@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -100,15 +100,15 @@
                     var option = this;
                     switch (currentClue['comparator']) {
                         case '=':
-                            if (option[currentClue['attribute']] === currentClue['quantity'])
+                            if (option[currentClue['attribute']] != currentClue['quantity'])
                                 return index;
                             break;
                         case '>':
-                            if (option[currentClue['attribute']] > currentClue['quantity'])
+                            if (option[currentClue['attribute']] <= currentClue['quantity'])
                                 return index;
                             break;
                         case '<':
-                            if (option[currentClue['attribute']] < currentClue['quantity'])
+                            if (option[currentClue['attribute']] >= currentClue['quantity'])
                                 return index;
                             break;
                         default:
