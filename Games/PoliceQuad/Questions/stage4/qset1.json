@@ -20,108 +20,153 @@
     {
       "attribute": "straightSides",
       "comparator": "=",
-      "quantity": "1"
+      "quantity": "4"
     },
     {
-      "attribute": "equalSides",
+      "attribute": "pairsOfSidesEqual",
+      "comparator": "=",
+      "quantity": "2"
+    },
+    {
+      "attribute": "obtuseAngles",
       "comparator": "=",
       "quantity": "2"
     }
   ],
   "q3": [
     {
-      "attribute": "straightSides",
-      "comparator": "=",
-      "quantity": "1"
+        "attribute": "straightSides",
+        "comparator": "=",
+        "quantity": "4"
     },
-      {
-        "attribute": "equalSides",
+    {
+      "attribute": "pairsOfSidesEqual",
+      "comparator": "=",
+      "quantity": "2"
+    },
+    {
+        "attribute": "obtuseAngles",
         "comparator": "=",
         "quantity": "2"
-      }
-  ],
+    }
+    ],
   "q4": [
     {
-      "attribute": "straightSides",
-      "comparator": "=",
-      "quantity": "1"
+        "attribute": "straightSides",
+        "comparator": "=",
+        "quantity": "4"
     },
-      {
-        "attribute": "equalSides",
+    {
+      "attribute": "pairsOfSidesEqual",
+      "comparator": "=",
+      "quantity": "2"
+    },
+    {
+        "attribute": "obtuseAngles",
         "comparator": "=",
         "quantity": "2"
-      }
-  ],
+    }
+    ],
   "q5": [
     {
-      "attribute": "straightSides",
-      "comparator": "=",
-      "quantity": "1"
+        "attribute": "straightSides",
+        "comparator": "=",
+        "quantity": "4"
     },
-      {
-        "attribute": "equalSides",
+    {
+      "attribute": "pairsOfSidesEqual",
+      "comparator": "=",
+      "quantity": "2"
+    },
+    {
+        "attribute": "obtuseAngles",
         "comparator": "=",
         "quantity": "2"
-      }
-  ],
+    }
+    ],
   "q6": [
     {
-      "attribute": "straightSides",
-      "comparator": "=",
-      "quantity": "1"
+        "attribute": "straightSides",
+        "comparator": "=",
+        "quantity": "4"
     },
-      {
-        "attribute": "equalSides",
+    {
+      "attribute": "pairsOfSidesEqual",
+      "comparator": "=",
+      "quantity": "2"
+    },
+    {
+        "attribute": "obtuseAngles",
         "comparator": "=",
         "quantity": "2"
-      }
-  ],
+    }
+    ],
   "q7": [
     {
-      "attribute": "straightSides",
-      "comparator": "=",
-      "quantity": "1"
+        "attribute": "straightSides",
+        "comparator": "=",
+        "quantity": "4"
     },
-      {
-        "attribute": "equalSides",
+    {
+      "attribute": "pairsOfSidesEqual",
+      "comparator": "=",
+      "quantity": "2"
+    },
+    {
+        "attribute": "obtuseAngles",
         "comparator": "=",
         "quantity": "2"
-      }
-  ],
+    }
+    ],
   "q8": [
     {
-      "attribute": "straightSides",
-      "comparator": "=",
-      "quantity": "1"
+        "attribute": "straightSides",
+        "comparator": "=",
+        "quantity": "4"
     },
     {
-      "attribute": "equalSides",
+      "attribute": "pairsOfSidesEqual",
       "comparator": "=",
       "quantity": "2"
+    },
+    {
+        "attribute": "obtuseAngles",
+        "comparator": "=",
+        "quantity": "2"
     }
-  ],
+    ],
   "q9": [
     {
-      "attribute": "straightSides",
-      "comparator": "=",
-      "quantity": "1"
+        "attribute": "straightSides",
+        "comparator": "=",
+        "quantity": "4"
     },
     {
-      "attribute": "equalSides",
+      "attribute": "pairsOfSidesEqual",
       "comparator": "=",
       "quantity": "2"
+    },
+    {
+        "attribute": "obtuseAngles",
+        "comparator": "=",
+        "quantity": "2"
     }
-  ],
+    ],
   "q10": [
     {
-      "attribute": "straightSides",
-      "comparator": "=",
-      "quantity": "1"
+        "attribute": "straightSides",
+        "comparator": "=",
+        "quantity": "4"
     },
     {
-      "attribute": "equalSides",
+      "attribute": "pairsOfSidesEqual",
       "comparator": "=",
       "quantity": "2"
+    },
+    {
+        "attribute": "obtuseAngles",
+        "comparator": "=",
+        "quantity": "2"
     }
-  ]
+    ]
 }

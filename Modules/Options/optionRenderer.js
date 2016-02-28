@@ -109,7 +109,7 @@ for (var i = 0; i < noOfOptions && noOfClues >= 0; i++) {
     for (var j = 0; j < shapesJSON.length; j++) {
         var shape = shapesJSON[j];
         if (noOfClues == 3) {
-            if (qset.q1[0].attribute == "straightSides" && qset.q1[0].comparator == "=" && parseInt(qset.q1[0].quantity) == parseInt(shape.straightSides) && !isInArray(shape, Options)) {
+            if (qset.q1[0].attribute == "straightSides" && qset.q1[0].comparator == "=" && parseInt(qset.q1[0].quantity) != parseInt(shape.straightSides) && !isInArray(shape, Options)) {
                 Options[i] = shape; Options[i].id = shape.id;
                 fitCount++;
                 if (fitCount == 2) {
@@ -122,7 +122,7 @@ for (var i = 0; i < noOfOptions && noOfClues >= 0; i++) {
 
         }
         else if (noOfClues == 2) {
-            if (qset.q1[1].attribute == "pairsOfSidesEqual" && qset.q1[1].comparator == "=" && qset.q1[1].quantity == shape.pairsOfSidesEqual && !isInArray(shape.id, Options)) {
+            if (qset.q1[1].attribute == "pairsOfSidesEqual" && qset.q1[1].comparator == "=" && qset.q1[1].quantity != shape.pairsOfSidesEqual && !isInArray(shape, Options)) {
                 Options[i] = shape; Options[i].id = shape.id;
                 fitCount++;
                 if (fitCount == 2) {
@@ -135,7 +135,7 @@ for (var i = 0; i < noOfOptions && noOfClues >= 0; i++) {
 
         }
         else if (noOfClues == 1) {
-            if (qset.q1[2].attribute == "obtuseAngles" && qset.q1[2].comparator == "=" && qset.q1[2].quantity == shape.obtuseAngles && !isInArray(shape, Options)) {
+            if (qset.q1[2].attribute == "obtuseAngles" && qset.q1[2].comparator == "=" && qset.q1[2].quantity != shape.obtuseAngles && !isInArray(shape, Options)) {
                 Options[i] = shape; Options[i].id = shape.id;
                 fitCount++;
                 if (fitCount == 1) {
@@ -197,3 +197,10 @@ function optionGen()
 function optionRend() {
     return optionDoms;
 }
+function drawDoms()
+{
+    for (var i = 0; i < noOfOptions; i++) {
+        document.body.appendChild(optionDoms[i]);
+    }
+}
+drawDoms();
