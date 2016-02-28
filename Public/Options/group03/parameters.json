@@ -1,0 +1,142 @@
+[
+	{
+		"id": "fig031.png",
+		"straightSides": "5",
+		"pairsOfSidesEqual": "2",
+		"rightAngles": "0",
+		"obtuseAngles": "2",
+		"acuteAngles": "2",
+		"reflexAngles": "1",
+		"oppositePairsParallel": "0"
+	},
+	{
+		"id": "fig032.png",
+		"straightSides": "5",
+		"pairsOfSidesEqual": "2",
+		"rightAngles": "2",
+		"obtuseAngles": "0",
+		"acuteAngles": "2",
+		"reflexAngles": "1",
+		"oppositePairsParallel": "0"
+	},
+	{
+		"id": "fig033.png",
+		"straightSides": "5",
+		"pairsOfSidesEqual": "0",
+		"rightAngles": "1",
+		"obtuseAngles": "1",
+		"acuteAngles": "2",
+		"reflexAngles": "1",
+		"oppositePairsParallel": "0"
+	},
+	{
+		"id": "fig034.png",
+		"straightSides": "5",
+		"pairsOfSidesEqual": "0",
+		"rightAngles": "0",
+		"obtuseAngles": "1",
+		"acuteAngles": "3",
+		"reflexAngles": "1",
+		"oppositePairsParallel": "2"
+	},
+	{
+		"id": "fig035.png",
+		"straightSides": "5",
+		"pairsOfSidesEqual": "0",
+		"rightAngles": "3",
+		"obtuseAngles": "0",
+		"acuteAngles": "1",
+		"reflexAngles": "1",
+		"oppositePairsParallel": "2"
+	},
+	{
+		"id": "fig043.png",
+		"straightSides": "6",
+		"sidesEqual": "6",
+		"rightAngles": "0",
+		"obtuseAngles": "2",
+		"acuteAngles": "3",
+		"reflexAngles": "1",
+		"oppositePairsParallel": "3"
+	},
+	{
+		"id": "fig044.png",
+		"straightSides": "6",
+		"pairsOfSidesEqual": "3",
+		"rightAngles": "0",
+		"obtuseAngles": "2",
+		"acuteAngles": "3",
+		"reflexAngles": "1",
+		"oppositePairsParallel": "1"
+	},
+	{
+		"id": "fig045.png",
+		"straightSides": "6",
+		"pairsOfSidesEqual": "2",
+		"rightAngles": "2",
+		"obtuseAngles": "0",
+		"acuteAngles": "2",
+		"reflexAngles": "2",
+		"oppositePairsParallel": "2"
+	},
+	{
+		"id": "fig046.png",
+		"straightSides": "6",
+		"pairsOfSidesEqual": "0",
+		"rightAngles": "2",
+		"obtuseAngles": "2",
+		"acuteAngles": "1",
+		"reflexAngles": "1",
+		"oppositePairsParallel": "1"
+	},
+	{
+		"id": "fig047.png",
+		"straightSides": "6",
+		"pairsOfSidesEqual": "0",
+		"rightAngles": "4",
+		"obtuseAngles": "0",
+		"acuteAngles": "1",
+		"reflexAngles": "1",
+		"oppositePairsParallel": "2"
+	},
+	{
+		"id": "fig049.png",
+		"straightSides": "6",
+		"pairsOfSidesEqual": "0",
+		"rightAngles": "0",
+		"obtuseAngles": "5",
+		"acuteAngles": "1",
+		"reflexAngles": "0",
+		"oppositePairsParallel": "1"
+	},
+	{
+		"id": "fig054.png",
+		"straightSides": "7",
+		"pairsOfSidesEqual": "3",
+		"rightAngles": "2",
+		"obtuseAngles": "0",
+		"acuteAngles": "3",
+		"reflexAngles": "2",
+		"oppositePairsParallel": "1"
+	},
+	{
+		"id": "fig056.png",
+		"straightSides": "8",
+		"pairsOfSidesEqual": "4",
+		"rightAngles": "2",
+		"obtuseAngles": "2",
+		"acuteAngles": "2",
+		"reflexAngles": "2",
+		"oppositePairsParallel": "2"
+	},
+	{
+		"id": "fig057.png",
+		"straightSides": "8",
+		"pairsOfSidesEqual": "4",
+		"rightAngles": "0",
+		"obtuseAngles": "3",
+		"acuteAngles": "3",
+		"reflexAngles": "2",
+		"oppositePairsParallel": "0"
+	}
+]

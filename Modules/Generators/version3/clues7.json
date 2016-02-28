@@ -1,0 +1,23 @@
+﻿clues7 = '[\
+{\
+ "property" : "oppositePairsParallel = 0",\
+ "English" : "no pairs of opposites sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel = 1",\
+ "English" : "exactly one pair of opposites sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+},\
+{\
+ "property" : "oppositePairsParallel >= 1",\
+ "English" : "at least one pair of opposite sides parallel",\
+ "Hindi" : "unknown",\
+ "Kannada" : "unknown",\
+ "Telugu" : "unknown"\
+}\
+]';
