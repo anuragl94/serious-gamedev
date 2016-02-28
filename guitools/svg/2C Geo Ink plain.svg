@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg2"
+   viewBox="0 0 162.81481 223.55131"
+   height="257.78519"
+   width="187.61864"
+   version="1.1">
+  <metadata
+     id="metadata40">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs38" />
+  <g
+     transform="translate(-56.691986,-23.789051)"
+     style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
+     id="g6"
+     stroke-miterlimit="10.000">
+    <g
+       id="misc" />
+    <!-- misc -->
+    <g
+       id="layer0">
+      <clipPath
+         id="clip1">
+        <path
+           id="path11"
+           d="m 0,0 0,271 256,0 0,-271 z" />
+      </clipPath>
+      <g
+         id="g13"
+         clip-path="url(#clip1)">
+        <g
+           style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+           id="g15">
+          <path
+             id="path17"
+             d="M 219,36 C 179.23,16.117 131.47,21.685 97.34,50.182 63.213,78.678 49.214,124.69 61.685,167.36 c 12.472,42.68 49.045,73.91 93.145,79.54" />
+          <title
+             id="title19">Arc c</title>
+          <desc
+             id="desc21">Arc c: CircularArc[A, B, C]</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip1 -->
+      <clipPath
+         id="clip2">
+        <path
+           id="path24"
+           d="m 0,0 0,271 256,0 0,-271 z" />
+      </clipPath>
+      <g
+         id="g26"
+         clip-path="url(#clip2)">
+        <g
+           style="fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+           id="g28">
+          <path
+             id="path30"
+             d="M 219,36 C 181.34,24.44 140.37,33.851 111.53,60.687 82.688,87.522 70.354,127.71 79.173,166.1 c 8.82,38.4 37.457,69.17 75.117,80.73" />
+          <title
+             id="title32">Arc d</title>
+          <desc
+             id="desc34">Arc d: Semicircle through D and B</desc>
+        </g>
+        <!-- drawing style -->
+      </g>
+      <!-- clip2 -->
+    </g>
+    <!-- layer0 -->
+  </g>
+  <!-- default stroke -->
+</svg>

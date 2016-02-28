@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="300px" height="300px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">
+<g id="g6" transform="translate(-29.400277,-29.98447)">
+	<g id="misc">
+	</g>
+	<g id="layer0">
+		<g>
+			<defs>
+				<rect id="SVGID_1_" x="35.451" y="20.724" width="286.25" height="311.717"/>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_1_"  overflow="visible"/>
+			</clipPath>
+			<g id="g13" clip-path="url(#SVGID_2_)">
+				<g id="g15">
+					<path id="path17" fill="#993720" fill-opacity="0.102" d="M178.983,52.405L66.928,276.516l73.957-57.147l150.153,57.147
+						L178.983,52.405z"/>
+					<title  id="title19">Quadrilateral poly9_1</title>
+					<desc  id="desc21">Quadrilateral poly9_1: Polygon B_1, C_1, D_1, E_1</desc>
+				</g>
+			</g>
+		</g>
+		<g>
+			<defs>
+				<rect id="SVGID_3_" x="35.451" y="20.724" width="286.25" height="311.717"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  overflow="visible"/>
+			</clipPath>
+			<g id="g26" clip-path="url(#SVGID_4_)">
+				<g id="g28">
+					
+						<path id="path30" fill="none" stroke="#993720" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="0.3922" d="
+						M178.983,52.405L66.928,276.516l73.957-57.147l150.153,57.147L178.983,52.405z"/>
+					<title  id="title32">Quadrilateral poly9_1</title>
+					<desc  id="desc34">Quadrilateral poly9_1: Polygon B_1, C_1, D_1, E_1</desc>
+				</g>
+			</g>
+		</g>
+		<g>
+			<defs>
+				<rect id="SVGID_5_" x="35.451" y="20.724" width="286.25" height="311.717"/>
+			</defs>
+			<clipPath id="SVGID_6_">
+				<use xlink:href="#SVGID_5_"  overflow="visible"/>
+			</clipPath>
+			<g id="g39" clip-path="url(#SVGID_6_)">
+				<g id="g41">
+					<path id="path43" fill="none" stroke="#993720" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+						M178.983,52.405L66.928,276.516"/>
+					<title  id="title45">Segment b_1</title>
+					<desc  id="desc47">Segment b_1: Segment [B_1, C_1] of Quadrilateral poly9_1</desc>
+				</g>
+			</g>
+		</g>
+		<g>
+			<defs>
+				<rect id="SVGID_7_" x="35.451" y="20.724" width="286.25" height="311.717"/>
+			</defs>
+			<clipPath id="SVGID_8_">
+				<use xlink:href="#SVGID_7_"  overflow="visible"/>
+			</clipPath>
+			<g id="g52" clip-path="url(#SVGID_8_)">
+				<g id="g54">
+					<path id="path56" fill="none" stroke="#993720" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+						M66.928,276.516l73.957-57.147"/>
+					<title  id="title58">Segment c_1</title>
+					<desc  id="desc60">Segment c_1: Segment [C_1, D_1] of Quadrilateral poly9_1</desc>
+				</g>
+			</g>
+		</g>
+		<g>
+			<defs>
+				<rect id="SVGID_9_" x="35.451" y="20.724" width="286.25" height="311.717"/>
+			</defs>
+			<clipPath id="SVGID_10_">
+				<use xlink:href="#SVGID_9_"  overflow="visible"/>
+			</clipPath>
+			<g id="g65" clip-path="url(#SVGID_10_)">
+				<g id="g67">
+					<path id="path69" fill="none" stroke="#993720" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+						M140.885,219.368l150.153,57.147"/>
+					<title  id="title71">Segment d_1</title>
+					<desc  id="desc73">Segment d_1: Segment [D_1, E_1] of Quadrilateral poly9_1</desc>
+				</g>
+			</g>
+		</g>
+		<g>
+			<defs>
+				<rect id="SVGID_11_" x="35.451" y="20.724" width="286.25" height="311.717"/>
+			</defs>
+			<clipPath id="SVGID_12_">
+				<use xlink:href="#SVGID_11_"  overflow="visible"/>
+			</clipPath>
+			<g id="g78" clip-path="url(#SVGID_12_)">
+				<g id="g80">
+					<path id="path82" fill="none" stroke="#993720" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+						M291.038,276.516L178.983,52.405"/>
+					<title  id="title84">Segment e_1</title>
+					<desc  id="desc86">Segment e_1: Segment [E_1, B_1] of Quadrilateral poly9_1</desc>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g id="layer1">
+	</g>
+</g>
+</svg>

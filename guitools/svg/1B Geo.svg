@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<svg 
+     version="1.1"
+     baseProfile="full"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events"
+     width="7.866944444444444cm"
+     height="7.866944444444444cm"
+     viewBox="0 0 223 223"
+     >
+<title>
+
+</title>
+<g stroke-linejoin="miter" stroke-dashoffset="0.0000" stroke-dasharray="none" stroke-width="1.0000" stroke-miterlimit="10.000" stroke-linecap="square">
+<g id="misc">
+</g><!-- misc -->
+<g id="layer0">
+</g><!-- layer0 -->
+<g id="layer1">
+<clipPath id="clip1">
+  <path d="M 0.0000 0.0000 L 0.0000 223.00 L 223.00 223.00 L 223.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip1)">
+<g fill-opacity=".10196" fill-rule="evenodd" stroke="none" fill="#993300">
+  <path d="M 38.000 36.000 L 188.00 36.000 L 188.00 186.00 L 38.000 186.00 z"/>
+<title>Quadrilateral poly27_2</title>
+<desc>Quadrilateral poly27_2: Polygon W_2, Z_2, A_2, B_2</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip1 -->
+<clipPath id="clip2">
+  <path d="M 0.0000 0.0000 L 0.0000 223.00 L 223.00 223.00 L 223.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip2)">
+<g stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-opacity="1.0000" stroke="#993300">
+  <path d="M 38.000 36.000 L 188.00 36.000"/>
+<title>Segment w_2</title>
+<desc>Segment w_2: Segment [W_2, Z_2] of Quadrilateral poly27_2</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip2 -->
+<clipPath id="clip3">
+  <path d="M 0.0000 0.0000 L 0.0000 223.00 L 223.00 223.00 L 223.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip3)">
+<g stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-opacity="1.0000" stroke="#993300">
+  <path d="M 188.00 36.000 L 188.00 186.00"/>
+<title>Segment z_2</title>
+<desc>Segment z_2: Segment [Z_2, A_2] of Quadrilateral poly27_2</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip3 -->
+<clipPath id="clip4">
+  <path d="M 0.0000 0.0000 L 0.0000 223.00 L 223.00 223.00 L 223.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip4)">
+<g stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-opacity="1.0000" stroke="#993300">
+  <path d="M 188.00 186.00 L 38.000 186.00"/>
+<title>Segment a_2</title>
+<desc>Segment a_2: Segment [A_2, B_2] of Quadrilateral poly27_2</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip4 -->
+<clipPath id="clip5">
+  <path d="M 0.0000 0.0000 L 0.0000 223.00 L 223.00 223.00 L 223.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip5)">
+<g stroke-linejoin="round" stroke-width="3.0000" stroke-linecap="round" fill="none" stroke-opacity=".39216" stroke="#993300">
+  <path d="M 38.000 186.00 L 38.000 36.000"/>
+<title>Segment b_2</title>
+<desc>Segment b_2: Segment [B_2, W_2] of Quadrilateral poly27_2</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip5 -->
+<clipPath id="clip6">
+  <path d="M 0.0000 0.0000 L 0.0000 223.00 L 223.00 223.00 L 223.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip6)">
+<g stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-opacity="1.0000" stroke="#993300">
+  <path d="M 38.000 186.00 L 38.000 36.000"/>
+<title>Segment b_2</title>
+<desc>Segment b_2: Segment [B_2, W_2] of Quadrilateral poly27_2</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip6 -->
+</g><!-- layer1 -->
+<g id="layer2">
+</g><!-- layer2 -->
+</g> <!-- default stroke -->
+</svg> <!-- bounding box -->

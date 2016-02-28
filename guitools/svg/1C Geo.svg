@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<svg 
+     version="1.1"
+     baseProfile="full"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events"
+     width="8.325555555555557cm"
+     height="8.819444444444445cm"
+     viewBox="0 0 256 271"
+     >
+<title>
+
+</title>
+<g stroke-linejoin="miter" stroke-dashoffset="0.0000" stroke-dasharray="none" stroke-width="1.0000" stroke-miterlimit="10.000" stroke-linecap="square">
+<g id="misc">
+</g><!-- misc -->
+<g id="layer0">
+<clipPath id="clip1">
+  <path d="M 0.0000 0.0000 L 0.0000 271.00 L 256.00 271.00 L 256.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip1)">
+<g stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-opacity="1.0000" stroke="#000000">
+  <path d="M 219.00 36.000 C 179.23 16.117 131.47 21.685 97.340 50.182 C 63.213 78.678 49.214 124.69 61.685 167.36 C 74.157 210.04 110.73 241.27 154.83 246.90"/>
+<title>Arc c</title>
+<desc>Arc c: CircularArc[A, B, C]</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip1 -->
+<clipPath id="clip2">
+  <path d="M 0.0000 0.0000 L 0.0000 271.00 L 256.00 271.00 L 256.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip2)">
+<g stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-opacity="1.0000" stroke="#000000">
+  <path d="M 219.00 36.000 C 181.34 24.440 140.37 33.851 111.53 60.687 C 82.688 87.522 70.354 127.71 79.173 166.10 C 87.993 204.50 116.63 235.27 154.29 246.83"/>
+<title>Arc d</title>
+<desc>Arc d: Semicircle through D and B</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip2 -->
+</g><!-- layer0 -->
+</g> <!-- default stroke -->
+</svg> <!-- bounding box -->

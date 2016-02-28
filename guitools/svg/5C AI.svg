@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="300px" height="300px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">
+<g id="g6">
+	<g id="misc">
+	</g>
+	<g id="layer0">
+		<g>
+			<defs>
+				<rect id="SVGID_1_" x="59.364" y="14.464" width="295" height="312.286"/>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_1_"  overflow="visible"/>
+			</clipPath>
+			<g id="g13" clip-path="url(#SVGID_2_)">	
+				<g id="g15">
+					<path id="path17" fill="none" stroke="#010101" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+						M311.727,55.949c-45.829-22.912-100.865-16.496-140.194,16.343c-39.326,32.837-55.458,85.859-41.087,135.029
+						c14.372,49.183,56.517,85.17,107.335,91.658"/>
+					<title  id="title19">Arc c</title>
+					<desc  id="desc21">Arc c: CircularArc[A, B, C]</desc>
+				</g>
+			</g>
+		</g>
+		<g>
+			<defs>
+				<rect id="SVGID_3_" x="59.364" y="14.464" width="295" height="312.286"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  overflow="visible"/>
+			</clipPath>
+			<g id="g26" clip-path="url(#SVGID_4_)">
+				<g id="g28">
+					<path id="path30" fill="none" stroke="#010101" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+						M311.727,55.949c-43.397-13.321-90.609-2.476-123.843,28.448c-33.235,30.923-47.449,77.233-37.286,121.472
+						c10.163,44.25,43.163,79.707,86.561,93.028"/>
+					<title  id="title32">Arc d</title>
+					<desc  id="desc34">Arc d: Semicircle through D and B</desc>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
