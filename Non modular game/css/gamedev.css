@@ -25,7 +25,14 @@
 .option
 {
     height: 220px;
+    width: 100%;
     border:solid 1px #eeeeee;
+}
+
+.option>img
+{
+    margin: 10px;
+    max-height: 90%;
 }
 
 .moduleWrapper {
@@ -33,5 +40,5 @@
 }
 
 .disabled {
-    background-color: #dddddd;
+    background-color: #eeeeee;
 }
