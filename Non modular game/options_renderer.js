@@ -696,10 +696,10 @@ returnValue = (function () {
         var j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0 + 1) + 0);
         while (!Options[i]) {
             var shape = shapesJSON[j];
-            if ((shape.obtuseAngles !== undefined) && (shape.pairsOfSidesEqual !== undefined) && (shape.straightSides !== undefined) )
+            if ((shape['obtuseAngles'] !== undefined) && (shape['pairsOfSidesEqual'] !== undefined) && (shape['straightSides'] !== undefined) )
             {
                 if (noOfClues == 3) {
-                    if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "=" && parseInt(qset[qno].q1[0].quantity) != parseInt(shape.straightSides) && !isInArray(shape, Options)) {
+                    if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "=" && parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 2) {
@@ -708,7 +708,7 @@ returnValue = (function () {
                         }
                         break;
                     }
-                    else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == ">" && parseInt(qset[qno].q1[0].quantity) <= parseInt(shape.straightSides) && !isInArray(shape, Options)) {
+                    else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == ">" && parseInt(qset[qno].q1[0].quantity) <= parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 2) {
@@ -717,7 +717,7 @@ returnValue = (function () {
                         }
                         break;
                     }
-                    else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "<" && parseInt(qset[qno].q1[0].quantity) >= parseInt(shape.straightSides) && !isInArray(shape, Options)) {
+                    else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "<" && parseInt(qset[qno].q1[0].quantity) >= parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 2) {
@@ -728,7 +728,7 @@ returnValue = (function () {
                     }
 
                 } else if (noOfClues == 2) {
-                    if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "=" && qset[qno].q1[1].quantity != shape.pairsOfSidesEqual && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape.straightSides))) {
+                    if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "=" && qset[qno].q1[1].quantity != shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 2) {
@@ -737,7 +737,7 @@ returnValue = (function () {
                         }
                         break;
                     }
-                    else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == ">" && qset[qno].q1[1].quantity <= shape.pairsOfSidesEqual && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape.straightSides))) {
+                    else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == ">" && qset[qno].q1[1].quantity <= shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 2) {
@@ -746,7 +746,7 @@ returnValue = (function () {
                         }
                         break;
                     }
-                    else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "<" && qset[qno].q1[1].quantity >= shape.pairsOfSidesEqual && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape.straightSides))) {
+                    else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "<" && qset[qno].q1[1].quantity >= shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 2) {
@@ -756,7 +756,7 @@ returnValue = (function () {
                         break;
                     }
                 } else if (noOfClues == 1) {
-                    if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == "=" && qset[qno].q1[2].quantity != shape.obtuseAngles && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape.pairsOfSidesEqual) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape.straightSides))) {
+                    if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == "=" && qset[qno].q1[2].quantity != shape['obtuseAngles'] && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape['pairsOfSidesEqual']) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 1) {
@@ -765,7 +765,7 @@ returnValue = (function () {
                         }
                         break;
                     }
-                    else if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == ">" && qset[qno].q1[2].quantity <= shape.obtuseAngles && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape.pairsOfSidesEqual) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape.straightSides))) {
+                    else if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == ">" && qset[qno].q1[2].quantity <= shape['obtuseAngles'] && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape['pairsOfSidesEqual']) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 1) {
@@ -774,7 +774,7 @@ returnValue = (function () {
                         }
                         break;
                     }
-                    else if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == "<" && qset[qno].q1[2].quantity >= shape.obtuseAngles && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape.pairsOfSidesEqual) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape.straightSides))) {
+                    else if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == "<" && qset[qno].q1[2].quantity >= shape['obtuseAngles'] && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape['pairsOfSidesEqual']) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 1) {
@@ -785,9 +785,9 @@ returnValue = (function () {
                     }
                 } else {
                     //Get answer
-                    if (qset[qno].q1[2].quantity == shape.obtuseAngles && qset[qno].q1[1].quantity == shape.pairsOfSidesEqual && qset[qno].q1[0].quantity == shape.straightSides && !isInArray(shape, Options)) {
+                    if (qset[qno].q1[2].quantity == shape['obtuseAngles'] && qset[qno].q1[1].quantity == shape['pairsOfSidesEqual'] && qset[qno].q1[0].quantity == shape['straightSides'] && !isInArray(shape, Options)) {
                         Options[i] = shape;
-                        //console.log(shape.id + "Answer");
+                        //console.log(shape['id'] + "Answer");
                         Options[i]['correctAnswer'] = true
                         break;
                     }
@@ -797,7 +797,7 @@ returnValue = (function () {
             //else
             //{
             //    Shapes which are rejected
-            //    console.log(shape.id +" rejected.");
+            //    console.log(shape['id'] +" rejected.");
             //}
                 j++;
                 if (j == shapesJSON.length) {
