@@ -22,12 +22,16 @@
     color: white;
     text-align: center;
 }
-            .option
-            {
-                height: 220px;
-                border:solid 1px #eeeeee;
-            }
+.option
+{
+    height: 220px;
+    border:solid 1px #eeeeee;
+}
 
-            .moduleWrapper {
-                border:solid 1px #dddddd;
-            }
+.moduleWrapper {
+    border:solid 1px #dddddd;
+}
+
+.disabled {
+    background-color: #dddddd;
+}
