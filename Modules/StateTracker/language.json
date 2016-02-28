@@ -1,0 +1,30 @@
+{
+					"Languages": 
+					{
+									"English": 
+									{
+											"=": "equal to",
+											"<>": "not equal to"
+											">": "greater than"
+											">=": "greater than or equal to"
+											"<": "less than"
+											"<=": "less than or equal to"
+											"property1": "sides"
+											"property2": "angles"
+											"property1": "edges"
+									},
+									"Hindi": 
+									{
+											"=": "समान",
+											"<>": "समान नही है"
+											">": "से अधिक"
+											">=": "से बड़ा या इसके बराबर"
+											"<": "से कम"
+											"<=": "से कम या बराबर"
+											"property1": "पक्षों"
+											"property2": "कोण"
+											"property1": "धार"
+									}
+					}
+}
+
