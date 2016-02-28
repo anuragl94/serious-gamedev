@@ -92,9 +92,14 @@
             // This event listener comes from the tools section
             $("#optionsWrapper").on("arrest", function () {
                 //Here we get a list of selected options along with their attributes
-                var selectedOptions = $(this).find("input:checked").map(function () {
+                var selectedOption = $(this).find("input:checked").map(function () {
                     return $(this).attr("index");
                 });
+                if (selectedOption.length == 1) {
+                    $("#cluesWrapper").trigger("checkIfFinalAnswer", selectedOption);
+                } else {
+                    console.log("There can only be one culprit!");
+                }
             });
 
             //~~These are the custom events for clues
@@ -122,8 +127,8 @@
                     }
                     return null;
                 });
-                correctOptions = $(correctOptions).filter(function (index) {
-                    if ((this !== null) && ($.inArray(index, gameData['disabledOptions']) !== -1))
+                correctOptions = $(correctOptions).filter(function () {
+                    if ((this !== null) && ($.inArray(parseInt(this).toString(), gameData['disabledOptions']) == -1))
                         return true;
                 });
                 //To convert pseudo array to regular array
@@ -141,6 +146,15 @@
                     console.log("Investigation failed");
                     $("#battery").trigger("drain");
                     $("#cluesWrapper").find(".clue:visible").last().addClass("failure");
+                }
+            });
+
+            $("#cluesWrapper").on("checkIfFinalAnswer", function (event, selectedOption) {
+                if ('correctAnswer' in gameData['options'][selectedOption]){
+                    console.log("You have caught the culprit!");}
+                else{
+                    console.log("You have arrested the innocent!");
+                    $("#battery").trigger("drain");
                 }
             });
 
@@ -162,7 +176,11 @@
                 }
             });
             $("#arrest").on('click', function () {
-                //Must write logic for arrest tool
+                if (!($("#cluesWrapper").find(".clue:not(:visible)").length)) {
+                    $("#optionsWrapper").trigger("arrest");
+                } else {
+                    console.log("You do not have sufficient clues to make an arrest!");
+                }
             });
 
             //~~These are the custom events for battery
