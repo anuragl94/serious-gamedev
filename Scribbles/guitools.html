@@ -1,186 +1,154 @@
 <html>
+    <body>
+        <style>
+            .optionWrapper {
+                display: inline-block;
+                position: absolute;
+                top:0;
+                left:0;
+            }
 
-<style>
-.points {
-	position: absolute;
-	border: 4px solid blue;
-	border-radius: 8px;
-	width: 8px;
-	height: 8px;
-}
+            .canvasOverlay {
+                position: absolute;
+                z-index: 1;
+            }
 
-#baseLine {
-	position: absolute;
-	background-color: blue;
-	height: 3px;
-	width: 200px;
-}
+            .imageUnderlay {
+                position: relative;
+                height: 400px;
+                z-index: 1;
+            }
 
-#perpendicularLine {
-	position: absolute;
-	background-color: red;
-	height: 1px;
-	width: 600px;
-}
+            .vertex {
+                height: 3px;
+                width: 3px;
+                margin-top: -1px;
+                margin-left: -1px;
+                position: absolute;
+                z-index: 1;
+            }
 
-#parallelLine {
-	position: absolute;
-}
+            #perptool {
+                position: absolute;
+                height: 200px;
+                width: 200px;
+                opacity: 0.5;
+                margin-top: -200px;
+            }
+        </style>
 
-.optionWrapper {
-	display: inline-block;
-	position: absolute;
-	top:0;
-	left:0;
-}
+        <script src="jquery-1.12.0.min.js"></script>
+        <script src="jQueryRotate.js"></script>
 
-.canvasOverlay {
-	position: absolute;
-	z-index: 1;
-}
+        <div id="perpTool">
+            <img src="perptool.svg"/>
+        </div>
 
-.imageUnderlay {
-	position: relative;
-	height: 400px;
-	z-index: 1;
-}
+        <div class="optionWrapper">
+            <canvas class="canvasOverlay" height="400" width="400"></canvas>
+            <object type="image/svg+xml" data="svg\6A Simple.svg" id="option1"></object>
+        </div>
+        
+        <script>
+            var snap_offset = 15;
+            var following = true;
+            // This code will extract coordinates from the svg file as intended.
+            // Please note that jquery only parses HTML DOM and not SVG DOM. Hence, query selector will never work on the object tag, no matter what. So don't try optimizing code over there.
+            //Thoughts: Would it be okay to get the svg object document content and replace the object with the svg code in the content itself? This can be done in the module that renders the options onto the gamescreen.
+            $(window).load(function () {
+                var coordinates = {};
 
-.vertex {
-	position: relative;
-	z-index: 1;
-}
-</style>
+                $(".optionWrapper").append('<img src="' + document.getElementById('option1').data + '" class="imageUnderlay" id="option1"/>');
 
-<head>
-<script src="jquery-1.12.0.min.js"></script>
-</head>
+                //Almost everything is hardcoded for testing
+                $(".canvasOverlay").each(function () {
+                    var svgObject = document.getElementById('option1').contentDocument;
+                    var paths = $(svgObject).find("path");
+                    var coords = $($(svgObject).find("svg path")[0]).attr("d");
+                    coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
+                    coordinates['option1'] = $.map(coords, function (value) {
+                        var temp = value.split(' ');
+                        return [[temp[1], temp[2]]];
+                    });
 
-<body>
+                    //Tool specific code ends here
+                    var underlay = $(this).closest(".objectWrapper").find("img");
+                });
+                $("object").remove();
 
-<div class="optionWrapper">
-<canvas class="canvasOverlay" height="400px" width="400px"></canvas>
-<object type="image/svg+xml" data="svg\6C Simple.svg" id="option1"></object>
-</div>
+                $(coordinates['option1']).each(function () {
+                    var target = $("#option1").closest(".optionWrapper");
+                    var vertex = document.createElement("div");
+                    $(vertex).addClass("vertex").css({"left": this[0]}).css({"top": this[1]});
+                    $(target).append(vertex);
 
-<br>
-X: <p id="mouse_x">0</p>
-Y: <p id="mouse_y">0</p>
+                    console.log(this);
+                });
 
-<script>
-	// This code will extract coordinates from the svg file as intended.
-	// Please note that jquery only parses HTML DOM and not SVG DOM. Hence, query selector will never work on the object tag, no matter what. So don't try optimizing code over there.
-	//Thoughts: Would it be okay to get the svg object document content and replace the object with the svg code in the content itself? This can be done in the module that renders the options onto the gamescreen.
-$(window).load(function() {
-	var coordinates = {};
-	
-	$(".optionWrapper").append('<img src="'+document.getElementById('option1').data+'" class="imageUnderlay" id="option1"/>');
-	$(".canvasOverlay").each(function(){
-		var svgObject = document.getElementById('option1').contentDocument;
-		var paths = $(svgObject).find("path");	// Common to all the tools one can usemap
-		
-		//Following will be the regex to filter exact coordinates from the path
-		//Inkscape
-		
-		//Adobe Illustrator
-		
-		//Geogebra
-		//NOTE: This seems to be wrong, as it's only extracting the bounding box
-		//var coords = $($(svgObject).find("svg g g g path")[0]).attr("d");
-		//coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
-		//coordinates['option1'] = $.map(coords, function(value) {
-		//    var temp = value.split(' ');
-		//    return [[temp[1],temp[2]]];
-		//});
-		
-		//Super minified
-		var coords = $($(svgObject).find("svg path")[0]).attr("d");
-		coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
-		coordinates['option1'] = $.map(coords, function(value) {
-			var temp = value.split(' ');
-			return [[temp[1],temp[2]]];
-		});
-	
-		//Tool specific code ends here
-		var underlay = $(this).closest(".objectWrapper").find("img");
-	});
-	
-	$("object").remove();
-	
-    console.log(coordinates);
-	
-    function angle(cx, cy, ex, ey) {
-        var dy = ey - cy;
-        var dx = ex - cx;
-        var svgObject = Math.atan2(dy, dx); // range (-PI, PI]
-        svgObject *= 180 / Math.PI; // rads to degs, range (-180, 180]
-        //if (svgObject < 0) svgObject = 360 + svgObject; // range [0, 360)
-        return svgObject;
-    }
+                function getAngle(cx, cy, ex, ey) {
+                    var dy = ey - cy;
+                    var dx = ex - cx;
+                    var theta = Math.atan2(dy, dx); // range (-PI, PI]
+                    theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
+                    //if (theta < 0) theta = 360 + theta; // range [0, 360)
+                    return theta;
+                }
 
-    $(document).on("click", function() {
-        if ($("#point1").length == 0) {
-            point1 = document.createElement("div");
-            $(point1).addClass("points");
-            $(point1).attr("id", "point1");
-            $(point1).css({
-                "left": event.pageX,
-                "top": event.pageY
+                $(document).mousedown(function (e) {
+                    e.preventDefault();
+                    if ($("#perpTool").hasClass("snapped")) {
+                        $("#perpTool").removeClass("snapped");
+                    } else {
+                        var closest = null;
+                        var closest_distance = 9999;
+                        $(".vertex").each(function () {
+                            var vertex = this;
+                            //console.log(vertex.style.left);
+                            var x = parseInt($(this).css("left")) - event.pageX;
+                            var y = parseInt($(this).css("top")) - event.pageY;
+                            var dist = Math.sqrt(x * x + y * y);
+                            if (dist < closest_distance) {
+                                closest_distance = dist;
+                                closest = this;
+                            }
+                        });
+                        following = false;
+                        $("#perpTool").css({
+                            "top": $(closest).css("top"),
+                            "left": $(closest).css("left")
+                        }).rotate({
+                            "angle": getAngle(parseInt($("#perpTool").css("left")), parseInt($("#perpTool").css("top")), event.pageX, event.pageY),
+                            "center": ["0%", "100%"]
+                        });
+                    }
+                });
+
+                $(document).mouseup(function () {
+                    following = true;
+                    $("#perpTool").rotate({
+                        "angle": 0,
+                        "center": ["0%", "100%"]
+                    });
+                });
+
+                $(document).mousemove(function () {
+                    if (following === true) {
+                        $("#perpTool").css({
+                            "left": event.pageX,
+                            "top": event.pageY
+                        });
+                    } else {
+                        var angle = getAngle(parseInt($("#perpTool").css("left")), parseInt($("#perpTool").css("top")), event.pageX, event.pageY);
+                        console.log("rotate(" + angle.toString() + ")deg");
+                        $("#perpTool").rotate({
+                            "angle": angle,
+                            "center": ["0%", "100%"]
+                        });
+                    }
+                });
             });
-            $(point1).attr("coord-x", event.pageX);
-            $(point1).attr("coord-y", event.pageY);
-            document.body.appendChild(point1);
-        } else if ($("#point2").length == 0) {
-            point2 = document.createElement("div");
-            $(point2).addClass("points");
-            $(point2).attr("id", "point2");
-            $(point2).css({
-                "left": event.pageX,
-                "top": event.pageY
-            });
-            $(point2).attr("coord-x", event.pageX);
-            $(point2).attr("coord-y", event.pageY);
-            document.body.appendChild(point2);
+        </script>
 
-            baseLine = document.createElement("div");
-            $(baseLine).attr("id", "baseLine");
-            mouseangle = angle($(point1).attr("coord-x"), $(point1).attr("coord-y"), $(point2).attr("coord-x"), $(point2).attr("coord-y"));
-            $(baseLine).css({
-                '-webkit-transform': 'rotate(' + mouseangle + 'deg)',
-                "left": $(point1).attr("coord-x"),
-                "top": $(point1).attr("coord-y")
-            });
-            document.body.appendChild(baseLine);
-
-            perpendicularLine = document.createElement("div");
-            $(perpendicularLine).attr("id", "perpendicularLine");
-            mouseangle = angle($(point1).attr("coord-x"), $(point1).attr("coord-y"), $(point2).attr("coord-x"), $(point2).attr("coord-y"));
-            $(perpendicularLine).css({
-                '-webkit-transform': 'rotate(' + (90 + mouseangle) + 'deg)'
-            });
-            document.body.appendChild(perpendicularLine);
-        } else {
-            $("#point1").remove();
-            $("#point2").remove();
-            $("#baseLine").remove();
-            $("#perpendicularLine").remove();
-        }
-    });
-
-    $(document).mousemove(function() {
-		$("#mouse_x").html(event.pageX);
-		$("#mouse_y").html(event.pageY);
-        if ($("#perpendicularLine").length) {
-            $("#perpendicularLine").attr("coord-x", event.pageX);
-            $("#perpendicularLine").attr("coord-y", event.pageY);
-            $("#perpendicularLine").css({
-                "left": event.pageX,
-                "top": event.pageY
-            });
-        }
-    });
-});
-</script>
-
-</body>
+    </body>
 
 </html>
