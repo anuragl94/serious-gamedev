@@ -100,157 +100,157 @@ returnValue = (function () {
     }
     var shapes3 = {
         "data": [
-              {
-                  "id" : "fig001.png",
-                  "straightSides" : "3",
-                  "curvedSides" : "0",
-                  "sidesEqual" : "3",
-                  "rightAngles" : "0",
-                  "obtuseAngles" : "0",
-                  "acuteAngles" : "3",
-                  "reflexAngles" : "0"
-              },
-              {
-                    "id" : "fig002.png",
-                    "straightSides" : "3",
-                    "curvedSides" : "0",
-                    "sidesEqual" : "2",
-                    "rightAngles" : "0",
-                    "obtuseAngles" : "0",
-                    "acuteAngles" : "3",
-                    "reflexAngles" : "0"
-              },
-              {
-                    "id" : "fig025.png",
-                    "straightSides" : "4",
-                    "curvedSides" : "0",
-                    "pairsOfSidesEqual" : "2",
-                    "rightAngles" : "4",
-                    "obtuseAngles" : "0",
-                    "acuteAngles" : "0",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "2"
-              },
-              {
-                    "id" : "fig026.png",
-                    "straightSides" : "4",
-                    "curvedSides" : "0",
-                    "sidesEqual" : "4",
-                    "rightAngles" : "4",
-                    "obtuseAngles" : "0",
-                    "acuteAngles" : "0",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "2"
-              },
-              {
-                    "id" : "fig027.png",
-                    "straightSides" : "4",
-                    "curvedSides" : "0",
-                    "pairsOfSidesEqual" : "2",
-                    "rightAngles" : "0",
-                    "obtuseAngles" : "3",
-                    "acuteAngles" : "1",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "0"
-              },
-              {
-                    "id" : "fig039.png",
-                    "straightSides" : "5",
-                    "curvedSides" : "0",
-                    "sidesEqual" : "2",
-                    "rightAngles" : "0",
-                    "obtuseAngles" : "3",
-                    "acuteAngles" : "2",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "2"
-              },
-              {
-                    "id" : "fig040.png",
-                    "straightSides" : "5",
-                    "curvedSides" : "0",
-                    "sidesEqual" : "0",
-                    "rightAngles" : "0",
-                    "obtuseAngles" : "4",
-                    "acuteAngles" : "1",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "1"
-                },
-                {
-                    "id" : "fig055.png",
-                    "straightSides" : "8",
-                    "curvedSides" : "0",
-                    "sidesEqual" : "8",
-                    "rightAngles" : "0",
-                    "obtuseAngles" : "8",
-                    "acuteAngles" : "0",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "4"
-                },
-                {
-                    "id" : "figc001.png",
-                    "straightSides" : "0",
-                    "curvedSides" : "yes"
-                },
-                {
-                    "id" : "figc002.png",
-                    "straightSides" : "0",
-                    "curvedSides" : "yes"
-                },
-                {
-                    "id" : "figc005.png",
-                    "straightSides" : "2",
-                    "curvedSides" : "yes",
-                    "pairsOfSidesEqual" : "1"
-                },
             {
-                 "id" : "fig003.png",
-                 "straightSides" : "3",
-                 "curvedSides" : "0",
-                 "sidesEqual" : "2",
-                 "rightAngles" : "1",
-                 "obtuseAngles" : "0",
-                 "acuteAngles" : "2",
-                 "reflexAngles" : "0"
+                "id": "fig001.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "3",
+                "rightAngles": "0",
+                "obtuseAngles": "0",
+                "acuteAngles": "3",
+                "reflexAngles": "0"
             },
             {
-                 "id" : "fig004.png",
-                 "straightSides" : "3",
-                 "curvedSides" : "0",
-                 "sidesEqual" : "2",
-                 "rightAngles" : "0",
-                 "obtuseAngles" : "1",
-                 "acuteAngles" : "2",
-                 "reflexAngles" : "0"
+                "id": "fig002.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "2",
+                "rightAngles": "0",
+                "obtuseAngles": "0",
+                "acuteAngles": "3",
+                "reflexAngles": "0"
             },
             {
-                 "id" : "fig005.png",
-                 "straightSides" : "3",
-                 "curvedSides" : "0",
-                 "sidesEqual" : "0",
-                 "rightAngles" : "0",
-                 "obtuseAngles" : "0",
-                 "acuteAngles" : "3",
-                 "reflexAngles" : "0"
+                "id": "fig025.png",
+                "straightSides": "4",
+                "curvedSides": "0",
+                "pairsOfSidesEqual": "2",
+                "rightAngles": "4",
+                "obtuseAngles": "0",
+                "acuteAngles": "0",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "2"
             },
             {
-                 "id" : "fig006.png",
-                 "straightSides" : "3",
-                 "curvedSides" : "0",
-                 "sidesEqual" : "0",
-                 "rightAngles" : "1",
-                 "obtuseAngles" : "0",
-                 "acuteAngles" : "2",
-                 "reflexAngles" : "0"
+                "id": "fig026.png",
+                "straightSides": "4",
+                "curvedSides": "0",
+                "sidesEqual": "4",
+                "rightAngles": "4",
+                "obtuseAngles": "0",
+                "acuteAngles": "0",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "2"
             },
             {
-                 "id" : "fig007.png",
-                 "straightSides" : "3",
-                 "curvedSides" : "0",
-                 "sidesEqual" : "0",
-                 "rightAngles" : "0",
-                 "obtuseAngles" : "1",
-                 "acuteAngles" : "2",
-                 "reflexAngles" : "0"
+                "id": "fig027.png",
+                "straightSides": "4",
+                "curvedSides": "0",
+                "pairsOfSidesEqual": "2",
+                "rightAngles": "0",
+                "obtuseAngles": "3",
+                "acuteAngles": "1",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "0"
+            },
+            {
+                "id": "fig039.png",
+                "straightSides": "5",
+                "curvedSides": "0",
+                "sidesEqual": "2",
+                "rightAngles": "0",
+                "obtuseAngles": "3",
+                "acuteAngles": "2",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "2"
+            },
+            {
+                "id": "fig040.png",
+                "straightSides": "5",
+                "curvedSides": "0",
+                "sidesEqual": "0",
+                "rightAngles": "0",
+                "obtuseAngles": "4",
+                "acuteAngles": "1",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "1"
+            },
+            {
+                "id": "fig055.png",
+                "straightSides": "8",
+                "curvedSides": "0",
+                "sidesEqual": "8",
+                "rightAngles": "0",
+                "obtuseAngles": "8",
+                "acuteAngles": "0",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "4"
+            },
+            {
+                "id": "figc001.png",
+                "straightSides": "0",
+                "curvedSides": "yes"
+            },
+            {
+                "id": "figc002.png",
+                "straightSides": "0",
+                "curvedSides": "yes"
+            },
+            {
+                "id": "figc005.png",
+                "straightSides": "2",
+                "curvedSides": "yes",
+                "pairsOfSidesEqual": "1"
+            },
+            {
+                "id": "fig003.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "2",
+                "rightAngles": "1",
+                "obtuseAngles": "0",
+                "acuteAngles": "2",
+                "reflexAngles": "0"
+            },
+            {
+                "id": "fig004.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "2",
+                "rightAngles": "0",
+                "obtuseAngles": "1",
+                "acuteAngles": "2",
+                "reflexAngles": "0"
+            },
+            {
+                "id": "fig005.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "0",
+                "rightAngles": "0",
+                "obtuseAngles": "0",
+                "acuteAngles": "3",
+                "reflexAngles": "0"
+            },
+            {
+                "id": "fig006.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "0",
+                "rightAngles": "1",
+                "obtuseAngles": "0",
+                "acuteAngles": "2",
+                "reflexAngles": "0"
+            },
+            {
+                "id": "fig007.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "0",
+                "rightAngles": "0",
+                "obtuseAngles": "1",
+                "acuteAngles": "2",
+                "reflexAngles": "0"
             },
             {
                 "id": "fig004.png",
@@ -633,7 +633,7 @@ returnValue = (function () {
     for (var i = 0; i < noOfOptions && noOfClues >= 0; i++)
     {
         //Random j value for different options
-        var j = Math.floor( Math.random() * ((shapesJSON.length - 1) - 0) + 0);
+        var j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0) + 0);
         while (!Options[i]) {
             var shape = shapesJSON[j];
             if (noOfClues == 3)
@@ -688,24 +688,25 @@ returnValue = (function () {
                 j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0) + 0);
             }
         }
+        //TODO: use a list from a config file to fill such values
         // Fill properties not available for the shapes
-        if(!Options[i].straightSides)
+        if (!Options[i].straightSides)
             Options[i].straightSides = "0";
-        if(!Options[i].curvedSides)
-            Options[i].curvedSides = "no";
-        if(!Options[i].pairsOfSidesEqual)
+        if (!Options[i].curvedSides)
+            Options[i].curvedSides = "0";
+        if (!Options[i].pairsOfSidesEqual)
             Options[i].pairsOfSidesEqual = "0";
-        if(!Options[i].rightAngles)
+        if (!Options[i].rightAngles)
             Options[i].rightAngles = "0";
-        if(!Options[i].obtuseAngles)
+        if (!Options[i].obtuseAngles)
             Options[i].obtuseAngles = "0";
-        if(!Options[i].acuteAngles)
+        if (!Options[i].acuteAngles)
             Options[i].acuteAngles = "0";
-        if(!Options[i].reflexAngles)
+        if (!Options[i].reflexAngles)
             Options[i].reflexAngles = "0";
         if (!Options[i].oppositePairsParallel)
             Options[i].oppositePairsParallel = "0";
-        console.log(Options[i].id + " for "+ i);
+        console.log(Options[i].id + " for " + i);
     }
     Options = shuffle(Options);
     var optionsMarkup = document.createElement("div");
@@ -752,7 +753,7 @@ returnValue = (function () {
     gameData['clues'] = qset['q1'];
     gameData['options'] = Options;
     gameData['includedModules'].push('options_renderer');
-    
+
     var returnValues = {
         "clues": qset['q1'],
         "options": Options,

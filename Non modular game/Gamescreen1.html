@@ -95,6 +95,7 @@
                 var selectedOptions = $(this).find("input:checked").map(function () {
                     return $(this).attr("index");
                 });
+                $("#cluesWrapper").trigger("checkIfFinalAnswer", [selectedOptions]);
             });
 
             //~~These are the custom events for clues
