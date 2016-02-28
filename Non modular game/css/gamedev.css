@@ -22,12 +22,25 @@
     color: white;
     text-align: center;
 }
-            .option
-            {
-                height: 220px;
-                border:solid 1px #eeeeee;
-            }
 
-            .moduleWrapper {
-                border:solid 1px #dddddd;
-            }
+.option
+{
+    height: 230px;
+    width: 100%;
+    border:solid 1px #eeeeee;
+}
+
+.option img
+{
+    margin: 10px;
+    max-height: 90%;
+    overflow: hidden;
+}
+
+.moduleWrapper {
+    border:solid 1px #dddddd;
+}
+
+.disabled {
+    background-color: #eeeeee;
+}

@@ -76,6 +76,7 @@
                     gameData['disabledOptions'].push($(this).attr("index"));
                 });
                 $(this).find("input:checked").prop('disabled', true);
+                $(this).find("input:checked").closest('label').addClass('disabled');
                 $(this).trigger("clearSelection");
             });
             $("#optionsWrapper").on("clearSelection", function () {
@@ -170,7 +171,7 @@
 
             //~~These are the custom events for buttons
             $("#inspect").on('click', function () {
-                if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
+                if (gameData['solvedClues'].length < $("#cluesWrapper .clue").length) {
                     $("#optionsWrapper").trigger("inspect");
                 } else {
                     console.log("You have sufficient clues to make an arrest!");
