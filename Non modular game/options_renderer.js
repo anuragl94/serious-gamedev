@@ -687,6 +687,7 @@ returnValue = (function () {
                 j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0) + 0);
             }
         }
+        //TODO: use a list from a config file to fill such values
         // Fill properties not available for the shapes
         if(!Options[i].straightSides)
             Options[i].straightSides = -1;
@@ -703,7 +704,7 @@ returnValue = (function () {
         if(!Options[i].reflexAngles)
             Options[i].reflexAngles = -1;
         if (!Options[i].oppositePairsParallel)
-            Option[i].oppositePairsParallel = -1;
+            Options[i].oppositePairsParallel = -1;
         console.log(Options[i].id + " for "+ i);
     }
     //Options = shuffle(Options);
