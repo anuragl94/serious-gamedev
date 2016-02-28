@@ -689,21 +689,21 @@ returnValue = (function () {
         }
         // Fill properties not available for the shapes
         if(!Options[i].straightSides)
-            Options[i].straightSides = -1;
+            Options[i].straightSides = "0";
         if(!Options[i].curvedSides)
-            Options[i].curvedSides = -1;
+            Options[i].curvedSides = "no";
         if(!Options[i].pairsOfSidesEqual)
-            Options[i].pairsOfSidesEqual = -1;
+            Options[i].pairsOfSidesEqual = "0";
         if(!Options[i].rightAngles)
-            Options[i].rightAngles = -1;
+            Options[i].rightAngles = "0";
         if(!Options[i].obtuseAngles)
-            Options[i].obtuseAngles = -1;
+            Options[i].obtuseAngles = "0";
         if(!Options[i].acuteAngles)
-            Options[i].acuteAngles = -1;
+            Options[i].acuteAngles = "0";
         if(!Options[i].reflexAngles)
-            Options[i].reflexAngles = -1;
+            Options[i].reflexAngles = "0";
         if (!Options[i].oppositePairsParallel)
-            Option[i].oppositePairsParallel = -1;
+            Options[i].oppositePairsParallel = "0";
         console.log(Options[i].id + " for "+ i);
     }
     //Options = shuffle(Options);

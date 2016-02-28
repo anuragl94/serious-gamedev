@@ -122,8 +122,8 @@
                     }
                     return null;
                 });
-                correctOptions = $(correctOptions).filter(function (index) {
-                    if ((this !== null) && ($.inArray(index, gameData['disabledOptions']) !== -1))
+                correctOptions = $(correctOptions).filter(function () {
+                    if ((this !== null) && ($.inArray(parseInt(this).toString(), gameData['disabledOptions']) == -1))
                         return true;
                 });
                 //To convert pseudo array to regular array
