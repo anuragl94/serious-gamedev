@@ -677,6 +677,7 @@ returnValue = (function () {
                 {
                     Options[i] = shape;
                     //console.log(shape.id + "Answer");
+                    Options[i]['correctAnswer'] = true
                     break;
                 }
 
@@ -706,7 +707,7 @@ returnValue = (function () {
             Options[i].oppositePairsParallel = "0";
         console.log(Options[i].id + " for "+ i);
     }
-    //Options = shuffle(Options);
+    Options = shuffle(Options);
     var optionsMarkup = document.createElement("div");
     $(optionsMarkup).addClass("row");
     for (var i = 0; i < noOfOptions; i++)
