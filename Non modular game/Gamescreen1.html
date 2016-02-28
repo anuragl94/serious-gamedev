@@ -92,10 +92,14 @@
             // This event listener comes from the tools section
             $("#optionsWrapper").on("arrest", function () {
                 //Here we get a list of selected options along with their attributes
-                var selectedOptions = $(this).find("input:checked").map(function () {
+                var selectedOption = $(this).find("input:checked").map(function () {
                     return $(this).attr("index");
                 });
-                $("#cluesWrapper").trigger("checkIfFinalAnswer", [selectedOptions]);
+                if (selectedOption.length == 1) {
+                    $("#cluesWrapper").trigger("checkIfFinalAnswer", selectedOption);
+                } else {
+                    console.log("There can only be one culprit!");
+                }
             });
 
             //~~These are the custom events for clues
@@ -145,6 +149,15 @@
                 }
             });
 
+            $("#cluesWrapper").on("checkIfFinalAnswer", function (event, selectedOption) {
+                if ('correctAnswer' in gameData['options'][selectedOption]){
+                    console.log("You have caught the culprit!");}
+                else{
+                    console.log("You have arrested the innocent!");
+                    $("#battery").trigger("drain");
+                }
+            });
+
             $("#cluesWrapper").on("getNextClue", function () {
                 $("#cluesWrapper").find(".clue:visible").last().removeClass("failure").addClass("success");
                 if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
@@ -163,7 +176,11 @@
                 }
             });
             $("#arrest").on('click', function () {
-                //Must write logic for arrest tool
+                if (!($("#cluesWrapper").find(".clue:not(:visible)").length)) {
+                    $("#optionsWrapper").trigger("arrest");
+                } else {
+                    console.log("You do not have sufficient clues to make an arrest!");
+                }
             });
 
             //~~These are the custom events for battery
