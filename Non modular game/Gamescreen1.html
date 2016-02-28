@@ -51,7 +51,8 @@
         <script>
             //Global gameData. Store all important attributes/module data here
             gameData = {
-                'includedModules': []
+                'includedModules': [],
+                'disabledOptions': []
             };
         </script>
         <script src="../Public/js/jquery-1.11.3.min.js"></script>
@@ -69,6 +70,11 @@
                 //It may be heavy on the processor if we check state of ALL options at every interaction with a single option
             });
             $("#optionsWrapper").on("disableSelected", function () {
+                if (!('disabledOptions' in gameData))
+                    gameData['disabledOptions'] = [];
+                $(this).find("input:checked").each(function () {
+                    gameData['disabledOptions'].push($(this).attr("index"));
+                });
                 $(this).find("input:checked").prop('disabled', true);
                 $(this).trigger("clearSelection");
             });
@@ -100,15 +106,15 @@
                     var option = this;
                     switch (currentClue['comparator']) {
                         case '=':
-                            if (option[currentClue['attribute']] === currentClue['quantity'])
+                            if (option[currentClue['attribute']] != currentClue['quantity'])
                                 return index;
                             break;
                         case '>':
-                            if (option[currentClue['attribute']] > currentClue['quantity'])
+                            if (option[currentClue['attribute']] <= currentClue['quantity'])
                                 return index;
                             break;
                         case '<':
-                            if (option[currentClue['attribute']] < currentClue['quantity'])
+                            if (option[currentClue['attribute']] >= currentClue['quantity'])
                                 return index;
                             break;
                         default:
@@ -117,7 +123,7 @@
                     return null;
                 });
                 correctOptions = $(correctOptions).filter(function (index) {
-                    if (this !== null)
+                    if ((this !== null) && ($.inArray(index, gameData['disabledOptions']) !== -1))
                         return true;
                 });
                 //To convert pseudo array to regular array
