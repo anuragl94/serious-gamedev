@@ -36,14 +36,14 @@
                 position: absolute;
                 height: 200px;
                 width: 200px;
-                opacity: 0.5;
+                /*opacity: 0.5;*/
                 margin-top: -200px;
             }
-            
+
             .options {
                 margin: 20px;
             }
-            
+
             .optionWrapper {
                 display: inline-block;
                 position: relative;
@@ -150,8 +150,7 @@
 
                 $.each(coordinates, function (key, coords) {
                     $.each(coords, function () {
-                        console.log('#'+key);
-                        var target = $('#'+key).closest(".optionWrapper");
+                        var target = $('#' + key).closest(".optionWrapper");
                         var vertex = document.createElement("div");
                         $(vertex).addClass("vertex").css({"left": this[0]}).css({"top": this[1]});
                         $(target).append(vertex);
@@ -177,25 +176,30 @@
                             "center": ["0%", "100%"]
                         });
                     } else {
+                        console.log("I'm now tracing coordinates");
                         var closest = null;
                         var closest_distance = 9999;
                         $(this).find(".vertex").each(function () {
                             var vertex = this;
                             //console.log(vertex.style.left);
-                            var x = parseInt($(this).css("left")) - event.pageX;
-                            var y = parseInt($(this).css("top")) - event.pageY;
+                            var vertex_coords = $(this).offset();
+                            var x = parseInt(vertex_coords["left"]) - event.pageX;
+                            var y = parseInt(vertex_coords["top"]) - event.pageY;
                             var dist = Math.sqrt(x * x + y * y);
+                            console.log("Distance to point is ", dist);
                             if ((dist < closest_distance) && (dist < snap_offset)) {
                                 closest_distance = dist;
                                 closest = this;
                             }
                         });
                         if (closest !== null) {
+                            console.log("Found my soulmate. Now I'll be attached to it.");
                             following = false;
+                            var vertex_coords = $(closest).offset();
                             $(".activeTool").css({
-                                "top": $(closest).css("top"),
-                                "left": $(closest).css("left")
-                            }).addClass("snapped");
+                                "top": vertex_coords["top"],
+                                "left": vertex_coords["left"]
+                            });
                         }
                     }
                 });
