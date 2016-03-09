@@ -42,6 +42,12 @@
 
             .options {
                 margin: 20px;
+                user-drag: none; 
+                user-select: none;
+                -moz-user-select: none;
+                -webkit-user-drag: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
             }
 
             .optionWrapper {
@@ -53,12 +59,6 @@
 
             .optionWrapper img {
                 height: 300px;
-                user-drag: none; 
-                user-select: none;
-                -moz-user-select: none;
-                -webkit-user-drag: none;
-                -webkit-user-select: none;
-                -ms-user-select: none;
             }
 
             .rotationHandle {
@@ -99,7 +99,7 @@
 
         <div id="perpTool" class="">
             <img src="rotate.png" class="rotationHandle"/>
-            <img class="guiTool" src="perptool.png"/>
+            <img class="guiTool" src="perptool.png" class="beginFollowing" />
         </div>
 
         <div id="toolBox">
@@ -200,6 +200,7 @@
                                 "top": vertex_coords["top"],
                                 "left": vertex_coords["left"]
                             });
+                            $(".options").css("pointer-events", "none");
                         }
                     }
                 });
@@ -226,6 +227,11 @@
                             "center": ["0%", "100%"]
                         });
                     }
+                });
+
+                $(".beginFollowing").click(function () {
+                    following = true;
+                    $(".options").css("pointer-events", "");
                 });
 
                 $(".toolButton").click(function () {
