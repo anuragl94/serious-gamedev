@@ -32,7 +32,7 @@
                 position: absolute;
                 height: 200px;
                 width: 200px;
-                opacity: 0.5;
+                opacity: 0;
                 margin-top: -200px;
             }
         </style>
@@ -112,6 +112,18 @@
                                 closest = this;
                             }
                         });
+                        //For loop and use line formula to check if vertex lies in line
+                        var y2 = parseInt($(closest).css("top"));
+                        var x2 = parseInt($(closest).css("left"));
+                        $(".vertex").each(function ()
+                        {
+                            if(closest !== this)
+                            {
+                                var y1 = parseInt($(this).css("top"));
+                                var x1 = parseInt($(this).css("left"));
+                                var m = (y2-y1)/(x2-x1);
+                            }
+                        })
                         following = false;
                         $("#perpTool").css({
                             "top": $(closest).css("top"),
@@ -131,21 +143,21 @@
                     });
                 });
 
-                $(document).mousemove(function () {
-                    if (following === true) {
-                        $("#perpTool").css({
-                            "left": event.pageX,
-                            "top": event.pageY
-                        });
-                    } else {
-                        var angle = getAngle(parseInt($("#perpTool").css("left")), parseInt($("#perpTool").css("top")), event.pageX, event.pageY);
-                        console.log("rotate(" + angle.toString() + ")deg");
-                        $("#perpTool").rotate({
-                            "angle": angle,
-                            "center": ["0%", "100%"]
-                        });
-                    }
-                });
+//                $(document).mousemove(function () {
+//                    if (following === true) {
+//                        $("#perpTool").css({
+//                            "left": event.pageX,
+//                            "top": event.pageY
+//                        });
+//                    } else {
+//                        var angle = getAngle(parseInt($("#perpTool").css("left")), parseInt($("#perpTool").css("top")), event.pageX, event.pageY);
+//                        console.log("rotate(" + angle.toString() + ")deg");
+//                        $("#perpTool").rotate({
+//                            "angle": angle,
+//                            "center": ["0%", "100%"]
+//                        });
+//                    }
+//                });
             });
         </script>
 
