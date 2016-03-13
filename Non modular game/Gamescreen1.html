@@ -51,7 +51,8 @@
         <script>
             //Global gameData. Store all important attributes/module data here
             gameData = {
-                'includedModules': []
+                'includedModules': [],
+                'disabledOptions': []
             };
         </script>
         <script src="../Public/js/jquery-1.11.3.min.js"></script>
@@ -69,7 +70,13 @@
                 //It may be heavy on the processor if we check state of ALL options at every interaction with a single option
             });
             $("#optionsWrapper").on("disableSelected", function () {
+                if (!('disabledOptions' in gameData))
+                    gameData['disabledOptions'] = [];
+                $(this).find("input:checked").each(function () {
+                    gameData['disabledOptions'].push($(this).attr("index"));
+                });
                 $(this).find("input:checked").prop('disabled', true);
+                $(this).find("input:checked").closest('label').addClass('disabled');
                 $(this).trigger("clearSelection");
             });
             $("#optionsWrapper").on("clearSelection", function () {
@@ -86,9 +93,14 @@
             // This event listener comes from the tools section
             $("#optionsWrapper").on("arrest", function () {
                 //Here we get a list of selected options along with their attributes
-                var selectedOptions = $(this).find("input:checked").map(function () {
+                var selectedOption = $(this).find("input:checked").map(function () {
                     return $(this).attr("index");
                 });
+                if (selectedOption.length == 1) {
+                    $("#cluesWrapper").trigger("checkIfFinalAnswer", selectedOption);
+                } else {
+                    console.log("There can only be one culprit!");
+                }
             });
 
             //~~These are the custom events for clues
@@ -100,15 +112,15 @@
                     var option = this;
                     switch (currentClue['comparator']) {
                         case '=':
-                            if (option[currentClue['attribute']] === currentClue['quantity'])
+                            if (option[currentClue['attribute']] != currentClue['quantity'])
                                 return index;
                             break;
                         case '>':
-                            if (option[currentClue['attribute']] > currentClue['quantity'])
+                            if (option[currentClue['attribute']] <= currentClue['quantity'])
                                 return index;
                             break;
                         case '<':
-                            if (option[currentClue['attribute']] < currentClue['quantity'])
+                            if (option[currentClue['attribute']] >= currentClue['quantity'])
                                 return index;
                             break;
                         default:
@@ -116,8 +128,8 @@
                     }
                     return null;
                 });
-                correctOptions = $(correctOptions).filter(function (index) {
-                    if (this !== null)
+                correctOptions = $(correctOptions).filter(function () {
+                    if ((this !== null) && ($.inArray(parseInt(this).toString(), gameData['disabledOptions']) == -1))
                         return true;
                 });
                 //To convert pseudo array to regular array
@@ -138,6 +150,16 @@
                 }
             });
 
+            $("#cluesWrapper").on("checkIfFinalAnswer", function (event, selectedOption) {
+                if ('correctAnswer' in gameData['options'][selectedOption]) {
+                    console.log("You have caught the culprit!");
+                    alert("Win!");
+                } else {
+                    console.log("You have arrested the innocent!");
+                    $("#battery").trigger("drain");
+                }
+            });
+
             $("#cluesWrapper").on("getNextClue", function () {
                 $("#cluesWrapper").find(".clue:visible").last().removeClass("failure").addClass("success");
                 if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
@@ -149,14 +171,18 @@
 
             //~~These are the custom events for buttons
             $("#inspect").on('click', function () {
-                if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
+                if (gameData['solvedClues'].length < $("#cluesWrapper .clue").length) {
                     $("#optionsWrapper").trigger("inspect");
                 } else {
                     console.log("You have sufficient clues to make an arrest!");
                 }
             });
             $("#arrest").on('click', function () {
-                //Must write logic for arrest tool
+                if (!($("#cluesWrapper").find(".clue:not(:visible)").length)) {
+                    $("#optionsWrapper").trigger("arrest");
+                } else {
+                    console.log("You do not have sufficient clues to make an arrest!");
+                }
             });
 
             //~~These are the custom events for battery
