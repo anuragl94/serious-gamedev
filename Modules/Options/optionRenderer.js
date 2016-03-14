@@ -1,4 +1,5 @@
 ﻿//Qset Data
+//TODO: make questions randomize from development-hotfixes and fix correct answer
 var qset = {
     "q1": [
     {
@@ -96,7 +97,9 @@ var config = {
 function isInArray(value, array) {
     return array.indexOf(value) > -1;
 }
-var noOfClues = parseInt(config.questionsRepo[4].noOfClues);
+var qno = Math.floor(Math.random() * (3 - 0 + 1) + 0); console.log("Question: " + qno);
+var noOfClues = parseInt(config.questionsRepo[4].noOfClues) - 1;
+var totalClues = noOfClues;
 var noOfOptions = parseInt(config.questionsRepo[4].noOfOptions);
 var noOfCorrectOptions = parseInt(config.questionsRepo[4].noOfCorrectOptions);
 var Options = new Array(noOfOptions);
@@ -106,11 +109,12 @@ var optionDoms = document.getElementsByClassName("opimg");
 var shapesJSON = JSON.parse(shapes3);
 var fitCount = 0;
 for (var i = 0; i < noOfOptions && noOfClues >= 0; i++) {
-    for (var j = 0; j < shapesJSON.length; j++) {
+    var j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0 + 1) + 0);
+    while (!Options[i]) {
         var shape = shapesJSON[j];
-        if (noOfClues == 3) {
-            if (qset.q1[0].attribute == "straightSides" && qset.q1[0].comparator == "=" && parseInt(qset.q1[0].quantity) != parseInt(shape.straightSides) && !isInArray(shape, Options)) {
-                Options[i] = shape; Options[i].id = shape.id;
+        if (i <= noOfOptions) {
+            if (qset.q1[noOfClues].attribute == "straightSides" && qset.q1[noOfClues].comparator == "=" && parseInt(qset.q1[noOfClues].quantity) == parseInt(shape.straightSides) && !isInArray(shape, Options)) {
+                Options[i] = shape;
                 fitCount++;
                 if (fitCount == 2) {
                     fitCount = 0;
@@ -120,10 +124,9 @@ for (var i = 0; i < noOfOptions && noOfClues >= 0; i++) {
                 break;
             }
 
-        }
-        else if (noOfClues == 2) {
-            if (qset.q1[1].attribute == "pairsOfSidesEqual" && qset.q1[1].comparator == "=" && qset.q1[1].quantity != shape.pairsOfSidesEqual && !isInArray(shape, Options)) {
-                Options[i] = shape; Options[i].id = shape.id;
+
+            if (qset.q1[noOfClues].attribute == "pairsOfSidesEqual" && qset.q1[noOfClues].comparator == "=" && qset.q1[noOfClues].quantity == shape.pairsOfSidesEqual && !isInArray(shape, Options)) {
+                Options[i] = shape;
                 fitCount++;
                 if (fitCount == 2) {
                     fitCount = 0;
@@ -133,31 +136,83 @@ for (var i = 0; i < noOfOptions && noOfClues >= 0; i++) {
                 break;
             }
 
-        }
-        else if (noOfClues == 1) {
-            if (qset.q1[2].attribute == "obtuseAngles" && qset.q1[2].comparator == "=" && qset.q1[2].quantity != shape.obtuseAngles && !isInArray(shape, Options)) {
-                Options[i] = shape; Options[i].id = shape.id;
+
+            if (qset.q1[noOfClues].attribute == "obtuseAngles" && qset.q1[noOfClues].comparator == "=" && qset.q1[noOfClues].quantity == shape.obtuseAngles && !isInArray(shape, Options)) {
+                Options[i] = shape;
                 fitCount++;
-                if (fitCount == 1) {
+                if (fitCount == 2) {
                     fitCount = 0;
                     noOfClues--;
                     j = 0;
                 }
                 break;
             }
+            //}
         }
-        else {
-            //Get answer
-            if (qset.q1[2].quantity == shape.obtuseAngles && qset.q1[1].quantity == shape.pairsOfSidesEqual && qset.q1[0].quantity == shape.straightSides && !isInArray(shape, Options)) {
-                Options[i] = shape; console.log(shape.id + " is the Answer");
-                break;
-            }
-
-        }
+        j++; 
+        if (j == shapesJSON.length) { 
+            //Randomize 
+            j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0 + 1) + 0); 
+            } 
     }
+    if(!Options[i].straightSides) 
+        Options[i].straightSides = 0; 
+    if(!Options[i].curvedSides) 
+        Options[i].curvedSides = 0; 
+    if(!Options[i].pairsOfSidesEqual) 
+        Options[i].pairsOfSidesEqual = 0; 
+    if(!Options[i].rightAngles) 
+        Options[i].rightAngles = 0; 
+    if(!Options[i].obtuseAngles) 
+        Options[i].obtuseAngles = 0; 
+    if(!Options[i].acuteAngles) 
+        Options[i].acuteAngles = 0; 
+    if(!Options[i].reflexAngles) 
+        Options[i].reflexAngles = 0; 
+    if (!Options[i].oppositePairsParallel) 
+        Options[i].oppositePairsParallel = 0; 
+
     console.log(Options[i]);
 }
-Options = shuffle(Options);
+    for (var j = 0; j < shapesJSON.length; j++) {
+        //Get answer
+        var satcount = 0;
+        for (z = totalClues; z >= 0;z--)
+        {
+            if (shape[qset.q1[z].attribute] == qset.q1[z].quantity && !isInArray(shape, Options))
+            {
+                satcount++;    
+            }
+            else
+                satcount = 0
+        }
+        if(satcount == totalClues)
+        {
+            Options[0] = shape; console.log(shape.id + "Answer");
+            break;
+        }
+    }
+    Options = shuffle(Options);
+    var optionsMarkup = document.createElement("div");
+    $(optionsMarkup).addClass("row"); 
+    for (var i = 0; i < noOfOptions; i++) 
+        { 
+            var markup = document.createElement("div"); 
+            $(markup).addClass("col-lg-4 col-md-4"); 
+            var label = document.createElement("label"); 
+            $(label).addClass("option"); 
+            var temp = document.createElement("img"); 
+            temp.class = "option" 
+            temp.src = "../Modules/Generators/version3/" + Options[i].id; 
+            label.appendChild(temp); 
+            temp = document.createElement("input"); 
+            temp.type = "checkbox"; 
+            $(temp).attr("index", i); 
+            label.appendChild(temp); 
+            markup.appendChild(label); 
+            optionsMarkup.appendChild(markup); 
+        } 
+
 //Fisher-Yates Shuffle.
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
