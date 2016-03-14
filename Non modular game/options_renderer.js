@@ -680,8 +680,24 @@ returnValue = (function () {
                 "oppositePairsParallel": "0"
             }
         ]};
-
-    var qno = Math.floor(Math.random() * (3 - 0 + 1) + 0); console.log("Question: "+qno);
+    function urlParse(val) {
+        var result = "Not found",
+            tmp = [];
+        location.search
+        //.replace ( "?", "" ) 
+        // this is better, there might be a question mark inside
+        .substr(1)
+            .split("&")
+            .forEach(function (item) {
+                tmp = item.split("=");
+                if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
+            });
+        return result;
+    }
+    
+    var qno = urlParse("qno");
+    if(qno === "Not found")
+        var qno = Math.floor(Math.random() * (3 - 0 + 1) + 0); console.log("Question: "+qno);
     var noOfClues = parseInt(config.questionsRepo[4].noOfClues);
     var noOfOptions = parseInt(config.questionsRepo[4].noOfOptions);
     var noOfCorrectOptions = parseInt(config.questionsRepo[4].noOfCorrectOptions);
