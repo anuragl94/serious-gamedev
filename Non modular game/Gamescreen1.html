@@ -60,6 +60,7 @@
         <script src="js/jquery-1.11.3.min.js"></script>
         <script src="../Engine/js/fetch.js"></script>
         <script src="options_renderer.js"></script>
+        <script src="glossary.js"></script>
         <script>
             // Do what we must to render the options
             $("#optionsWrapper").append(returnValue['options_markup']);
@@ -216,8 +217,8 @@
             $(cluesBox).attr("id", "clues");
             $(returnValue['clues']).each(function () {
                 //This next line must go through the language API for translation. Not translating into any language for now
-                var clue_text = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'] + "<br />";
-                var property = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'] + "<br />";
+                var clue_text = "Culprit has " + "<strong class='glossaryTerm'>" + this['attribute'] + "</strong>" + this['comparator'] + this['quantity'] + "<br />";
+                var property = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'];
                 var clue = '<div class="clue" data-attr="' + property + '">' + clue_text + '</div>';
                 $(cluesBox).append(clue);
             });
