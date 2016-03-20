@@ -1,247 +1,205 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Police Quad Question Generator</title>
+        <!-- Bootstrap -->
+        <link href="../Public/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/gamedev.css" rel="stylesheet" />
+    </head>
     <body>
-        <style>
-            .optionWrapper {
-                display: inline-block;
-                position: absolute;
-                top:0;
-                left:0;
-            }
-
-            .canvasOverlay {
-                position: absolute;
-                z-index: 1;
-            }
-
-            .imageUnderlay {
-                position: relative;
-                height: 400px;
-                z-index: 1;
-            }
-
-            .vertex {
-                height: 3px;
-                width: 3px;
-                margin-top: -1px;
-                margin-left: -1px;
-                position: absolute;
-                z-index: 1;
-            }
-
-            #perpTool, #parallelTool {
-                display: none;
-            }
-
-            .activeTool {
-                position: absolute;
-                height: 200px;
-                width: 200px;
-                /*opacity: 0.5;*/
-                margin-top: -200px;
-            }
-
-            .options {
-                margin: 20px;
-                user-drag: none; 
-                user-select: none;
-                -moz-user-select: none;
-                -webkit-user-drag: none;
-                -webkit-user-select: none;
-                -ms-user-select: none;
-            }
-
-            .optionWrapper {
-                display: inline-block;
-                position: relative;
-                margin: 20px;
-                background-color: #eeeeee;
-            }
-
-            .optionWrapper img {
-                height: 300px;
-            }
-
-            .rotationHandle {
-                position: absolute;
-                height: 25px;
-                margin-left: 90%;
-                transform-origin: 50% 50% 0;
-                user-drag: none; 
-                -webkit-user-drag: none;
-                z-index: 10;
-            }
-
-            #toolBox {
-                display: block;
-                position: absolute;
-                top: 90%;
-            }
-        </style>
-
-        <script src="jquery-1.12.0.min.js"></script>
-        <script src="jQueryRotate.js"></script>
-
-        <div id="parallelTool" class="">
-        </div>
-
-        <div class="options">
-            <div class="optionWrapper">
-                <canvas class="canvasOverlay" height="300" width="300"></canvas>
-                <img src="svg\6A Simple.svg" id="option1" />
-                <!--<object type="image/svg+xml" data="svg\6A Simple.svg" id="option1"></object>-->
+        <div class="pageWrapper">
+            <div class="navbar">
+                <h1>PoliceQuad</h1>
             </div>
-            <div class="optionWrapper">
-                <canvas class="canvasOverlay" height="300" width="300"></canvas>
-                <img src="svg\6B Simple.svg" id="option2" />
-                <!--<object type="image/svg+xml" data="svg\6B Simple.svg" id="option2"></object>-->
+            <div class="question">
+                <h4>
+                    One of the shapes is the culprit.
+                    Click on the innocent shapes to ELIMINATE them.
+                    The last one left is the culprit – ARREST IT!<br><br>
+                </h4>
+            </div>
+            <div class="row">
+                <div class="col-md-9 moduleWrapper" id="optionsWrapper">
+                </div>
+                <div class="col-md-3">
+                    <h2>Clues</h2>
+                    <div class="moduleWrapper" id="cluesWrapper">
+                    </div>
+                    <h2>Tools</h2>
+                    <!--Insert tools here-->
+                    <div class="row tools">
+                        <div class="col-lg-4 col-md-4">
+                            <button id="inspect">
+                                <img src="inspect.jpg" height=70 />
+                            </button>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <button id="arrest">
+                                <img src="makeArrest.gif" height=70 />
+                            </button>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <img id="battery" src="battery4.jpg" data-value="4" data-max="4" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div id="perpTool" class="">
-            <img src="rotate.png" class="rotationHandle"/>
-            <img class="guiTool beginFollowing" src="perptool.png" />
-        </div>
-
-        <div id="toolBox">
-            <button class="toolButton" data-tool="perpTool">Perpendicular tool</button>
-            <button class="toolButton" data-tool="parallelTool">Parallel tool</button>
-            <button class="toolButton" data-tool="">Clear all tools</button>
-        </div>
-
+        <!-- Load scripts after the DOM is rendered -->
         <script>
-            var snap_offset = 15;
-            var following = true;
-            var rotating = true;
-            var coordinates = {
-                "option1": [
-                    ["140.90", "31.100"],
-                    ["30.900", "251.10"],
-                    ["103.50", "195.00"],
-                    ["250.90", "251.10"]
-                ],
-                "option2": [
-                    ["38.000", "36.000"],
-                    ["188.00", "36.000"],
-                    ["188.00", "186.00"],
-                    ["38.000", "186.00"]
-                ]
+            //Global gameData. Store all important attributes/module data here
+            gameData = {
+                'includedModules': []
             };
-            // This code will extract coordinates from the svg file as intended.
-            // Please note that jquery only parses HTML DOM and not SVG DOM. Hence, query selector will never work on the object tag, no matter what. So don't try optimizing code over there.
-            //Thoughts: Would it be okay to get the svg object document content and replace the object with the svg code in the content itself? This can be done in the module that renders the options onto the gamescreen.
-            $(window).load(function () {
-                // The following code that was commented read the coordinates from the svgs. For now, we have manually supplied the coordinates.
-//                $(".optionWrapper").append('<img src="' + document.getElementById('option1').data + '" class="imageUnderlay" id="option1"/>');
-//
-//                //Almost everything is hardcoded for testing
-//                $(".canvasOverlay").each(function () {
-//                    var svgObject = document.getElementById('option1').contentDocument;
-//                    var paths = $(svgObject).find("path");
-//                    var coords = $($(svgObject).find("svg path")[0]).attr("d");
-//                    coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
-//                    coordinates['option1'] = $.map(coords, function (value) {
-//                        var temp = value.split(' ');
-//                        return [[temp[1], temp[2]]];
-//                    });
-//
-//                    //Tool specific code ends here
-//                    var underlay = $(this).closest(".objectWrapper").find("img");
-//                });
-//                $("object").remove();
+        </script>
+        <script src="../Public/js/jquery-1.11.3.min.js"></script>
+        <script src="../Public/js/bootstrap.min.js"></script>
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <script src="../Engine/js/fetch.js"></script>
+        <script src="options_renderer.js"></script>
+        <script>
+            // Do what we must to render the options
+            $("#optionsWrapper").append(returnValue['options_markup']);
 
-                $.each(coordinates, function (key, coords) {
-                    $.each(coords, function () {
-                        var target = $('#' + key).closest(".optionWrapper");
-                        var vertex = document.createElement("div");
-                        $(vertex).addClass("vertex").css({"left": this[0]}).css({"top": this[1]});
-                        $(target).append(vertex);
-                    });
+            //~~These are the custom events for options
+            $("#optionsWrapper").on("change", function () {
+                //Here we use statetracker module to capture the new state of the set of options
+                //It may be heavy on the processor if we check state of ALL options at every interaction with a single option
+            });
+            $("#optionsWrapper").on("disableSelected", function () {
+                $(this).find("input:checked").prop('disabled', true);
+                $(this).trigger("clearSelection");
+            });
+            $("#optionsWrapper").on("clearSelection", function () {
+                $(this).find("input:checked").prop('checked', false);
+            });
+            // This event listener comes from the tools section
+            $("#optionsWrapper").on("inspect", function () {
+                //Here we get a list of selected options along with their attributes
+                var selectedOptions = $(this).find("input:checked").map(function () {
+                    return $(this).attr("index");
                 });
-
-                function getAngle(cx, cy, ex, ey) {
-                    var dy = ey - cy;
-                    var dx = ex - cx;
-                    var theta = Math.atan2(dy, dx); // range (-PI, PI]
-                    theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
-                    //if (theta < 0) theta = 360 + theta; // range [0, 360)
-                    return theta;
-                }
-
-                $(".optionWrapper").click(function (e) {
-                    e.preventDefault();
-                    if ($(".activeTool").hasClass("snapped")) {
-                        $(".activeTool").removeClass("snapped");
-                        //following = true;
-                        $(".activeTool").rotate({
-                            "angle": 0,
-                            "center": ["0%", "100%"]
-                        });
-                    } else {
-                        console.log("I'm now tracing coordinates");
-                        var closest = null;
-                        var closest_distance = 9999;
-                        $(this).find(".vertex").each(function () {
-                            var vertex = this;
-                            //console.log(vertex.style.left);
-                            var vertex_coords = $(this).offset();
-                            var x = parseInt(vertex_coords["left"]) - event.pageX;
-                            var y = parseInt(vertex_coords["top"]) - event.pageY;
-                            var dist = Math.sqrt(x * x + y * y);
-                            console.log("Distance to point is ", dist);
-                            if ((dist < closest_distance) && (dist < snap_offset)) {
-                                closest_distance = dist;
-                                closest = this;
-                            }
-                        });
-                        if (closest !== null) {
-                            console.log("Found my soulmate. Now I'll be attached to it.");
-                            following = false;
-                            var vertex_coords = $(closest).offset();
-                            $(".activeTool").css({
-                                "top": vertex_coords["top"],
-                                "left": vertex_coords["left"]
-                            });
-                            $(".options").css("pointer-events", "none");
-                        }
-                    }
-                });
-
-                $(".rotationHandle").mousedown(function () {
-                    rotating = true;
-                });
-
-                $(document).mouseup(function () {
-                    rotating = false;
-                });
-
-                $(document).mousemove(function () {
-                    if (following === true) {
-                        $(".activeTool").css({
-                            "left": event.pageX,
-                            "top": event.pageY
-                        });
-                    }
-                    if (rotating === true) {
-                        var angle = getAngle(parseInt($(".activeTool").css("left")), parseInt($(".activeTool").css("top")), event.pageX, event.pageY);
-                        $(".activeTool").rotate({
-                            "angle": angle + 45,
-                            "center": ["0%", "100%"]
-                        });
-                    }
-                });
-
-                $(".beginFollowing").click(function () {
-                    following = true;
-                    $(".options").css("pointer-events", "");
-                });
-
-                $(".toolButton").click(function () {
-                    $(".activeTool").removeClass("activeTool").toggle(false);
-                    $("#" + $(this).attr("data-tool")).addClass("activeTool").toggle(true);
+                $("#cluesWrapper").trigger("checkIfCorrectOptions", [selectedOptions]);
+            });
+            // This event listener comes from the tools section
+            $("#optionsWrapper").on("arrest", function () {
+                //Here we get a list of selected options along with their attributes
+                var selectedOptions = $(this).find("input:checked").map(function () {
+                    return $(this).attr("index");
                 });
             });
+
+            //~~These are the custom events for clues
+            $("#cluesWrapper").on("checkIfCorrectOptions", function (event, selectedOptions) {
+                //Here we get a list of selected options along with their attributes
+                var currentClueIndex = $("#cluesWrapper").find(".clue:visible").length - 1;
+                var currentClue = gameData['clues'][currentClueIndex];
+                var correctOptions = $(gameData['options']).map(function (index) {
+                    var option = this;
+                    switch (currentClue['comparator']) {
+                        case '=':
+                            if (option[currentClue['attribute']] === currentClue['quantity'])
+                                return index;
+                            break;
+                        case '>':
+                            if (option[currentClue['attribute']] > currentClue['quantity'])
+                                return index;
+                            break;
+                        case '<':
+                            if (option[currentClue['attribute']] < currentClue['quantity'])
+                                return index;
+                            break;
+                        default:
+                            break;
+                    }
+                    return null;
+                });
+                correctOptions = $(correctOptions).filter(function (index) {
+                    if (this !== null)
+                        return true;
+                });
+                //To convert pseudo array to regular array
+                selectedOptions = Array.prototype.slice.call(selectedOptions);
+                correctOptions = Array.prototype.slice.call(correctOptions);
+
+                if (selectedOptions.sort().join(',') === correctOptions.sort().join(',')) {
+                    //Success
+                    console.log("Investigation successful! Good job!");
+                    //$("#battery").trigger("refresh");
+                    $("#cluesWrapper").trigger("getNextClue");
+                    $("#optionsWrapper").trigger("disableSelected");
+                    gameData['solvedClues'].push(currentClueIndex);
+                } else {
+                    console.log("Investigation failed");
+                    $("#battery").trigger("drain");
+                    $("#cluesWrapper").find(".clue:visible").last().addClass("failure");
+                }
+            });
+
+            $("#cluesWrapper").on("getNextClue", function () {
+                $("#cluesWrapper").find(".clue:visible").last().removeClass("failure").addClass("success");
+                if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
+                    $("#cluesWrapper").find(".clue:not(:visible)").first().toggle();
+                } else {
+                    //Do nothing. You're out of clues!
+                }
+            });
+
+            //~~These are the custom events for buttons
+            $("#inspect").on('click', function () {
+                if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
+                    $("#optionsWrapper").trigger("inspect");
+                } else {
+                    console.log("You have sufficient clues to make an arrest!");
+                }
+            });
+            $("#arrest").on('click', function () {
+                //Must write logic for arrest tool
+            });
+
+            //~~These are the custom events for battery
+            $("#battery").on("drain", function () {
+                var charge = parseInt($("#battery").attr("data-value")) - 1;
+                if (charge > 0) {
+                    $("#battery").attr("data-value", charge);
+                    $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
+                } else {
+                    alert("Game over! Battery was drained!");
+                    console.log("Game over! Battery was drained!!");
+                }
+            });
+            $("#battery").on("charge", function () {
+                var charge = parseInt($("#battery").attr("data-value")) + 1;
+                if (charge <= $("#battery").attr("data-max")) {
+                    $("#battery").attr("data-value", charge);
+                    $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
+                } else {
+                    console.log("You're overcharging the battery!");
+                }
+            });
+            $("#battery").on("refresh", function () {
+                var charge = $("#battery").attr("data-max");
+                $("#battery").attr("data-value", charge);
+                $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
+            });
+
+            // The following lines render HTML markup for the clues. The code will be pushed into the relevant module
+            var cluesBox = document.createElement("div");
+            $(cluesBox).attr("id", "clues");
+            $(returnValue['clues']).each(function () {
+                //This next line must go through the language API for translation. Not translating into any language for now
+                var clue_text = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'] + "<br />";
+                var property = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'] + "<br />";
+                var clue = '<div class="clue" data-attr="' + property + '">' + clue_text + '</div>';
+                $(cluesBox).append(clue);
+            });
+            $("#cluesWrapper").append(cluesBox);
+            $("#cluesWrapper").find(".clue:not(:first-child)").each(function () {
+                $(this).toggle();
+            });
+            gameData['solvedClues'] = [];
         </script>
-
     </body>
-
 </html>
