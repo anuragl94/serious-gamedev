@@ -22,17 +22,19 @@
     color: white;
     text-align: center;
 }
+
 .option
 {
-    height: 220px;
+    height: 230px;
     width: 100%;
     border:solid 1px #eeeeee;
 }
 
-.option>img
+.option img
 {
     margin: 10px;
     max-height: 90%;
+    overflow: hidden;
 }
 
 .moduleWrapper {

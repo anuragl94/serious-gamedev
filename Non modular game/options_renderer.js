@@ -2,25 +2,84 @@
 // Must find a good alternative
 returnValue = (function () {
 //Qset Data
-    var qset = {
-        "q1": [
-            {
-                "attribute": "straightSides",
-                "comparator": "=",
-                "quantity": "4"
-            },
-            {
-                "attribute": "pairsOfSidesEqual",
-                "comparator": "=",
-                "quantity": "2"
-            },
-            {
-                "attribute": "obtuseAngles",
-                "comparator": "=",
-                "quantity": "2"
-            }
-        ]
-    };
+    var qset = [
+                    {
+                        "q1": [
+                            {
+                                "attribute": "straightSides",
+                                "comparator": "=",
+                                "quantity": "4"
+                            },
+                            {
+                                "attribute": "pairsOfSidesEqual",
+                                "comparator": "=",
+                                "quantity": "2"
+                            },
+                            {
+                                "attribute": "obtuseAngles",
+                                "comparator": "=",
+                                "quantity": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "q1": [
+                            {
+                                "attribute": "straightSides",
+                                "comparator": "=",
+                                "quantity": "4"
+                            },
+                            {
+                                "attribute": "pairsOfSidesEqual",
+                                "comparator": "=",
+                                "quantity": "2"
+                            },
+                            {
+                                "attribute": "obtuseAngles",
+                                "comparator": "=",
+                                "quantity": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "q1": [
+                            {
+                                "attribute": "straightSides",
+                                "comparator": "=",
+                                "quantity": "4"
+                            },
+                            {
+                                "attribute": "pairsOfSidesEqual",
+                                "comparator": "=",
+                                "quantity": "1"
+                            },
+                            {
+                                "attribute": "obtuseAngles",
+                                "comparator": "=",
+                                "quantity": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "q1": [
+                            {
+                                "attribute": "straightSides",
+                                "comparator": "=",
+                                "quantity": "4"
+                            },
+                            {
+                                "attribute": "pairsOfSidesEqual",
+                                "comparator": "=",
+                                "quantity": "2"
+                            },
+                            {
+                                "attribute": "obtuseAngles",
+                                "comparator": "=",
+                                "quantity": "2"
+                            }
+                        ]
+                    }
+        ];
     var config = {
         "questionsRepo": [
             {
@@ -622,6 +681,7 @@ returnValue = (function () {
             }
         ]};
 
+    var qno = Math.floor(Math.random() * (3 - 0 + 1) + 0); console.log("Question: "+qno);
     var noOfClues = parseInt(config.questionsRepo[4].noOfClues);
     var noOfOptions = parseInt(config.questionsRepo[4].noOfOptions);
     var noOfCorrectOptions = parseInt(config.questionsRepo[4].noOfCorrectOptions);
@@ -633,13 +693,31 @@ returnValue = (function () {
     for (var i = 0; i < noOfOptions && noOfClues >= 0; i++)
     {
         //Random j value for different options
-        var j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0) + 0);
+        var j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0 + 1) + 0);
         while (!Options[i]) {
             var shape = shapesJSON[j];
-            if ((shape.obtuseAngles !== undefined) && (shape.pairsOfSidesEqual !== undefined) && (shape.straightSides !== undefined) )
+            if ((shape['obtuseAngles'] !== undefined) && (shape['pairsOfSidesEqual'] !== undefined) && (shape['straightSides'] !== undefined) )
             {
                 if (noOfClues == 3) {
-                    if (qset.q1[0].attribute == "straightSides" && qset.q1[0].comparator == "=" && parseInt(qset.q1[0].quantity) != parseInt(shape.straightSides) && !isInArray(shape, Options)) {
+                    if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "=" && parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
+                        Options[i] = shape;
+                        fitCount++;
+                        if (fitCount == 2) {
+                            fitCount = 0;
+                            noOfClues--;
+                        }
+                        break;
+                    }
+                    else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == ">" && parseInt(qset[qno].q1[0].quantity) <= parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
+                        Options[i] = shape;
+                        fitCount++;
+                        if (fitCount == 2) {
+                            fitCount = 0;
+                            noOfClues--;
+                        }
+                        break;
+                    }
+                    else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "<" && parseInt(qset[qno].q1[0].quantity) >= parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 2) {
@@ -650,7 +728,25 @@ returnValue = (function () {
                     }
 
                 } else if (noOfClues == 2) {
-                    if (qset.q1[1].attribute == "pairsOfSidesEqual" && qset.q1[1].comparator == "=" && qset.q1[1].quantity != shape.pairsOfSidesEqual && !isInArray(shape, Options) && !(parseInt(qset.q1[0].quantity) != parseInt(shape.straightSides))) {
+                    if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "=" && qset[qno].q1[1].quantity != shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
+                        Options[i] = shape;
+                        fitCount++;
+                        if (fitCount == 2) {
+                            fitCount = 0;
+                            noOfClues--;
+                        }
+                        break;
+                    }
+                    else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == ">" && qset[qno].q1[1].quantity <= shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
+                        Options[i] = shape;
+                        fitCount++;
+                        if (fitCount == 2) {
+                            fitCount = 0;
+                            noOfClues--;
+                        }
+                        break;
+                    }
+                    else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "<" && qset[qno].q1[1].quantity >= shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 2) {
@@ -660,7 +756,25 @@ returnValue = (function () {
                         break;
                     }
                 } else if (noOfClues == 1) {
-                    if (qset.q1[2].attribute == "obtuseAngles" && qset.q1[2].comparator == "=" && qset.q1[2].quantity != shape.obtuseAngles && !isInArray(shape, Options) && !(qset.q1[1].quantity != shape.pairsOfSidesEqual) && !(parseInt(qset.q1[0].quantity) != parseInt(shape.straightSides))) {
+                    if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == "=" && qset[qno].q1[2].quantity != shape['obtuseAngles'] && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape['pairsOfSidesEqual']) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
+                        Options[i] = shape;
+                        fitCount++;
+                        if (fitCount == 1) {
+                            fitCount = 0;
+                            noOfClues--;
+                        }
+                        break;
+                    }
+                    else if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == ">" && qset[qno].q1[2].quantity <= shape['obtuseAngles'] && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape['pairsOfSidesEqual']) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
+                        Options[i] = shape;
+                        fitCount++;
+                        if (fitCount == 1) {
+                            fitCount = 0;
+                            noOfClues--;
+                        }
+                        break;
+                    }
+                    else if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == "<" && qset[qno].q1[2].quantity >= shape['obtuseAngles'] && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape['pairsOfSidesEqual']) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 1) {
@@ -671,23 +785,24 @@ returnValue = (function () {
                     }
                 } else {
                     //Get answer
-                    if (qset.q1[2].quantity == shape.obtuseAngles && qset.q1[1].quantity == shape.pairsOfSidesEqual && qset.q1[0].quantity == shape.straightSides && !isInArray(shape, Options)) {
+                    if (qset[qno].q1[2].quantity == shape['obtuseAngles'] && qset[qno].q1[1].quantity == shape['pairsOfSidesEqual'] && qset[qno].q1[0].quantity == shape['straightSides'] && !isInArray(shape, Options)) {
                         Options[i] = shape;
-                        //console.log(shape.id + "Answer");
+                        //console.log(shape['id'] + "Answer");
                         Options[i]['correctAnswer'] = true
                         break;
                     }
 
                 }
             }
-            else
-            {
-                console.log(shape.id +" rejected.");
-            }
+            //else
+            //{
+            //    Shapes which are rejected
+            //    console.log(shape['id'] +" rejected.");
+            //}
                 j++;
                 if (j == shapesJSON.length) {
                     //Randomize
-                    j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0) + 0);
+                    j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0 + 1) + 0);
                 }
             
         }
@@ -709,7 +824,7 @@ returnValue = (function () {
             Options[i].reflexAngles = 0;
         if (!Options[i].oppositePairsParallel)
             Options[i].oppositePairsParallel = 0;
-        console.log(Options[i].id + " for "+ i);
+        //console.log(Options[i].id + " for "+ i);
     }
     Options = shuffle(Options);
     var optionsMarkup = document.createElement("div");
@@ -753,12 +868,12 @@ returnValue = (function () {
     //console.log("This is the options :" + Options);
     //console.log(" This is doms :" + optionsDOM[0].src);
 
-    gameData['clues'] = qset['q1'];
+    gameData['clues'] = qset[qno]['q1'];
     gameData['options'] = Options;
     gameData['includedModules'].push('options_renderer');
     
     var returnValues = {
-        "clues": qset['q1'],
+        "clues": qset[qno]['q1'],
         "options": Options,
         "options_markup": optionsMarkup
     }
