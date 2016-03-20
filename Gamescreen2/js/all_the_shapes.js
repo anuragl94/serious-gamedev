@@ -1,4 +1,4 @@
-shapes = [
+var shapes = [
     {
         "id": "fig001.png",
         "straightSides": "3",
@@ -343,3 +343,26 @@ shapes = [
         "oppositePairsParallel": "0"
     }
 ];
+
+var attributes = {};
+
+var allowedAttributes = {
+    "straightSides": "straight sides",
+    "pairsOfSidesEqual": "pairs of equal sides",
+    "rightAngles": "right angles",
+    "obtuseAngles": "obtuse angles",
+    "acuteAngles": "acute angles",
+    "reflexAngles": "reflex angles",
+    "oppositePairsParallel": "pairs of parallel sides"
+};
+
+$.each(allowedAttributes, function (key) {
+    var min = 9999, max = 0;
+    $(shapes).each(function (index, shape) {
+        if (shape[key] < min)
+            min = shape[key];
+        else if (shape[key] > max)
+            max = shape[key];
+    });
+    attributes[key] = [min, max];
+});
