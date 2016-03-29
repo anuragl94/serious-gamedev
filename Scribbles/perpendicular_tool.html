@@ -32,6 +32,10 @@
                 display: none;
             }
 
+            #parallelTool {
+                opacity: 0.5;
+            }
+
             .activeTool {
                 position: absolute;
                 height: 200px;
@@ -202,6 +206,7 @@
 
                 $(".optionWrapper").click(function (e) {
                     e.preventDefault();
+                    var currentOption = this;
                     if ($(".activeTool").attr("id") === "perpTool") {
                         console.log("I'm now tracing coordinates");
                         var closest = null;
@@ -259,23 +264,36 @@
                             //Start drawing the tool from here
                             following = false;
                             var angle = getAngle(closest1[0], closest1[1], closest2[0], closest2[1]);
-                            $(".activeTool .baseLine").css({
-                                width: Math.sqrt(Math.pow((closest1[0] - closest2[0]), 2) + Math.pow((closest1[1] - closest2[1]), 2)),
-                            }).rotate({
-                                center: ["50%", "50%"]
-                            });
-                            $(".activeTool .ghostLine").css({
-                                width: 1.2 * Math.sqrt(Math.pow((closest1[0] - closest2[0]), 2) + Math.pow((closest1[1] - closest2[1]), 2)),
-                            }).rotate({
-                                center: ["50%", "50%"]
-                            });
-                            $(".activeTool").css({
-                                left: (closest1[0] + closest2[0]) / 2,
-                                top: (closest1[1] + closest2[1]) / 2
+                            var offX = $(this).offset().left;
+                            var offY = $(this).offset().top;
+                            console.log("The angle is", angle);
+                            console.log("Offset:", offX, offY);
+                            console.log("(", closest1[0], ",", closest1[1], ") to (", closest2[0], ",", closest2[1], ")");
+                            var baseLine = $("#parallelTool .baseLine").detach();
+                            var ghostLine = $("#parallelTool .ghostLine").detach();
+                            $(currentOption).append(baseLine);
+                            $(currentOption).append(ghostLine);
+                            var lineWidth = Math.sqrt(Math.pow((closest1[0] - closest2[0]), 2) + Math.pow((closest1[1] - closest2[1]), 2));
+                            baseLineCenterX = lineWidth * 0.6;
+                            ghostLineCenterX = lineWidth * 0.75;
+                            $(baseLine).css({
+                                width: lineWidth,
+                                left: closest1[0] - offX,
+                                top: closest1[1] - offY
                             }).rotate({
                                 angle: angle,
-                                center: ["100%", "100%"]
+                                center: ["0%", "50%"]
                             });
+                            $(ghostLine).css({
+                                width: lineWidth,
+                                left: closest1[0] - offX,
+                                top: closest1[1] - offY
+                            }).rotate({
+                                angle: angle,
+                                center: ["0%", "50%"]
+                            });
+                            $(baseLine).attr("data-angle", angle);
+                            $(ghostLine).attr("data-angle", angle);
                             $(".options").css("pointer-events", "none");
                         }
                     }
@@ -305,7 +323,14 @@
                             });
                         }
                     } else if ($(".activeTool").attr("id") === "parallelTool") {
-
+                        var angle = Math.abs($(".ghostLine").attr("data-angle"));
+                        var rads = (angle) * Math.PI / 180;
+                        var offset = $(".baseLine").offset();
+                        var m = Math.tan(rads);
+                        $(".ghostLine").css({
+                            top: (event.pageY - offset.top) * Math.cos(rads),
+                            left: (event.pageX - offset.left) * Math.sin(rads)
+                        });
                     }
                 });
 
@@ -326,6 +351,8 @@
                     $(".options").css("pointer-events", "");
                 });
             });
+
+            $(".optionWrapper:last").remove();
         </script>
 
     </body>
