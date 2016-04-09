@@ -95,7 +95,7 @@ var config = {
 function isInArray(value, array) {
     return array.indexOf(value) > -1;
 }
-var noOfClues = parseInt(config.questionsRepo[4].noOfClues);
+var noOfClues = parseInt(config.questionsRepo[4].noOfClues) - 1;
 var noOfOptions = parseInt(config.questionsRepo[4].noOfOptions);
 var noOfCorrectOptions = parseInt(config.questionsRepo[4].noOfCorrectOptions);
 var Options = new Array(noOfOptions);
@@ -106,11 +106,11 @@ var shapesJSON = JSON.parse(shapes3);
 var fitCount = 0;
 for(var i = 0; i< noOfOptions && noOfClues >= 0;i++)
 {
-    for (var j = 0; j < shapesJSON.length; j++) {
+    var j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0 + 1) + 0);
+    while (!Options[i]) {
         var shape = shapesJSON[j];
-        if(noOfClues==3)
-        {
-            if (qset.q1[0].attribute == "straightSides" && qset.q1[0].comparator == "=" && parseInt(qset.q1[0].quantity) == parseInt(shape.straightSides) && !isInArray(shape.id,Options) ) {
+        if (i <= noOfOptions) {
+            if (qset.q1[noOfClues].attribute == "straightSides" && qset.q1[noOfClues].comparator == "=" && parseInt(qset.q1[noOfClues].quantity) == parseInt(shape.straightSides) && !isInArray(shape, Options)) {
                 Options[i] = shape;
                 fitCount++;
                 if (fitCount == 2) {
@@ -120,11 +120,9 @@ for(var i = 0; i< noOfOptions && noOfClues >= 0;i++)
                 }
                 break;
             }
-                    
-        }
-        else if(noOfClues==2)
-        {
-            if (qset.q1[1].attribute == "pairsOfSidesEqual" && qset.q1[1].comparator == "=" && qset.q1[1].quantity == shape.pairsOfSidesEqual && !isInArray(shape.id, Options)) {
+
+
+            if (qset.q1[noOfClues].attribute == "pairsOfSidesEqual" && qset.q1[noOfClues].comparator == "=" && qset.q1[noOfClues].quantity == shape.pairsOfSidesEqual && !isInArray(shape, Options)) {
                 Options[i] = shape;
                 fitCount++;
                 if (fitCount == 2) {
@@ -134,30 +132,24 @@ for(var i = 0; i< noOfOptions && noOfClues >= 0;i++)
                 }
                 break;
             }
-                    
-        }
-        else if(noOfClues==1)
-        {
-            if (qset.q1[2].attribute == "obtuseAngles" && qset.q1[2].comparator == "=" && qset.q1[2].quantity == shape.obtuseAngles && !isInArray(shape.id, Options)) {
+
+
+            if (qset.q1[noOfClues].attribute == "obtuseAngles" && qset.q1[noOfClues].comparator == "=" && qset.q1[noOfClues].quantity == shape.obtuseAngles && !isInArray(shape, Options)) {
                 Options[i] = shape;
                 fitCount++;
-                if (fitCount == 1) {
+                if (fitCount == 2) {
                     fitCount = 0;
                     noOfClues--;
                     j = 0;
                 }
                 break;
             }
+            //}
         }
-        else
-        {
-            //Get answer
-            if (qset.q1[2].quantity == shape.obtuseAngles && qset.q1[1].quantity == shape.pairsOfSidesEqual && qset.q1[0].quantity == shape.straightSides && !isInArray(shape.id, Options))
-            {
-                Options[i] = shape; console.log(shape.id + "Answer");
-                break;
-            }
-                    
+        j++;
+        if (j == shapesJSON.length) {
+            //Randomize 
+            j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0 + 1) + 0);
         }
     }
     console.log(Options[i]);

@@ -134,22 +134,22 @@ returnValue = (function () {
             {
                 "stage": "7",
                 "noOfOptions": "8",
-                "noOfCorrectOptions": "2",
-                "noOfClues": "4",
+                "noOfCorrectOptions": "1",
+                "noOfClues": "3",
                 "passLimit": "15"
             },
             {
                 "stage": "8",
                 "noOfOptions": "8",
-                "noOfCorrectOptions": "2",
-                "noOfClues": "4",
+                "noOfCorrectOptions": "1",
+                "noOfClues": "3",
                 "passLimit": "15"
             },
             {
                 "stage": "9",
                 "noOfOptions": "8",
-                "noOfCorrectOptions": "2",
-                "noOfClues": "4",
+                "noOfCorrectOptions": "1",
+                "noOfClues": "3",
                 "passLimit": "15"
             }
         ]
@@ -680,16 +680,36 @@ returnValue = (function () {
                 "oppositePairsParallel": "0"
             }
         ]};
-
-    var qno = Math.floor(Math.random() * (3 - 0 + 1) + 0); console.log("Question: "+qno);
-    var noOfClues = parseInt(config.questionsRepo[4].noOfClues);
-    var noOfOptions = parseInt(config.questionsRepo[4].noOfOptions);
-    var noOfCorrectOptions = parseInt(config.questionsRepo[4].noOfCorrectOptions);
+    function urlParse(val) {
+        var result = "Not found",
+            tmp = [];
+        location.search
+        //.replace ( "?", "" ) 
+        // this is better, there might be a question mark inside
+        .substr(1)
+            .split("&")
+            .forEach(function (item) {
+                tmp = item.split("=");
+                if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
+            });
+        return result;
+    }
+    
+    var qno = urlParse("qno");
+    var stage = urlParse("stage");
+    if (stage === "Not found")
+        var stage = 6; console.log("Stage: " + stage);
+    if(qno === "Not found")
+        var qno = Math.floor(Math.random() * (3 - 0 + 1) + 0); console.log("Question: "+qno);
+    var noOfClues = parseInt(config.questionsRepo[stage].noOfClues);
+    var noOfOptions = parseInt(config.questionsRepo[stage].noOfOptions);
+    var noOfCorrectOptions = parseInt(config.questionsRepo[stage].noOfCorrectOptions);
     var Options = new Array(noOfOptions);
     var correctOptions = new Array(noOfCorrectOptions);
     //var shapesJSON = JSON.parse(shapes3);
     var shapesJSON = shapes3['data'];
     var fitCount = 0;
+    var clueFit = (noOfOptions - 2) / 2; //TODO:Use better way to do so
     for (var i = 0; i < noOfOptions && noOfClues >= 0; i++)
     {
         //Random j value for different options
@@ -702,7 +722,7 @@ returnValue = (function () {
                     if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "=" && parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
                         Options[i] = shape;
                         fitCount++;
-                        if (fitCount == 2) {
+                        if (fitCount == clueFit) {
                             fitCount = 0;
                             noOfClues--;
                         }
@@ -711,7 +731,7 @@ returnValue = (function () {
                     else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == ">" && parseInt(qset[qno].q1[0].quantity) <= parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
                         Options[i] = shape;
                         fitCount++;
-                        if (fitCount == 2) {
+                        if (fitCount == clueFit) {
                             fitCount = 0;
                             noOfClues--;
                         }
@@ -720,7 +740,7 @@ returnValue = (function () {
                     else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "<" && parseInt(qset[qno].q1[0].quantity) >= parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
                         Options[i] = shape;
                         fitCount++;
-                        if (fitCount == 2) {
+                        if (fitCount == clueFit) {
                             fitCount = 0;
                             noOfClues--;
                         }
@@ -731,7 +751,7 @@ returnValue = (function () {
                     if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "=" && qset[qno].q1[1].quantity != shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
-                        if (fitCount == 2) {
+                        if (fitCount == clueFit) {
                             fitCount = 0;
                             noOfClues--;
                         }
@@ -740,7 +760,7 @@ returnValue = (function () {
                     else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == ">" && qset[qno].q1[1].quantity <= shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
-                        if (fitCount == 2) {
+                        if (fitCount == clueFit) {
                             fitCount = 0;
                             noOfClues--;
                         }
@@ -749,7 +769,7 @@ returnValue = (function () {
                     else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "<" && qset[qno].q1[1].quantity >= shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
-                        if (fitCount == 2) {
+                        if (fitCount == clueFit) {
                             fitCount = 0;
                             noOfClues--;
                         }
