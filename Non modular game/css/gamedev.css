@@ -8,10 +8,6 @@
     color: goldenrod;
 }
 
-.tools button {
-    width: 100%;
-}
-
 .pageWrapper {
     padding: 10px;
     overflow: hidden;
@@ -28,23 +24,68 @@
     height: 230px;
     width: 100%;
     border:solid 1px #eeeeee;
+    background-color: #fafafa;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .option img
 {
-    margin: 10px;
-    max-height: 90%;
-    overflow: hidden;
+    position: relative;
+    margin: auto;
+}
+
+.option input {
+    float: right;
 }
 
 .moduleWrapper {
-    border:solid 1px #dddddd;
+    /*border:solid 1px #dddddd;*/
 }
 
 .disabled {
-    background-color: #eeeeee;
+    background-color: #dedede;
 }
 
 .glossaryTerm {
     cursor: pointer;
+}
+
+.vertex {
+    height: 3px;
+    width: 3px;
+    margin-top: -1px;
+    margin-left: -1px;
+    position: absolute;
+    z-index: 1;
+}
+
+#perpTool, #parallelTool {
+    display: none;
+}
+
+#perpTool {
+    margin-top: -200px;
+}
+
+.activeTool {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    z-index: 1000;
+}
+
+.centredOrigin {
+    background-color: rgba(0,0,0,0.2);
+    transform-origin: 50% 50% 0;
+}
+
+.rotationHandle {
+    position: absolute;
+    height: 25px;
+    margin-left: 90%;
+    transform-origin: 50% 50% 0;
+    user-drag: none; 
+    -webkit-user-drag: none;
+    z-index: 10;
 }

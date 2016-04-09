@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -8,8 +8,12 @@
         <link href="css/gamedev.css" rel="stylesheet" />
     </head>
     <body>
-        <div style="height:60px;color:white;background-color:rgba(31, 137, 224, 1);">
-            <center><h1 style="font-family:Lucida Calligraphy;padding-top:5px;padding-left:5px;">Police Quad</h1></center>
+        <div>
+            <!--Special elements belong here-->
+            <div id="perpTool">
+                <img src="rotate.png" class="rotationHandle"/>
+                <img class="guiTool beginFollowing" src="perptool.png" />
+            </div>
         </div>
         <div class="pageWrapper">
             <div class="row">
@@ -19,9 +23,8 @@
                     <h2>Clues</h2>
                     <div class="moduleWrapper" id="cluesWrapper">
                     </div>
-                    <h2>Tools</h2>
-                    <!--Insert tools here-->
-                    <div class="row tools">
+                    <h2>Actions</h2>
+                    <div class="row actions">
                         <div class="col-lg-4 col-md-4">
                             <button id="inspect">
                                 Next clue
@@ -43,6 +46,14 @@
                             <p id="treats" data-value="5" data-max="5">5</p>
                         </div>
                     </div>
+                    <h2>Tools</h2>
+                    <div class="row tools">
+                        <div class="col-lg-4 col-md-4">
+                            <div id="toolBox">
+                                <button class="toolButton" data-tool="perpTool">Angle tool</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -55,12 +66,15 @@
                 'disabledOptions': []
             };
         </script>
-        <script src="../Public/js/jquery-1.11.3.min.js"></script>
-        <script src="../Public/js/bootstrap.min.js"></script>
         <script src="js/jquery-1.11.3.min.js"></script>
-        <script src="../Engine/js/fetch.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/jQueryRotate.js"></script>
         <script src="options_renderer.js"></script>
+        <script src="toolkit.js"></script>
+        <script src="coordinates.js"></script>
         <script src="glossary.js"></script>
+        <script src="languageApi.js"></script>
         <script>
             /* Begin logic for the options */
             // Do what we must to render the options
@@ -215,8 +229,9 @@
             $(returnValue['clues']).each(function () {
                 //This next line must go through the language API for translation. Not translating into any language for now
                 var clue_text = "Culprit has " + "<strong class='glossaryTerm'>" + this['attribute'] + "</strong>" + this['comparator'] + this['quantity'] + "<br />";
-                var property = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'];
-                var clue = '<div class="clue" data-attr="' + property + '">' + clue_text + '</div>';
+                clue_text = languageApi.translate(this['attribute'], this['comparator'], this['quantity']);
+                var property = "Culprit has " + clue_text['attribute'] + clue_text['comparator'] + clue_text['quantity'];
+                var clue = '<div class="clue" data-attr="' + property + '">' + clue_text.plaintext + '</div>';
                 $(cluesBox).append(clue);
             });
             $("#cluesWrapper").append(cluesBox);
