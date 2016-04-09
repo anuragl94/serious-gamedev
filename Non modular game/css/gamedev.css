@@ -8,10 +8,6 @@
     color: goldenrod;
 }
 
-.tools button {
-    width: 100%;
-}
-
 .pageWrapper {
     padding: 10px;
     overflow: hidden;
@@ -35,6 +31,7 @@
 
 .option img
 {
+    position: relative;
     margin: auto;
 }
 
@@ -67,10 +64,28 @@
     display: none;
 }
 
+#perpTool {
+    margin-top: -200px;
+}
+
 .activeTool {
     position: absolute;
     height: 200px;
     width: 200px;
-    /*opacity: 0.5;*/
-    margin-top: -200px;
+    z-index: 1000;
+}
+
+.centredOrigin {
+    background-color: rgba(0,0,0,0.2);
+    transform-origin: 50% 50% 0;
+}
+
+.rotationHandle {
+    position: absolute;
+    height: 25px;
+    margin-left: 90%;
+    transform-origin: 50% 50% 0;
+    user-drag: none; 
+    -webkit-user-drag: none;
+    z-index: 10;
 }

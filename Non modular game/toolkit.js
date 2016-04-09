@@ -1,28 +1,22 @@
 $(window).load(function () {
-    // The following code that was commented read the coordinates from the svgs. For now, we have manually supplied the coordinates.
-//                $(".optionWrapper").append('<img src="' + document.getElementById('option1').data + '" class="imageUnderlay" id="option1"/>');
-//
-//                //Almost everything is hardcoded for testing
-//                $(".canvasOverlay").each(function () {
-//                    var svgObject = document.getElementById('option1').contentDocument;
-//                    var paths = $(svgObject).find("path");
-//                    var coords = $($(svgObject).find("svg path")[0]).attr("d");
-//                    coords = coords.match(/[MLHVCSQTAZ] [0-9.]+ [0-9.]+/g);
-//                    coordinates['option1'] = $.map(coords, function (value) {
-//                        var temp = value.split(' ');
-//                        return [[temp[1], temp[2]]];
-//                    });
-//
-//                    //Tool specific code ends here
-//                    var underlay = $(this).closest(".objectWrapper").find("img");
-//                });
-//                $("object").remove();
+    var snap_offset = 15;
+    var following = true;
+    var rotating = true;
+    var toolActive = false;
 
-    $.each(coordinates, function (key, coords) {
-        $.each(coords, function () {
-            var target = $('#' + key).closest(".optionWrapper");
+    $.each($(".option"), function (index, option) {
+        var figure = $(option).find("img").attr("src").split("/");
+        figure = figure[figure.length - 1].split(".")[0];
+        console.log(figure);
+        var target = this;
+        var imageOffset = $(this).offset();
+        var offset = $(this).find("img").offset();
+        offset.left = offset.left - imageOffset.left;
+        offset.top = offset.top - imageOffset.top;
+        $.each(coordinates[figure], function () {
             var vertex = document.createElement("div");
-            $(vertex).addClass("vertex").css({"left": this[0]}).css({"top": this[1]});
+            //All vertices were off by 15px to the left. Unable to trace the reason. So, hardcoded the offset here.
+            $(vertex).addClass("vertex").css({"left": this[0] + offset.left + 15}).css({"top": this[1] + offset.top});
             $(target).append(vertex);
         });
     });
@@ -36,16 +30,11 @@ $(window).load(function () {
         return theta;
     }
 
-    $(".optionWrapper").click(function (e) {
+    $(".option").click(function (e) {
+        if (!toolActive)
+            return;
         e.preventDefault();
-        if ($(".activeTool").hasClass("snapped")) {
-            $(".activeTool").removeClass("snapped");
-            //following = true;
-            $(".activeTool").rotate({
-                "angle": 0,
-                "center": ["0%", "100%"]
-            });
-        } else {
+        if ($(".activeTool").attr("id") === "perpTool") {
             console.log("I'm now tracing coordinates");
             var closest = null;
             var closest_distance = 9999;
@@ -72,6 +61,55 @@ $(window).load(function () {
                 });
                 $(".options").css("pointer-events", "none");
             }
+        } else if ($(".activeTool").attr("id") === "parallelTool") {
+            var closest1 = null, closest2 = null;
+            var closest_distance = 9999;
+            var coords = $(this).find(".vertex").map(function (index, element) {
+                var val = $(element).offset();
+                return [[val['left'], val['top']]];
+            });
+            $(coords).each(function (index, coord1) {
+                var coord2 = coords[(index + 1) % coords.length];
+                var x0 = event.pageX;
+                var y0 = event.pageY;
+                var x1 = coord1[0];
+                var y1 = coord1[1];
+                var x2 = coord2[0];
+                var y2 = coord2[1];
+                var numerator = (y2 - y1) * x0 - (x2 - x1) * y0 + x2 * y1 - y2 * x1;
+                var denominator = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+                var dist = Math.abs((numerator) / (denominator));
+
+                if (dist < closest_distance) {
+                    console.log("closest distance", dist);
+                    closest1 = coord1;
+                    closest2 = coord2;
+                    closest_distance = dist;
+                }
+            });
+            if (closest_distance < snap_offset) {
+                //Start drawing the tool from here
+                following = false;
+                var angle = getAngle(closest1[0], closest1[1], closest2[0], closest2[1]);
+                $(".activeTool .baseLine").css({
+                    width: Math.sqrt(Math.pow((closest1[0] - closest2[0]), 2) + Math.pow((closest1[1] - closest2[1]), 2)),
+                }).rotate({
+                    center: ["50%", "50%"]
+                });
+                $(".activeTool .ghostLine").css({
+                    width: 1.2 * Math.sqrt(Math.pow((closest1[0] - closest2[0]), 2) + Math.pow((closest1[1] - closest2[1]), 2)),
+                }).rotate({
+                    center: ["50%", "50%"]
+                });
+                $(".activeTool").css({
+                    left: (closest1[0] + closest2[0]) / 2,
+                    top: (closest1[1] + closest2[1]) / 2
+                }).rotate({
+                    angle: angle,
+                    center: ["100%", "100%"]
+                });
+                $(".options").css("pointer-events", "none");
+            }
         }
     });
 
@@ -90,12 +128,22 @@ $(window).load(function () {
                 "top": event.pageY
             });
         }
-        if (rotating === true) {
-            var angle = getAngle(parseInt($(".activeTool").css("left")), parseInt($(".activeTool").css("top")), event.pageX, event.pageY);
-            $(".activeTool").rotate({
-                "angle": angle + 45,
-                "center": ["0%", "100%"]
-            });
+        if ($(".activeTool").attr("id") === "perpTool") {
+            if (rotating === true) {
+                var angle = getAngle(parseInt($(".activeTool").css("left")), parseInt($(".activeTool").css("top")), event.pageX, event.pageY);
+                $(".activeTool").rotate({
+                    "angle": angle + 45,
+                    "center": ["0%", "100%"]
+                });
+            }
+            if ((following)&&(event.pageY < 200)) {
+                $(".activeTool").rotate({
+                    "angle": 90,
+                    "center": ["0%", "100%"]
+                });
+            }
+        } else if ($(".activeTool").attr("id") === "parallelTool") {
+
         }
     });
 
@@ -105,7 +153,15 @@ $(window).load(function () {
     });
 
     $(".toolButton").click(function () {
-        $(".activeTool").removeClass("activeTool").toggle(false);
-        $("#" + $(this).attr("data-tool")).addClass("activeTool").toggle(true);
+        if ($(".activeTool").attr("id") === $(this).attr("data-tool")) {
+            $(".activeTool").removeClass("activeTool").toggle(false);
+        } else {
+            $(".activeTool").removeClass("activeTool").toggle(false);
+            $("#" + $(this).attr("data-tool")).addClass("activeTool").toggle(true);
+        }
+        following = true;
+        rotating = false;
+        toolActive = !toolActive;
+        $(".options").css("pointer-events", "");
     });
 });
