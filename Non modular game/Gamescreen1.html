@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Police Quad Question Generator</title>
+        <title>Police Quad</title>
         <!-- Bootstrap -->
         <link href="../Public/css/bootstrap.min.css" rel="stylesheet" />
         <link href="css/gamedev.css" rel="stylesheet" />
@@ -10,7 +10,7 @@
     <body>
         <div class="pageWrapper">
             <div class="navbar">
-                <h1>PoliceQuad</h1>
+                <h1>Gamescreen 1</h1>
             </div>
             <div class="question">
                 <h4>
@@ -40,7 +40,8 @@
                             </button>
                         </div>
                         <div class="col-lg-4 col-md-4">
-                            <img id="battery" src="battery4.jpg" data-value="4" data-max="4" />
+                            <!--This image was used for representing a battery state, which was subsequently replaced by an accuracy monitoring system. So, leaving this image here so that in the future, if that accuracy should be displayed in-game, we can still do it-->
+                            <img id="accuracy" src="" data-value="5" data-max="5" style="display:none;" />
                         </div>
                     </div>
                 </div>
@@ -61,10 +62,10 @@
         <script src="../Engine/js/fetch.js"></script>
         <script src="options_renderer.js"></script>
         <script>
+            /* Begin logic for the options */
             // Do what we must to render the options
             $("#optionsWrapper").append(returnValue['options_markup']);
 
-            //~~These are the custom events for options
             $("#optionsWrapper").on("change", function () {
                 //Here we use statetracker module to capture the new state of the set of options
                 //It may be heavy on the processor if we check state of ALL options at every interaction with a single option
@@ -102,8 +103,9 @@
                     console.log("There can only be one culprit!");
                 }
             });
+            /* End logic for the options */
 
-            //~~These are the custom events for clues
+            /* Begin logic for the clues */
             $("#cluesWrapper").on("checkIfCorrectOptions", function (event, selectedOptions) {
                 //Here we get a list of selected options along with their attributes
                 var currentClueIndex = $("#cluesWrapper").find(".clue:visible").length - 1;
@@ -136,17 +138,16 @@
                 selectedOptions = Array.prototype.slice.call(selectedOptions);
                 correctOptions = Array.prototype.slice.call(correctOptions);
 
+                $("#cluesWrapper").trigger("getNextClue");
+                $("#optionsWrapper").trigger("disableSelected");
+                gameData['solvedClues'].push(currentClueIndex);
+
                 if (selectedOptions.sort().join(',') === correctOptions.sort().join(',')) {
-                    //Success
-                    console.log("Investigation successful! Good job!");
-                    //$("#battery").trigger("refresh");
-                    $("#cluesWrapper").trigger("getNextClue");
-                    $("#optionsWrapper").trigger("disableSelected");
-                    gameData['solvedClues'].push(currentClueIndex);
+                    //What to do if player does not give a wrong answer
                 } else {
-                    console.log("Investigation failed");
-                    $("#battery").trigger("drain");
-                    $("#cluesWrapper").find(".clue:visible").last().addClass("failure");
+                    //What to do when player makes a mistake. Here, define what research data to keep track of
+                    console.log("Player made a mistake here");
+                    $("#treats").trigger("reduce");
                 }
             });
 
@@ -156,20 +157,20 @@
                     alert("Win!");
                 } else {
                     console.log("You have arrested the innocent!");
-                    $("#battery").trigger("drain");
+                    $("#treats").trigger("reduce");
                 }
             });
 
             $("#cluesWrapper").on("getNextClue", function () {
-                $("#cluesWrapper").find(".clue:visible").last().removeClass("failure").addClass("success");
                 if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
                     $("#cluesWrapper").find(".clue:not(:visible)").first().toggle();
                 } else {
                     //Do nothing. You're out of clues!
                 }
             });
+            /* End logic for the clues */
 
-            //~~These are the custom events for buttons
+            /* Begin logic for the action buttons */
             $("#inspect").on('click', function () {
                 if (gameData['solvedClues'].length < $("#cluesWrapper .clue").length) {
                     $("#optionsWrapper").trigger("inspect");
@@ -185,31 +186,24 @@
                 }
             });
 
-            //~~These are the custom events for battery
-            $("#battery").on("drain", function () {
-                var charge = parseInt($("#battery").attr("data-value")) - 1;
-                if (charge > 0) {
-                    $("#battery").attr("data-value", charge);
-                    $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
-                } else {
-                    alert("Game over! Battery was drained!");
-                    console.log("Game over! Battery was drained!!");
-                }
+            //~~These are the custom events for accuracy
+            $("#treats").on("reduce", function () {
+                var remaining = parseInt($("#treats").attr("data-value")) - 1;
+                if (remaining >= 0)
+                    $("#treats").attr("data-value", remaining);
             });
-            $("#battery").on("charge", function () {
-                var charge = parseInt($("#battery").attr("data-value")) + 1;
-                if (charge <= $("#battery").attr("data-max")) {
-                    $("#battery").attr("data-value", charge);
-                    $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
-                } else {
-                    console.log("You're overcharging the battery!");
-                }
+            $("#treats").on("increase", function () {
+                //This situation never really arises
+                var remaining = parseInt($("#treats").attr("data-value")) + 1;
+                var max = parseInt($("#treats").attr("data-max"));
+                if (remaining <= max)
+                    $("#treats").attr("data-value", remaining);
             });
-            $("#battery").on("refresh", function () {
-                var charge = $("#battery").attr("data-max");
-                $("#battery").attr("data-value", charge);
-                $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
+            $("#treats").on("refresh", function () {
+                var max = parseInt($("#treats").attr("data-max"));
+                $("#treats").attr("data-value", max);
             });
+            /* End logic for the action buttons */
 
             // The following lines render HTML markup for the clues. The code will be pushed into the relevant module
             var cluesBox = document.createElement("div");
