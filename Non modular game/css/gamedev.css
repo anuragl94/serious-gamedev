@@ -44,3 +44,7 @@
 .disabled {
     background-color: #eeeeee;
 }
+
+.glossaryTerm {
+    cursor: pointer;
+}
