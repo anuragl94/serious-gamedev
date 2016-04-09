@@ -95,7 +95,7 @@ var config = {
 function isInArray(value, array) {
     return array.indexOf(value) > -1;
 }
-var noOfClues = parseInt(config.questionsRepo[4].noOfClues);
+var noOfClues = parseInt(config.questionsRepo[4].noOfClues) - 1;
 var noOfOptions = parseInt(config.questionsRepo[4].noOfOptions);
 var noOfCorrectOptions = parseInt(config.questionsRepo[4].noOfCorrectOptions);
 var Options = new Array(noOfOptions);
