@@ -9,16 +9,6 @@
     </head>
     <body>
         <div class="pageWrapper">
-            <div class="navbar">
-                <h1>Gamescreen 1</h1>
-            </div>
-            <div class="question">
-                <h4>
-                    One of the shapes is the culprit.
-                    Click on the innocent shapes to ELIMINATE them.
-                    The last one left is the culprit – ARREST IT!<br><br>
-                </h4>
-            </div>
             <div class="row">
                 <div class="col-md-9 moduleWrapper" id="optionsWrapper">
                 </div>
@@ -31,17 +21,23 @@
                     <div class="row tools">
                         <div class="col-lg-4 col-md-4">
                             <button id="inspect">
-                                <img src="inspect.jpg" height=70 />
+                                Next clue
                             </button>
                         </div>
                         <div class="col-lg-4 col-md-4">
+                            <button id="replay">
+                                Replay
+                            </button>
+                        </div>
+                        <div class="col-lg-4 col-md-4" style="display:none;">
                             <button id="arrest">
-                                <img src="makeArrest.gif" height=70 />
+                                Done
                             </button>
                         </div>
                         <div class="col-lg-4 col-md-4">
+                            Treats left:
                             <!--This image was used for representing a battery state, which was subsequently replaced by an accuracy monitoring system. So, leaving this image here so that in the future, if that accuracy should be displayed in-game, we can still do it-->
-                            <img id="accuracy" src="" data-value="5" data-max="5" style="display:none;" />
+                            <p id="treats" data-value="5" data-max="5">5</p>
                         </div>
                     </div>
                 </div>
@@ -190,15 +186,19 @@
             //~~These are the custom events for accuracy
             $("#treats").on("reduce", function () {
                 var remaining = parseInt($("#treats").attr("data-value")) - 1;
-                if (remaining >= 0)
+                if (remaining >= 0) {
                     $("#treats").attr("data-value", remaining);
+                    $("#treats").html(remaining);
+                }
             });
             $("#treats").on("increase", function () {
                 //This situation never really arises
                 var remaining = parseInt($("#treats").attr("data-value")) + 1;
                 var max = parseInt($("#treats").attr("data-max"));
-                if (remaining <= max)
+                if (remaining <= max) {
                     $("#treats").attr("data-value", remaining);
+                    $("#treats").html(remaining);
+                }
             });
             $("#treats").on("refresh", function () {
                 var max = parseInt($("#treats").attr("data-max"));
