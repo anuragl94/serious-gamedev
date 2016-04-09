@@ -1,85 +1,81 @@
 ﻿<!DOCTYPE html>
 <html style="height:100%;">
-<head>
-    <title>Police Quad</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="js/jquery.mobile-1.4.5.min.css" />
-    <script src="js/jquery-1.11.3.min.js"></script>
-    <script src="js/jquery.mobile-1.4.5.min.js"></script>
-    <meta http-equiv="Content-Type" content="text/html;" charset="utf-8">
-</head>
-<body onload="pop()">
-    <div style="padding-top:0px;">
-        <div style="height:60px;color:white;background-color:rgba(31, 137, 224, 1);">
-            <h1 style="font-family:Lucida Calligraphy;padding-top:5px;padding-left:5px;">Main Menu</h1>
-        </div><!-- /header -->
-        <div class="ui-grid-a">
-            <div class="ui-block-a" style="padding-left:10px">
-                <h2>Instructions</h2>
-                <div>
-                    You are a police officer, named "GEO".<br />
-                    You are the first alien police officer ever!!<br />
-                    Your strength is rational thinking , and your sense of justice drives you.<br />
-                    It is on you to save your fellow aliens from being wrongly prosecuted.<br />
-                    Use the clues provided to you to find innocent aliens disguised as shapes<br />
-                    Earn points and solve cases to get promoted.
+    <head>
+        <title>Police Quad</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <script src="js/lib/jquery-1.11.3.min.js"></script>
+    </head>
+    <body onload="pop()">
+        <div style="padding-top:0px;">
+            <div style="height:60px;color:white;background-color:rgba(31, 137, 224, 1);">
+                <h1 style="font-family:Lucida Calligraphy;padding-top:5px;padding-left:5px;">Main Menu</h1>
+            </div><!-- /header -->
+            <div class="ui-grid-a">
+                <div class="ui-block-a" style="padding-left:10px">
+                    <h2>Instructions</h2>
+                    <div>
+                        You are a police officer, named "GEO".<br />
+                        You are the first alien police officer ever!!<br />
+                        Your strength is rational thinking , and your sense of justice drives you.<br />
+                        It is on you to save your fellow aliens from being wrongly prosecuted.<br />
+                        Use the clues provided to you to find innocent aliens disguised as shapes<br />
+                        Earn points and solve cases to get promoted.
+                    </div>
+                </div>
+                <div class="ui-block-b">
+                    <img src="img/Detective.jpg" style="height:250px;" />
                 </div>
             </div>
-            <div class="ui-block-b">
-                <img src="Detective.jpg" style="height:500px;" />
+            <div class="ui-grid-b" style="color:white;">
+                <div class="ui-block-a" style="background:darkgreen;">
+                    <center><h2>Level 1</h2><img id="lock1" src="img/unlock.png" style="height:50px; width:50px;"/></center>
+                    <a class="ui-btn" id="1" style="background-color:green; color:white;">Stage 1</a>
+                    <a class="ui-btn" id="2" style="background-color:green; color:white;">Stage 2</a>
+                    <a class="ui-btn" id="3" style="background-color:green; color:white;">Stage 3</a>
+                </div>
+                <div class="ui-block-b" style="background:darkgoldenrod;">
+                    <center><h2>Level 2</h2><img id="lock2" src="img/lock.png" style="height:50px; width:50px;"/></center>
+                    <a class="ui-btn" id="4" style="background-color:goldenrod; color:white;">Stage 4</a>
+                    <a class="ui-btn" id="5" style="background-color:goldenrod; color:white;">Stage 5</a>
+                    <a class="ui-btn" id="6" style="background-color:goldenrod; color:white;">Stage 6</a>
+                </div>
+                <div class="ui-block-c" style="background:deepskyblue;">
+                    <center><h2>Level 3</h2><img id="lock3" src="img/lock.png" style="height:50px; width:50px;"/></center>
+                    <a class="ui-btn" id="7" style="background-color:skyblue; color:white;">Stage 7</a>
+                    <a class="ui-btn" id="8" style="background-color:skyblue; color:white;">Stage 8</a>
+                    <a class="ui-btn" id="9" style="background-color:skyblue; color:white;">Stage 9</a>
+                </div>
             </div>
         </div>
-        <div class="ui-grid-b" style="color:white;">
-            <div class="ui-block-a" style="background:darkgreen;">
-                <center><h2>Level 1</h2><img id="lock1" src="unlock.png" style="height:50px; width:50px;"/></center>
-                <a class="ui-btn" id="1" style="background-color:green; color:white;">Stage 1</a>
-                <a class="ui-btn" id="2" style="background-color:green; color:white;">Stage 2</a>
-                <a class="ui-btn" id="3" style="background-color:green; color:white;">Stage 3</a>
-            </div>
-            <div class="ui-block-b" style="background:darkgoldenrod;">
-                <center><h2>Level 2</h2><img id="lock2" src="lock.png" style="height:50px; width:50px;"/></center>
-                <a class="ui-btn" id="4" style="background-color:goldenrod; color:white;">Stage 4</a>
-                <a class="ui-btn" id="5" style="background-color:goldenrod; color:white;">Stage 5</a>
-                <a class="ui-btn" id="6" style="background-color:goldenrod; color:white;">Stage 6</a>
-            </div>
-            <div class="ui-block-c" style="background:deepskyblue;">
-                <center><h2>Level 3</h2><img id="lock3" src="lock.png" style="height:50px; width:50px;"/></center>
-                <a class="ui-btn" id="7" style="background-color:skyblue; color:white;">Stage 7</a>
-                <a class="ui-btn" id="8" style="background-color:skyblue; color:white;">Stage 8</a>
-                <a class="ui-btn" id="9" style="background-color:skyblue; color:white;">Stage 9</a>
-            </div>
-        </div>
-    </div>
-    <script>
-        function pop()
-        {
-            if (localStorage.level2 && localStorage.level3) {
-                if (localStorage.level2 == "L")
-                    document.getElementById("lock2").src = "lock.png";
-                else
-                    document.getElementById("lock2").src = "unlock.png";
-                if (localStorage.level3 == "L")
-                    document.getElementById("lock3").src = "lock.png";
-                else
-                    document.getElementById("lock3").src = "unlock.png";
-            }
-            else
+        <script>
+            function pop()
             {
-                localStorage.level2 = "L";
-                localStorage.level3 = "L";
+                if (localStorage.level2 && localStorage.level3) {
+                    if (localStorage.level2 == "L")
+                        document.getElementById("lock2").src = "img/lock.png";
+                    else
+                        document.getElementById("lock2").src = "img/unlock.png";
+                    if (localStorage.level3 == "L")
+                        document.getElementById("lock3").src = "img/lock.png";
+                    else
+                        document.getElementById("lock3").src = "img/unlock.png";
+                } else
+                {
+                    localStorage.level2 = "L";
+                    localStorage.level3 = "L";
+                }
             }
-        }
-        $("a").click(function (event) {
-            event.preventDefault();
-            if (this.id > 6) {
-                localStorage.level2 = "U";
-                localStorage.level3 = "U";
-            }
-            else if (this.id > 3)
-                localStorage.level2 = "U";
-            pop();
-            window.location.href = "Gamescreen1.html?stage=" + this.id;
-        });
-    </script>
-</body>
+            $("a").click(function (event) {
+                event.preventDefault();
+                if (this.id > 6) {
+                    localStorage.level2 = "U";
+                    localStorage.level3 = "U";
+                } else if (this.id > 3)
+                    localStorage.level2 = "U";
+                pop();
+                window.location.href = "Gamescreen1.html?stage=" + this.id;
+            });
+        </script>
+    </body>
 </html>
