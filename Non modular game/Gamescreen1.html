@@ -8,6 +8,13 @@
         <link href="css/gamedev.css" rel="stylesheet" />
     </head>
     <body>
+        <div>
+            <!--Special elements belong here-->
+            <div id="perpTool">
+                <img src="rotate.png" class="rotationHandle"/>
+                <img class="guiTool beginFollowing" src="perptool.png" />
+            </div>
+        </div>
         <div class="pageWrapper">
             <div class="row">
                 <div class="col-md-9 moduleWrapper" id="optionsWrapper">
@@ -16,9 +23,8 @@
                     <h2>Clues</h2>
                     <div class="moduleWrapper" id="cluesWrapper">
                     </div>
-                    <h2>Tools</h2>
-                    <!--Insert tools here-->
-                    <div class="row tools">
+                    <h2>Actions</h2>
+                    <div class="row actions">
                         <div class="col-lg-4 col-md-4">
                             <button id="inspect">
                                 Next clue
@@ -40,6 +46,14 @@
                             <p id="treats" data-value="5" data-max="5">5</p>
                         </div>
                     </div>
+                    <h2>Tools</h2>
+                    <div class="row tools">
+                        <div class="col-lg-4 col-md-4">
+                            <div id="toolBox">
+                                <button class="toolButton" data-tool="perpTool">Angle tool</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,11 +66,13 @@
                 'disabledOptions': []
             };
         </script>
-        <script src="../Public/js/jquery-1.11.3.min.js"></script>
-        <script src="../Public/js/bootstrap.min.js"></script>
         <script src="js/jquery-1.11.3.min.js"></script>
-        <script src="../Engine/js/fetch.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/jQueryRotate.js"></script>
         <script src="options_renderer.js"></script>
+        <script src="toolkit.js"></script>
+        <script src="coordinates.js"></script>
         <script src="glossary.js"></script>
         <script>
             /* Begin logic for the options */
