@@ -5,7 +5,7 @@ $(document).ready(function () {
         selectedShapes.push(this);
         var newShape = $(".shapeTemplate").children().first().clone();
         var source = this['id'];
-        $(newShape).attr('data-id', source.split(".")[0]);
+        $(newShape).find(".shape").attr('data-id', source.split(".")[0]);
         $(newShape).find("img").attr('src', "shapes/" + source);
         $(".shapes").append(newShape);
 
@@ -68,5 +68,13 @@ $(document).ready(function () {
         $(".queries").append(newQuerySelector);
     });
 
+    $(".queries").on('eliminate', function (attribute, comparator, value) {
+        $(".shape").each(function(){
+           var shapeId = $(this).attr("data-id");
+           
+        });
+    });
+
+    //initialize any module(s)
     $(".queries").trigger("addNewQuerySelector");
 });
