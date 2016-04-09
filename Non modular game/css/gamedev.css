@@ -28,23 +28,49 @@
     height: 230px;
     width: 100%;
     border:solid 1px #eeeeee;
+    background-color: #fafafa;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .option img
 {
-    margin: 10px;
-    max-height: 90%;
-    overflow: hidden;
+    margin: auto;
+}
+
+.option input {
+    float: right;
 }
 
 .moduleWrapper {
-    border:solid 1px #dddddd;
+    /*border:solid 1px #dddddd;*/
 }
 
 .disabled {
-    background-color: #eeeeee;
+    background-color: #dedede;
 }
 
 .glossaryTerm {
     cursor: pointer;
+}
+
+.vertex {
+    height: 3px;
+    width: 3px;
+    margin-top: -1px;
+    margin-left: -1px;
+    position: absolute;
+    z-index: 1;
+}
+
+#perpTool, #parallelTool {
+    display: none;
+}
+
+.activeTool {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    /*opacity: 0.5;*/
+    margin-top: -200px;
 }
