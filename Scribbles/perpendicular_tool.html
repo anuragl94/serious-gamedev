@@ -61,6 +61,11 @@
                 height: 300px;
             }
 
+            .centredOrigin {
+                background-color: rgba(0,0,0,0.2);
+                transform-origin: 50% 50% 0;
+            }
+
             .rotationHandle {
                 position: absolute;
                 height: 25px;
@@ -71,18 +76,32 @@
                 z-index: 10;
             }
 
+            .crossButton {
+                transform-origin: 50% 50% 0;
+            }
+
             #toolBox {
                 display: block;
                 position: absolute;
                 top: 90%;
             }
+
+            .baseLine {
+                width: 30px;
+                position: absolute;
+                height: 3px;
+                background-color:  #269abc;
+            }
+
+            .ghostLine {
+                width: 40px;
+                position: absolute;
+                border: 2px dotted;
+            }
         </style>
 
         <script src="jquery-1.12.0.min.js"></script>
         <script src="jQueryRotate.js"></script>
-
-        <div id="parallelTool" class="">
-        </div>
 
         <div class="options">
             <div class="optionWrapper">
@@ -95,17 +114,27 @@
                 <img src="svg\6B Simple.svg" id="option2" />
                 <!--<object type="image/svg+xml" data="svg\6B Simple.svg" id="option2"></object>-->
             </div>
+            <div class="optionWrapper">
+                <canvas class="canvasOverlay" height="300" width="300"></canvas>
+                <img src="svg\6C Simple.svg" id="option3" />
+                <!--<object type="image/svg+xml" data="svg\6B Simple.svg" id="option2"></object>-->
+            </div>
         </div>
 
-        <div id="perpTool" class="">
+        <div id="perpTool">
             <img src="rotate.png" class="rotationHandle"/>
             <img class="guiTool beginFollowing" src="perptool.png" />
         </div>
 
+        <div id="parallelTool" class="centredOrigin">
+            <img src="cross.png" class="beginFollowing centredOrigin crossButton" />
+            <div class="baseLine"></div>
+            <div class="ghostLine"></div>
+        </div>
+
         <div id="toolBox">
-            <button class="toolButton" data-tool="perpTool">Perpendicular tool</button>
+            <button class="toolButton" data-tool="perpTool">Angle tool</button>
             <button class="toolButton" data-tool="parallelTool">Parallel tool</button>
-            <button class="toolButton" data-tool="">Clear all tools</button>
         </div>
 
         <script>
@@ -124,6 +153,10 @@
                     ["188.00", "36.000"],
                     ["188.00", "186.00"],
                     ["38.000", "186.00"]
+                ],
+                "option3": [
+                    ["219", "36"],
+                    ["154", "247"]
                 ]
             };
             // This code will extract coordinates from the svg file as intended.
@@ -169,14 +202,7 @@
 
                 $(".optionWrapper").click(function (e) {
                     e.preventDefault();
-                    if ($(".activeTool").hasClass("snapped")) {
-                        $(".activeTool").removeClass("snapped");
-                        //following = true;
-                        $(".activeTool").rotate({
-                            "angle": 0,
-                            "center": ["0%", "100%"]
-                        });
-                    } else {
+                    if ($(".activeTool").attr("id") === "perpTool") {
                         console.log("I'm now tracing coordinates");
                         var closest = null;
                         var closest_distance = 9999;
@@ -203,6 +229,55 @@
                             });
                             $(".options").css("pointer-events", "none");
                         }
+                    } else if ($(".activeTool").attr("id") === "parallelTool") {
+                        var closest1 = null, closest2 = null;
+                        var closest_distance = 9999;
+                        var coords = $(this).find(".vertex").map(function (index, element) {
+                            var val = $(element).offset();
+                            return [[val['left'], val['top']]];
+                        });
+                        $(coords).each(function (index, coord1) {
+                            var coord2 = coords[(index + 1) % coords.length];
+                            var x0 = event.pageX;
+                            var y0 = event.pageY;
+                            var x1 = coord1[0];
+                            var y1 = coord1[1];
+                            var x2 = coord2[0];
+                            var y2 = coord2[1];
+                            var numerator = (y2 - y1) * x0 - (x2 - x1) * y0 + x2 * y1 - y2 * x1;
+                            var denominator = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+                            var dist = Math.abs((numerator) / (denominator));
+
+                            if (dist < closest_distance) {
+                                console.log("closest distance", dist);
+                                closest1 = coord1;
+                                closest2 = coord2;
+                                closest_distance = dist;
+                            }
+                        });
+                        if (closest_distance < snap_offset) {
+                            //Start drawing the tool from here
+                            following = false;
+                            var angle = getAngle(closest1[0], closest1[1], closest2[0], closest2[1]);
+                            $(".activeTool .baseLine").css({
+                                width: Math.sqrt(Math.pow((closest1[0] - closest2[0]), 2) + Math.pow((closest1[1] - closest2[1]), 2)),
+                            }).rotate({
+                                center: ["50%", "50%"]
+                            });
+                            $(".activeTool .ghostLine").css({
+                                width: 1.2 * Math.sqrt(Math.pow((closest1[0] - closest2[0]), 2) + Math.pow((closest1[1] - closest2[1]), 2)),
+                            }).rotate({
+                                center: ["50%", "50%"]
+                            });
+                            $(".activeTool").css({
+                                left: (closest1[0] + closest2[0]) / 2,
+                                top: (closest1[1] + closest2[1]) / 2
+                            }).rotate({
+                                angle: angle,
+                                center: ["100%", "100%"]
+                            });
+                            $(".options").css("pointer-events", "none");
+                        }
                     }
                 });
 
@@ -221,12 +296,16 @@
                             "top": event.pageY
                         });
                     }
-                    if (rotating === true) {
-                        var angle = getAngle(parseInt($(".activeTool").css("left")), parseInt($(".activeTool").css("top")), event.pageX, event.pageY);
-                        $(".activeTool").rotate({
-                            "angle": angle + 45,
-                            "center": ["0%", "100%"]
-                        });
+                    if ($(".activeTool").attr("id") === "perpTool") {
+                        if (rotating === true) {
+                            var angle = getAngle(parseInt($(".activeTool").css("left")), parseInt($(".activeTool").css("top")), event.pageX, event.pageY);
+                            $(".activeTool").rotate({
+                                "angle": angle + 45,
+                                "center": ["0%", "100%"]
+                            });
+                        }
+                    } else if ($(".activeTool").attr("id") === "parallelTool") {
+
                     }
                 });
 
@@ -236,8 +315,15 @@
                 });
 
                 $(".toolButton").click(function () {
-                    $(".activeTool").removeClass("activeTool").toggle(false);
-                    $("#" + $(this).attr("data-tool")).addClass("activeTool").toggle(true);
+                    if ($(".activeTool").attr("id") === $(this).attr("data-tool")) {
+                        $(".activeTool").removeClass("activeTool").toggle(false);
+                    } else {
+                        $(".activeTool").removeClass("activeTool").toggle(false);
+                        $("#" + $(this).attr("data-tool")).addClass("activeTool").toggle(true);
+                    }
+                    following = true;
+                    rotating = false;
+                    $(".options").css("pointer-events", "");
                 });
             });
         </script>
