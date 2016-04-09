@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html style="height:100%;">
+<head>
+    <title>Police Quad Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="js/jquery.mobile-1.4.5.min.css" />
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html;" charset="utf-8">
+</head>
+<body onload="pop()">
+    <div style="padding-top:0px;">
+        <div style="height:60px;color:white;background-color:rgba(31, 137, 224, 1);">
+            <center><h1 style="font-family:Lucida Calligraphy;padding-top:5px;padding-left:5px;">Police Quad</h1></center>
+        </div><!-- /header -->
+        <div>
+            <div class="ui-grid-a" style="height:100%;">
+                <div class="ui-block-a" style="height:100%;max-width:50%;">
+                    <img src="lab.jpg" style="height:700px;width:100%;" />
+                </div>
+                <div class="ui-block-b">
+                    <div class="" style="font-size:50px;color:blue;font-family:Lucida Calligraphy;color:rgba(31, 137, 224, 1);padding:1em;">
+                        <center>
+                            Join the adventure!
+                        </center>
+                        <br />
+                        <label id="uname" style="font-size:20px;">Username</label><input style="font-size:20px;" type="text" placeholder="Your Name"/>
+                        <label id="paswd" style="font-size:20px;">Password</label><input style="font-size:20px;" type="password" placeholder="Password"/>
+                        <a href="MainMenu.html" class="ui-btn ui-btn-inline" id="login">Login</a><a class="ui-btn ui-btn-inline" id="fpswd">Forgot Password</a>
+                    </div>
+                    <center>
+                        <a href="#" id="L1" onclick="hind()">Hindi</a>&nbsp<a href="#" id="L2" onclick="tel()">Telugu</a>&nbsp<a href="#" id="L3" onclick="kan()">Kannada</a>&nbsp<a href="#" id="L4" onclick="eng()">English</a>
+                    </center>
+
+                </div>
+            </div>
+        </div><!-- /content -->
+    </div><!-- /page -->
+    <script type="text/javascript">
+function pop()
+{
+    if(localStorage.lang)
+    {
+        if(localStorage.lang=="hin")
+        {
+            document.getElementById("uname").innerText = "उपयोगकर्ता नाम";
+            document.getElementById("paswd").innerText = "पासवर्ड";
+            document.getElementById("login").innerHTML = "लॉगिन";
+            document.getElementById("fpswd").innerHTML = "पासवर्ड भूल गया";
+        }
+        else if(localStorage.lang=="eng")
+        {
+            document.getElementById("uname").innerText="Username";
+            document.getElementById("paswd").innerText="Password";
+            document.getElementById("login").innerHTML="Login";
+            document.getElementById("fpswd").innerHTML = "Forgot Password";
+        }
+        else if (localStorage.lang == "tel") {
+            document.getElementById("uname").innerText = "యూజర్పేరు";
+            document.getElementById("paswd").innerText = "పాస్వర్డ్";
+            document.getElementById("login").innerHTML = "లాగిన్";
+            document.getElementById("fpswd").innerHTML = "పాస్వర్డ్ మరిచిపోయారా";
+        }
+        else if (localStorage.lang == "kan") {
+            document.getElementById("uname").innerText = "ಬಳಕೆದಾರ ಹೆಸರು";
+            document.getElementById("paswd").innerText = "ಪಾಸ್ವರ್ಡ್";
+            document.getElementById("login").innerHTML = "ಲಾಗಿನ್";
+            document.getElementById("fpswd").innerHTML = "ಪಾಸ್ವರ್ಡ್ ಮರೆತಿರಾ";
+        }
+    }
+    else
+    {
+        localStorage.lang="eng";
+        document.getElementById("uname").innerText="Username";
+        document.getElementById("paswd").innerText="Password";
+    }
+}
+function hind()
+{
+    if (localStorage.lang != "hin") {
+        localStorage.lang = "hin";
+        localStorage.lastLang = "eng";
+    }
+    else {
+        localStorage.lang = "eng";
+        localStorage.lastLang = "hin";
+    }
+    pop();
+}
+function tel() {
+    if (localStorage.lang != "tel") {
+        localStorage.lang = "tel";
+        localStorage.lastLang = "eng";
+    }
+    else {
+        localStorage.lang = "eng";
+        localStorage.lastLang = "tel";
+    }
+    pop();
+}
+function kan() {
+    if (localStorage.lang != "kan") {
+        localStorage.lang = "kan";
+        localStorage.lastLang = "eng";
+    }
+    else {
+        localStorage.lang = "eng";
+        localStorage.lastLang = "kan";
+    }
+    pop();
+}
+function eng()
+{
+    localStorage.lang="eng";
+    pop();
+}
+    </script>
+</body>
+</html>
