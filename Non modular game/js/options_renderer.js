@@ -93,21 +93,21 @@ returnValue = (function () {
                 "stage": "1",
                 "noOfOptions": "4",
                 "noOfCorrectOptions": "1",
-                "noOfClues": "2",
+                "noOfClues": "3",
                 "passLimit": "3"
             },
             {
                 "stage": "2",
                 "noOfOptions": "4",
                 "noOfCorrectOptions": "1",
-                "noOfClues": "2",
+                "noOfClues": "3",
                 "passLimit": "5"
             },
             {
                 "stage": "3",
                 "noOfOptions": "4",
                 "noOfCorrectOptions": "1",
-                "noOfClues": "2",
+                "noOfClues": "3",
                 "passLimit": "5"
             },
             {
@@ -746,7 +746,7 @@ returnValue = (function () {
                         }
                         break;
                     }
-
+                    
                 } else if (noOfClues == 2) {
                     if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "=" && qset[qno].q1[1].quantity != shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
@@ -803,7 +803,8 @@ returnValue = (function () {
                         }
                         break;
                     }
-                } else {
+                    
+                } else if(noOfClues == 0){
                     //Get answer
                     if (qset[qno].q1[2].quantity == shape['obtuseAngles'] && qset[qno].q1[1].quantity == shape['pairsOfSidesEqual'] && qset[qno].q1[0].quantity == shape['straightSides'] && !isInArray(shape, Options)) {
                         Options[i] = shape;
@@ -814,11 +815,6 @@ returnValue = (function () {
 
                 }
             }
-            //else
-            //{
-            //    Shapes which are rejected
-            //    console.log(shape['id'] +" rejected.");
-            //}
                 j++;
                 if (j == shapesJSON.length) {
                     //Randomize
@@ -844,7 +840,7 @@ returnValue = (function () {
             Options[i].reflexAngles = 0;
         if (!Options[i].oppositePairsParallel)
             Options[i].oppositePairsParallel = 0;
-        //console.log(Options[i].id + " for "+ i);
+        
     }
     Options = shuffle(Options);
     var optionsMarkup = document.createElement("div");
@@ -865,6 +861,7 @@ returnValue = (function () {
         label.appendChild(temp);
         markup.appendChild(label);
         optionsMarkup.appendChild(markup);
+        console.log(Options[i].id + " : " + JSON.stringify(Options[i])); // Help to solve
     }
 
 //Fisher-Yates Shuffle.
