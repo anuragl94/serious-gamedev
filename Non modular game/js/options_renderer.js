@@ -844,7 +844,7 @@ returnValue = (function () {
             Options[i].reflexAngles = 0;
         if (!Options[i].oppositePairsParallel)
             Options[i].oppositePairsParallel = 0;
-        //console.log(Options[i].id + " for "+ i);
+        
     }
     Options = shuffle(Options);
     var optionsMarkup = document.createElement("div");
@@ -865,6 +865,7 @@ returnValue = (function () {
         label.appendChild(temp);
         markup.appendChild(label);
         optionsMarkup.appendChild(markup);
+        console.log(Options[i].id + " : " + JSON.stringify(Options[i])); // Help to solve
     }
 
 //Fisher-Yates Shuffle.
