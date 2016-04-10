@@ -55,18 +55,17 @@
                 if (localStorage.stats)
                 {
                     stats = JSON.parse(localStorage.stats); console.log(stats.toString);
-                    if (localStorage.level2 == "L")
+                    var highestStage = Math.max.apply(null, stats.stagesCrossed);
+                    if (highestStage < 3)
                         document.getElementById("lock2").src = "img/lock.png";
                     else
                         document.getElementById("lock2").src = "img/unlock.png";
-                    if (localStorage.level3 == "L")
+                    if (highestStage < 6)
                         document.getElementById("lock3").src = "img/lock.png";
                     else
                         document.getElementById("lock3").src = "img/unlock.png";
                 }
                 else {
-                    localStorage.level2 = "L";
-                    localStorage.level3 = "L";
                     stats = {
                         stagesCrossed: [1],
                         stages: {
@@ -84,17 +83,13 @@
                 event.preventDefault();
                 var highestStage = Math.max.apply(null,stats.stagesCrossed);
                 if (highestStage >= 6) {
-                    localStorage.level2 = "U";
-                    localStorage.level3 = "U";
+                    pop();
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
                 } else if (highestStage >= 3 && this.id <= 6) {
-                    localStorage.level2 = "U";
-                    localStorage.level3 = "L";
                     pop();
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
                 }
                 else if (highestStage < 3 && this.id <= 3) {
-                    localStorage.level3 = "L";
                     pop();
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
                 }
