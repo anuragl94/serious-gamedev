@@ -62,6 +62,14 @@ $(document).ready(function () {
                     if (option[currentClue['attribute']] >= currentClue['quantity'])
                         return index;
                     break;
+                case '>=':
+                    if (option[currentClue['attribute']] > currentClue['quantity'])
+                        return index;
+                    break;
+                case '<=':
+                    if (option[currentClue['attribute']] < currentClue['quantity'])
+                        return index;
+                    break;
                 default:
                     break;
             }
@@ -85,17 +93,19 @@ $(document).ready(function () {
             //What to do when player makes a mistake. Here, define what research data to keep track of
             console.log("Player made a mistake here");
             $("#treats").trigger("reduce");
+            $(document).trigger('stageCompletion', [$("#treats").attr("data-value"), $("#treats").attr("data-max")]);
         }
     });
 
     $("#cluesWrapper").on("checkIfFinalAnswer", function (event, selectedOption) {
         if ('correctAnswer' in gameData['options'][selectedOption]) {
             console.log("You have caught the culprit!");
-            alert("Win!");
         } else {
             console.log("You have arrested the innocent!");
             $("#treats").trigger("reduce");
         }
+        //Now make changes to localStorage to reflect the achievements
+        $(document).trigger('stageCompletion', [$("#treats").attr("data-value"), $("#treats").attr("data-max")]);
     });
 
     $("#cluesWrapper").on("getNextClue", function () {
@@ -103,6 +113,10 @@ $(document).ready(function () {
             $("#cluesWrapper").find(".clue:not(:visible)").first().toggle();
         } else {
             //Do nothing. You're out of clues!
+        }
+
+        if (!$("#cluesWrapper").find(".clue:not(:visible)").length) {
+            $("#arrest").toggle(true);
         }
     });
     /* End logic for the clues */
@@ -112,14 +126,14 @@ $(document).ready(function () {
         if (gameData['solvedClues'].length < $("#cluesWrapper .clue").length) {
             $("#optionsWrapper").trigger("inspect");
         } else {
-            console.log("You have sufficient clues to make an arrest!");
+            console.log("You have sufficient clues to make a conclusion!");
         }
     });
     $("#arrest").on('click', function () {
         if (!($("#cluesWrapper").find(".clue:not(:visible)").length)) {
             $("#optionsWrapper").trigger("arrest");
         } else {
-            console.log("You do not have sufficient clues to make an arrest!");
+            console.log("You do not have sufficient clues to make a conclusion!");
         }
     });
 
