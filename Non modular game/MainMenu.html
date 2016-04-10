@@ -64,6 +64,19 @@
                         document.getElementById("lock3").src = "img/lock.png";
                     else
                         document.getElementById("lock3").src = "img/unlock.png";
+                    for (var key in stats.stages) {
+                        if (stats.stages.hasOwnProperty(key)) {
+                            if (stats.stages[key].perfect === true)
+                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/star.png' style='width:20px;padding-left:10px;' />");
+                            else
+                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/bstar.png' style='width:20px;padding-left:10px;' />");
+                        }
+                    }
+                    for (var i = 0; i < Object.keys(stats.stages).length;i++)
+                    {
+                        if (stats.stages[i+1].perfect === "true")
+                            alert("as");
+                    }
                 }
                 else {
                     stats = {
