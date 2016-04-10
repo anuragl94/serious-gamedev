@@ -1,21 +1,22 @@
 $(document).ready(function () {
     var stats;
-    if (typeof (localStorage.getItem("stats")) == 'undefined') {
+    if (typeof localStorage.stats !== 'undefined') {
         stats = JSON.parse(localStorage.stats);
     } else {
         //init() here. Only for testing
-        var stats = {
+        stats = {
             stagesCrossed: [],
             stages: {
             }
         };
         localStorage.stats = JSON.stringify(stats);
     }
-
+    
     if (window.location.search !== "") {
         var stage = window.location.search.split("stage=")[1].split("&")[0];
         var stats = JSON.parse(localStorage.stats);
         console.log(stats);
+        console.log(stage, stats.stages);
         if (!(stage in stats.stages)) {
             stats.stages[stage] = {
                 attempts: 0,
@@ -43,7 +44,7 @@ $(document).ready(function () {
         }
     });
 
-    window.onbeforeunload = function () {
-        return "If you do that, you will not be eligible to be promoted anymore! Press 'Don't reload'!";
-    };
+//    window.onbeforeunload = function () {
+//        return "If you do that, you will not be eligible to be promoted anymore! Press 'Don't reload'!";
+//    };
 });
