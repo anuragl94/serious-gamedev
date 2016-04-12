@@ -14,7 +14,7 @@ $(document).ready(function () {
             gameData['disabledOptions'].push($(this).attr("index"));
         });
         $(this).find("input:checked").prop('disabled', true);
-        $(this).find("input:checked").closest('label').addClass('disabled');
+        $(this).find("input:checked").closest('label').addClass('disabled innocent');
         $(this).trigger("clearSelection");
     });
     $("#optionsWrapper").on("clearSelection", function () {

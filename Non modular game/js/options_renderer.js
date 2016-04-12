@@ -3,83 +3,83 @@
 returnValue = (function () {
 //Qset Data
     var qset = [
-                    {
-                        "q1": [
-                            {
-                                "attribute": "straightSides",
-                                "comparator": "=",
-                                "quantity": "4"
-                            },
-                            {
-                                "attribute": "pairsOfSidesEqual",
-                                "comparator": "=",
-                                "quantity": "2"
-                            },
-                            {
-                                "attribute": "obtuseAngles",
-                                "comparator": "=",
-                                "quantity": "2"
-                            }
-                        ]
-                    },
-                    {
-                        "q1": [
-                            {
-                                "attribute": "straightSides",
-                                "comparator": "=",
-                                "quantity": "4"
-                            },
-                            {
-                                "attribute": "pairsOfSidesEqual",
-                                "comparator": "=",
-                                "quantity": "2"
-                            },
-                            {
-                                "attribute": "obtuseAngles",
-                                "comparator": "=",
-                                "quantity": "0"
-                            }
-                        ]
-                    },
-                    {
-                        "q1": [
-                            {
-                                "attribute": "straightSides",
-                                "comparator": "=",
-                                "quantity": "4"
-                            },
-                            {
-                                "attribute": "pairsOfSidesEqual",
-                                "comparator": "=",
-                                "quantity": "1"
-                            },
-                            {
-                                "attribute": "obtuseAngles",
-                                "comparator": "=",
-                                "quantity": "2"
-                            }
-                        ]
-                    },
-                    {
-                        "q1": [
-                            {
-                                "attribute": "straightSides",
-                                "comparator": "=",
-                                "quantity": "4"
-                            },
-                            {
-                                "attribute": "pairsOfSidesEqual",
-                                "comparator": "=",
-                                "quantity": "2"
-                            },
-                            {
-                                "attribute": "obtuseAngles",
-                                "comparator": "=",
-                                "quantity": "2"
-                            }
-                        ]
-                    }
-        ];
+        {
+            "q1": [
+                {
+                    "attribute": "straightSides",
+                    "comparator": "=",
+                    "quantity": "4"
+                },
+                {
+                    "attribute": "pairsOfSidesEqual",
+                    "comparator": "=",
+                    "quantity": "2"
+                },
+                {
+                    "attribute": "obtuseAngles",
+                    "comparator": "=",
+                    "quantity": "2"
+                }
+            ]
+        },
+        {
+            "q1": [
+                {
+                    "attribute": "straightSides",
+                    "comparator": "=",
+                    "quantity": "4"
+                },
+                {
+                    "attribute": "pairsOfSidesEqual",
+                    "comparator": "=",
+                    "quantity": "2"
+                },
+                {
+                    "attribute": "obtuseAngles",
+                    "comparator": "=",
+                    "quantity": "0"
+                }
+            ]
+        },
+        {
+            "q1": [
+                {
+                    "attribute": "straightSides",
+                    "comparator": "=",
+                    "quantity": "4"
+                },
+                {
+                    "attribute": "pairsOfSidesEqual",
+                    "comparator": "=",
+                    "quantity": "1"
+                },
+                {
+                    "attribute": "obtuseAngles",
+                    "comparator": "=",
+                    "quantity": "2"
+                }
+            ]
+        },
+        {
+            "q1": [
+                {
+                    "attribute": "straightSides",
+                    "comparator": "=",
+                    "quantity": "4"
+                },
+                {
+                    "attribute": "pairsOfSidesEqual",
+                    "comparator": "=",
+                    "quantity": "2"
+                },
+                {
+                    "attribute": "obtuseAngles",
+                    "comparator": "=",
+                    "quantity": "2"
+                }
+            ]
+        }
+    ];
     var config = {
         "questionsRepo": [
             {
@@ -159,157 +159,157 @@ returnValue = (function () {
     }
     var shapes3 = {
         "data": [
-              {
-                  "id" : "fig001.png",
-                  "straightSides" : "3",
-                  "curvedSides" : "0",
-                  "sidesEqual" : "3",
-                  "rightAngles" : "0",
-                  "obtuseAngles" : "0",
-                  "acuteAngles" : "3",
-                  "reflexAngles" : "0"
-              },
-              {
-                    "id" : "fig002.png",
-                    "straightSides" : "3",
-                    "curvedSides" : "0",
-                    "sidesEqual" : "2",
-                    "rightAngles" : "0",
-                    "obtuseAngles" : "0",
-                    "acuteAngles" : "3",
-                    "reflexAngles" : "0"
-              },
-              {
-                    "id" : "fig025.png",
-                    "straightSides" : "4",
-                    "curvedSides" : "0",
-                    "pairsOfSidesEqual" : "2",
-                    "rightAngles" : "4",
-                    "obtuseAngles" : "0",
-                    "acuteAngles" : "0",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "2"
-              },
-              {
-                    "id" : "fig026.png",
-                    "straightSides" : "4",
-                    "curvedSides" : "0",
-                    "sidesEqual" : "4",
-                    "rightAngles" : "4",
-                    "obtuseAngles" : "0",
-                    "acuteAngles" : "0",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "2"
-              },
-              {
-                    "id" : "fig027.png",
-                    "straightSides" : "4",
-                    "curvedSides" : "0",
-                    "pairsOfSidesEqual" : "2",
-                    "rightAngles" : "0",
-                    "obtuseAngles" : "3",
-                    "acuteAngles" : "1",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "0"
-              },
-              {
-                    "id" : "fig039.png",
-                    "straightSides" : "5",
-                    "curvedSides" : "0",
-                    "sidesEqual" : "2",
-                    "rightAngles" : "0",
-                    "obtuseAngles" : "3",
-                    "acuteAngles" : "2",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "2"
-              },
-              {
-                    "id" : "fig040.png",
-                    "straightSides" : "5",
-                    "curvedSides" : "0",
-                    "sidesEqual" : "0",
-                    "rightAngles" : "0",
-                    "obtuseAngles" : "4",
-                    "acuteAngles" : "1",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "1"
-                },
-                {
-                    "id" : "fig055.png",
-                    "straightSides" : "8",
-                    "curvedSides" : "0",
-                    "sidesEqual" : "8",
-                    "rightAngles" : "0",
-                    "obtuseAngles" : "8",
-                    "acuteAngles" : "0",
-                    "reflexAngles" : "0",
-                    "oppositePairsParallel" : "4"
-                },
-                {
-                    "id" : "figc001.png",
-                    "straightSides" : "0",
-                    "curvedSides" : "yes"
-                },
-                {
-                    "id" : "figc002.png",
-                    "straightSides" : "0",
-                    "curvedSides" : "yes"
-                },
-                {
-                    "id" : "figc005.png",
-                    "straightSides" : "2",
-                    "curvedSides" : "yes",
-                    "pairsOfSidesEqual" : "1"
-                },
             {
-                 "id" : "fig003.png",
-                 "straightSides" : "3",
-                 "curvedSides" : "0",
-                 "sidesEqual" : "2",
-                 "rightAngles" : "1",
-                 "obtuseAngles" : "0",
-                 "acuteAngles" : "2",
-                 "reflexAngles" : "0"
+                "id": "fig001.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "3",
+                "rightAngles": "0",
+                "obtuseAngles": "0",
+                "acuteAngles": "3",
+                "reflexAngles": "0"
             },
             {
-                 "id" : "fig004.png",
-                 "straightSides" : "3",
-                 "curvedSides" : "0",
-                 "sidesEqual" : "2",
-                 "rightAngles" : "0",
-                 "obtuseAngles" : "1",
-                 "acuteAngles" : "2",
-                 "reflexAngles" : "0"
+                "id": "fig002.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "2",
+                "rightAngles": "0",
+                "obtuseAngles": "0",
+                "acuteAngles": "3",
+                "reflexAngles": "0"
             },
             {
-                 "id" : "fig005.png",
-                 "straightSides" : "3",
-                 "curvedSides" : "0",
-                 "sidesEqual" : "0",
-                 "rightAngles" : "0",
-                 "obtuseAngles" : "0",
-                 "acuteAngles" : "3",
-                 "reflexAngles" : "0"
+                "id": "fig025.png",
+                "straightSides": "4",
+                "curvedSides": "0",
+                "pairsOfSidesEqual": "2",
+                "rightAngles": "4",
+                "obtuseAngles": "0",
+                "acuteAngles": "0",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "2"
             },
             {
-                 "id" : "fig006.png",
-                 "straightSides" : "3",
-                 "curvedSides" : "0",
-                 "sidesEqual" : "0",
-                 "rightAngles" : "1",
-                 "obtuseAngles" : "0",
-                 "acuteAngles" : "2",
-                 "reflexAngles" : "0"
+                "id": "fig026.png",
+                "straightSides": "4",
+                "curvedSides": "0",
+                "sidesEqual": "4",
+                "rightAngles": "4",
+                "obtuseAngles": "0",
+                "acuteAngles": "0",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "2"
             },
             {
-                 "id" : "fig007.png",
-                 "straightSides" : "3",
-                 "curvedSides" : "0",
-                 "sidesEqual" : "0",
-                 "rightAngles" : "0",
-                 "obtuseAngles" : "1",
-                 "acuteAngles" : "2",
-                 "reflexAngles" : "0"
+                "id": "fig027.png",
+                "straightSides": "4",
+                "curvedSides": "0",
+                "pairsOfSidesEqual": "2",
+                "rightAngles": "0",
+                "obtuseAngles": "3",
+                "acuteAngles": "1",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "0"
+            },
+            {
+                "id": "fig039.png",
+                "straightSides": "5",
+                "curvedSides": "0",
+                "sidesEqual": "2",
+                "rightAngles": "0",
+                "obtuseAngles": "3",
+                "acuteAngles": "2",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "2"
+            },
+            {
+                "id": "fig040.png",
+                "straightSides": "5",
+                "curvedSides": "0",
+                "sidesEqual": "0",
+                "rightAngles": "0",
+                "obtuseAngles": "4",
+                "acuteAngles": "1",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "1"
+            },
+            {
+                "id": "fig055.png",
+                "straightSides": "8",
+                "curvedSides": "0",
+                "sidesEqual": "8",
+                "rightAngles": "0",
+                "obtuseAngles": "8",
+                "acuteAngles": "0",
+                "reflexAngles": "0",
+                "oppositePairsParallel": "4"
+            },
+            {
+                "id": "figc001.png",
+                "straightSides": "0",
+                "curvedSides": "yes"
+            },
+            {
+                "id": "figc002.png",
+                "straightSides": "0",
+                "curvedSides": "yes"
+            },
+            {
+                "id": "figc005.png",
+                "straightSides": "2",
+                "curvedSides": "yes",
+                "pairsOfSidesEqual": "1"
+            },
+            {
+                "id": "fig003.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "2",
+                "rightAngles": "1",
+                "obtuseAngles": "0",
+                "acuteAngles": "2",
+                "reflexAngles": "0"
+            },
+            {
+                "id": "fig004.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "2",
+                "rightAngles": "0",
+                "obtuseAngles": "1",
+                "acuteAngles": "2",
+                "reflexAngles": "0"
+            },
+            {
+                "id": "fig005.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "0",
+                "rightAngles": "0",
+                "obtuseAngles": "0",
+                "acuteAngles": "3",
+                "reflexAngles": "0"
+            },
+            {
+                "id": "fig006.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "0",
+                "rightAngles": "1",
+                "obtuseAngles": "0",
+                "acuteAngles": "2",
+                "reflexAngles": "0"
+            },
+            {
+                "id": "fig007.png",
+                "straightSides": "3",
+                "curvedSides": "0",
+                "sidesEqual": "0",
+                "rightAngles": "0",
+                "obtuseAngles": "1",
+                "acuteAngles": "2",
+                "reflexAngles": "0"
             },
             {
                 "id": "fig004.png",
@@ -682,25 +682,28 @@ returnValue = (function () {
         ]};
     function urlParse(val) {
         var result = "Not found",
-            tmp = [];
+                tmp = [];
         location.search
-        //.replace ( "?", "" ) 
-        // this is better, there might be a question mark inside
-        .substr(1)
-            .split("&")
-            .forEach(function (item) {
-                tmp = item.split("=");
-                if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
-            });
+                //.replace ( "?", "" ) 
+                // this is better, there might be a question mark inside
+                .substr(1)
+                .split("&")
+                .forEach(function (item) {
+                    tmp = item.split("=");
+                    if (tmp[0] === val)
+                        result = decodeURIComponent(tmp[1]);
+                });
         return result;
     }
-    
+
     var qno = urlParse("qno");
     var stage = urlParse("stage");
     if (stage === "Not found")
-        var stage = 6; console.log("Stage: " + stage);
-    if(qno === "Not found")
-        var qno = Math.floor(Math.random() * (3 - 0 + 1) + 0); console.log("Question: "+qno);
+        var stage = 6;
+    console.log("Stage: " + stage);
+    if (qno === "Not found")
+        var qno = Math.floor(Math.random() * (3 - 0 + 1) + 0);
+    console.log("Question: " + qno);
     var noOfClues = parseInt(config.questionsRepo[stage].noOfClues);
     var noOfOptions = parseInt(config.questionsRepo[stage].noOfOptions);
     var noOfCorrectOptions = parseInt(config.questionsRepo[stage].noOfCorrectOptions);
@@ -716,7 +719,7 @@ returnValue = (function () {
         var j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0 + 1) + 0);
         while (!Options[i]) {
             var shape = shapesJSON[j];
-            if ((shape['obtuseAngles'] !== undefined) && (shape['pairsOfSidesEqual'] !== undefined) && (shape['straightSides'] !== undefined) )
+            if ((shape['obtuseAngles'] !== undefined) && (shape['pairsOfSidesEqual'] !== undefined) && (shape['straightSides'] !== undefined))
             {
                 if (noOfClues == 3) {
                     if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "=" && parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
@@ -727,8 +730,15 @@ returnValue = (function () {
                             noOfClues--;
                         }
                         break;
-                    }
-                    else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == ">" && parseInt(qset[qno].q1[0].quantity) <= parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
+                    } else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == ">" && parseInt(qset[qno].q1[0].quantity) <= parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
+                        Options[i] = shape;
+                        fitCount++;
+                        if (fitCount == clueFit) {
+                            fitCount = 0;
+                            noOfClues--;
+                        }
+                        break;
+                    } else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "<" && parseInt(qset[qno].q1[0].quantity) >= parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == clueFit) {
@@ -737,16 +747,7 @@ returnValue = (function () {
                         }
                         break;
                     }
-                    else if (qset[qno].q1[0].attribute == "straightSides" && qset[qno].q1[0].comparator == "<" && parseInt(qset[qno].q1[0].quantity) >= parseInt(shape['straightSides']) && !isInArray(shape, Options)) {
-                        Options[i] = shape;
-                        fitCount++;
-                        if (fitCount == clueFit) {
-                            fitCount = 0;
-                            noOfClues--;
-                        }
-                        break;
-                    }
-                    
+
                 } else if (noOfClues == 2) {
                     if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "=" && qset[qno].q1[1].quantity != shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
@@ -756,8 +757,7 @@ returnValue = (function () {
                             noOfClues--;
                         }
                         break;
-                    }
-                    else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == ">" && qset[qno].q1[1].quantity <= shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
+                    } else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == ">" && qset[qno].q1[1].quantity <= shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == clueFit) {
@@ -765,8 +765,7 @@ returnValue = (function () {
                             noOfClues--;
                         }
                         break;
-                    }
-                    else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "<" && qset[qno].q1[1].quantity >= shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
+                    } else if (qset[qno].q1[1].attribute == "pairsOfSidesEqual" && qset[qno].q1[1].comparator == "<" && qset[qno].q1[1].quantity >= shape['pairsOfSidesEqual'] && !isInArray(shape, Options) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == clueFit) {
@@ -784,8 +783,15 @@ returnValue = (function () {
                             noOfClues--;
                         }
                         break;
-                    }
-                    else if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == ">" && qset[qno].q1[2].quantity <= shape['obtuseAngles'] && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape['pairsOfSidesEqual']) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
+                    } else if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == ">" && qset[qno].q1[2].quantity <= shape['obtuseAngles'] && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape['pairsOfSidesEqual']) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
+                        Options[i] = shape;
+                        fitCount++;
+                        if (fitCount == 1) {
+                            fitCount = 0;
+                            noOfClues--;
+                        }
+                        break;
+                    } else if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == "<" && qset[qno].q1[2].quantity >= shape['obtuseAngles'] && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape['pairsOfSidesEqual']) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
                         Options[i] = shape;
                         fitCount++;
                         if (fitCount == 1) {
@@ -794,17 +800,8 @@ returnValue = (function () {
                         }
                         break;
                     }
-                    else if (qset[qno].q1[2].attribute == "obtuseAngles" && qset[qno].q1[2].comparator == "<" && qset[qno].q1[2].quantity >= shape['obtuseAngles'] && !isInArray(shape, Options) && !(qset[qno].q1[1].quantity != shape['pairsOfSidesEqual']) && !(parseInt(qset[qno].q1[0].quantity) != parseInt(shape['straightSides']))) {
-                        Options[i] = shape;
-                        fitCount++;
-                        if (fitCount == 1) {
-                            fitCount = 0;
-                            noOfClues--;
-                        }
-                        break;
-                    }
-                    
-                } else if(noOfClues == 0){
+
+                } else if (noOfClues == 0) {
                     //Get answer
                     if (qset[qno].q1[2].quantity == shape['obtuseAngles'] && qset[qno].q1[1].quantity == shape['pairsOfSidesEqual'] && qset[qno].q1[0].quantity == shape['straightSides'] && !isInArray(shape, Options)) {
                         Options[i] = shape;
@@ -815,32 +812,32 @@ returnValue = (function () {
 
                 }
             }
-                j++;
-                if (j == shapesJSON.length) {
-                    //Randomize
-                    j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0 + 1) + 0);
-                }
-            
+            j++;
+            if (j == shapesJSON.length) {
+                //Randomize
+                j = Math.floor(Math.random() * ((shapesJSON.length - 1) - 0 + 1) + 0);
+            }
+
         }
         //TODO: use a list from a config file to fill such values
         // Fill properties not available for the shapes
-        if(!Options[i].straightSides)
+        if (!Options[i].straightSides)
             Options[i].straightSides = 0;
-        if(!Options[i].curvedSides)
+        if (!Options[i].curvedSides)
             Options[i].curvedSides = 0;
-        if(!Options[i].pairsOfSidesEqual)
+        if (!Options[i].pairsOfSidesEqual)
             Options[i].pairsOfSidesEqual = 0;
-        if(!Options[i].rightAngles)
+        if (!Options[i].rightAngles)
             Options[i].rightAngles = 0;
-        if(!Options[i].obtuseAngles)
+        if (!Options[i].obtuseAngles)
             Options[i].obtuseAngles = 0;
-        if(!Options[i].acuteAngles)
+        if (!Options[i].acuteAngles)
             Options[i].acuteAngles = 0;
-        if(!Options[i].reflexAngles)
+        if (!Options[i].reflexAngles)
             Options[i].reflexAngles = 0;
         if (!Options[i].oppositePairsParallel)
             Options[i].oppositePairsParallel = 0;
-        
+
     }
     Options = shuffle(Options);
     var optionsMarkup = document.createElement("div");
@@ -855,10 +852,8 @@ returnValue = (function () {
         temp.class = "option"
         temp.src = "../Modules/Generators/version3/" + Options[i].id;
         label.appendChild(temp);
-        temp = document.createElement("input");
-        temp.type = "checkbox";
-        $(temp).attr("index", i);
-        label.appendChild(temp);
+        temp = '<div class="checkbox_wrapper"><input type="checkbox" index="' + i + '" /><label></label></div>';
+        $(label).append(temp);
         markup.appendChild(label);
         optionsMarkup.appendChild(markup);
         console.log(Options[i].id + " : " + JSON.stringify(Options[i])); // Help to solve
@@ -888,7 +883,7 @@ returnValue = (function () {
     gameData['clues'] = qset[qno]['q1'];
     gameData['options'] = Options;
     gameData['includedModules'].push('options_renderer');
-    
+
     var returnValues = {
         "clues": qset[qno]['q1'],
         "options": Options,
