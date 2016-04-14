@@ -72,6 +72,7 @@ var languageApi = {
         var output = {
             plaintext: ""
         };
+        console.log(this);
         var structure = this.structure;
         var phrases = this.phrases;
         var raw = {
@@ -91,5 +92,7 @@ var languageApi = {
             output.plaintext += " " + translatedWord;
         });
         return output;
-    }
+    },
+    render: null,
+    init: null
 };

@@ -1,5 +1,5 @@
 // An IIFE module
-var options_renderer = (function () {
+var returnValue = (function () {
 //Qset Data
     var qset = [
         {
