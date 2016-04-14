@@ -138,3 +138,10 @@
     width: 100%;
     display: inline-block;
 }
+
+img {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
