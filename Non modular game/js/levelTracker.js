@@ -1,3 +1,4 @@
+// This is another kind of function that is an IIFE and does not return any usable object
 $(document).ready(function () {
     var stats;
     if (typeof localStorage.stats !== 'undefined') {

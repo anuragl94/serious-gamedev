@@ -1,6 +1,5 @@
-// The following logic is really bad practice as I'm setting a global variable. The whole point of the IIFE was to avoid that, and to not have conflicts with variables in the caller's scope.
-// Must find a good alternative
-returnValue = (function () {
+// An IIFE module
+var options_renderer = (function () {
 //Qset Data
     var qset = [
         {
