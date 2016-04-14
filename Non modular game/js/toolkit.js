@@ -1,8 +1,5 @@
 var toolkit = {
     snap_offset: 15,
-    following: true,
-    rotating: true,
-    toolActive: false,
     getAngle: function (cx, cy, ex, ey) {
         var dy = ey - cy;
         var dx = ex - cx;
@@ -30,9 +27,12 @@ var toolkit = {
         });
     },
     init: function () {
+        var following = true;
+        var rotating = true;
+        var toolActive = false;
         $(document).ready(function () {
             $(".option").click(function (e) {
-                if (!this.toolActive)
+                if (!toolActive)
                     return;
                 e.preventDefault();
                 if ($(".activeTool").attr("id") === "perpTool") {
@@ -54,7 +54,7 @@ var toolkit = {
                     });
                     if (closest !== null) {
                         console.log("Found my soulmate. Now I'll be attached to it.");
-                        this.following = false;
+                        following = false;
                         var vertex_coords = $(closest).offset();
                         $(".activeTool").css({
                             "top": vertex_coords["top"],
@@ -87,10 +87,10 @@ var toolkit = {
                             closest_distance = dist;
                         }
                     });
-                    if (closest_distance < this.snap_offset) {
+                    if (closest_distance < snap_offset) {
                         //Start drawing the tool from here
-                        this.following = false;
-                        var angle = functions.getAngle(closest1[0], closest1[1], closest2[0], closest2[1]);
+                        following = false;
+                        var angle = this.getAngle(closest1[0], closest1[1], closest2[0], closest2[1]);
                         $(".activeTool .baseLine").css({
                             width: Math.sqrt(Math.pow((closest1[0] - closest2[0]), 2) + Math.pow((closest1[1] - closest2[1]), 2)),
                         }).rotate({
@@ -113,27 +113,27 @@ var toolkit = {
                 }
             });
             $(".rotationHandle").mousedown(function () {
-                this.rotating = true;
+                rotating = true;
             });
             $(document).mouseup(function () {
-                this.rotating = false;
+                rotating = false;
             });
             $(document).mousemove(function () {
-                if (this.following === true) {
+                if (following === true) {
                     $(".activeTool").css({
                         "left": event.pageX,
                         "top": event.pageY
                     });
                 }
                 if ($(".activeTool").attr("id") === "perpTool") {
-                    if (this.rotating === true) {
-                        var angle = functions.getAngle(parseInt($(".activeTool").css("left")), parseInt($(".activeTool").css("top")), event.pageX, event.pageY);
+                    if (rotating === true) {
+                        var angle = this.getAngle(parseInt($(".activeTool").css("left")), parseInt($(".activeTool").css("top")), event.pageX, event.pageY);
                         $(".activeTool").rotate({
                             "angle": angle + 45,
                             "center": ["0%", "100%"]
                         });
                     }
-                    if ((this.following) && (event.pageY < 200)) {
+                    if ((following) && (event.pageY < 200)) {
                         $(".activeTool").rotate({
                             "angle": 90,
                             "center": ["0%", "100%"]
@@ -144,21 +144,23 @@ var toolkit = {
                 }
             });
             $(".beginFollowing").click(function () {
-                this.following = true;
+                following = true;
                 $(".options").css("pointer-events", "");
             });
             $(".toolButton").click(function () {
                 if ($(".activeTool").attr("id") === $(this).attr("data-tool")) {
                     $(".activeTool").removeClass("activeTool").toggle(false);
                 } else {
+                    console.log("Nope");
                     $(".activeTool").removeClass("activeTool").toggle(false);
                     $("#" + $(this).attr("data-tool")).addClass("activeTool").toggle(true);
                 }
-                this.following = true;
-                this.rotating = false;
-                this.toolActive = !this.toolActive;
+                following = true;
+                rotating = false;
+                toolActive = !toolActive;
                 $(".options").css("pointer-events", "");
             });
         });
+        return this;
     }
 }.init();
