@@ -1,7 +1,9 @@
 $(document).ready(function () {
     /* Begin logic for the options */
     // Do what we must to render the options
-    $("#optionsWrapper").append(returnValue['options_markup']);
+    optionsProducer.init();
+    var returnValues = optionsProducer.render();
+    $("#optionsWrapper").append(returnValues['options_markup']);
 
     $("#optionsWrapper").on("change", function () {
         //Here we use statetracker module to capture the new state of the set of options
