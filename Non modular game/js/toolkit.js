@@ -24,24 +24,26 @@ var toolkit = {
         var following = true;
         var rotating = true;
         var toolActive = false;
+        var self = this;
         $(document).ready(function () {
             $("#optionsWrapper").on("click", ".option", function (e) {
                 if (!toolActive)
                     return;
                 e.preventDefault();
                 if ($(".activeTool").attr("id") === "perpTool") {
-//                    console.log("I'm now tracing coordinates");
+                    console.log("I'm now tracing coordinates");
                     var closest = null;
                     var closest_distance = 9999;
                     $(this).find(".vertex").each(function () {
                         var vertex = this;
-                        //console.log(vertex.style.left);
+//                        console.log(vertex.style.left);
                         var vertex_coords = $(this).offset();
                         var x = parseInt(vertex_coords["left"]) - event.pageX;
                         var y = parseInt(vertex_coords["top"]) - event.pageY;
                         var dist = Math.sqrt(x * x + y * y);
 //                        console.log("Distance to point is ", dist);
-                        if ((dist < closest_distance) && (dist < this.snap_offset)) {
+//                        console.log(self.snap_offset);
+                        if ((dist < closest_distance) && (dist < self.snap_offset)) {
                             closest_distance = dist;
                             closest = this;
                         }
@@ -81,10 +83,10 @@ var toolkit = {
                             closest_distance = dist;
                         }
                     });
-                    if (closest_distance < snap_offset) {
+                    if (closest_distance < self.snap_offset) {
                         //Start drawing the tool from here
                         following = false;
-                        var angle = this.getAngle(closest1[0], closest1[1], closest2[0], closest2[1]);
+                        var angle = self.getAngle(closest1[0], closest1[1], closest2[0], closest2[1]);
                         $(".activeTool .baseLine").css({
                             width: Math.sqrt(Math.pow((closest1[0] - closest2[0]), 2) + Math.pow((closest1[1] - closest2[1]), 2)),
                         }).rotate({
@@ -121,7 +123,7 @@ var toolkit = {
                 }
                 if ($(".activeTool").attr("id") === "perpTool") {
                     if (rotating === true) {
-                        var angle = this.getAngle(parseInt($(".activeTool").css("left")), parseInt($(".activeTool").css("top")), event.pageX, event.pageY);
+                        var angle = self.getAngle(parseInt($(".activeTool").css("left")), parseInt($(".activeTool").css("top")), event.pageX, event.pageY);
                         $(".activeTool").rotate({
                             "angle": angle + 45,
                             "center": ["0%", "100%"]
