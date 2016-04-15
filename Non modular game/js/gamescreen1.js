@@ -105,13 +105,14 @@ $(document).ready(function () {
         if ('correctAnswer' in gameData['options'][selectedOption]) {
             console.log("You have caught the culprit!");
             alert("You have caught the culprit!");
-            window.location.href = "MainMenu.html";
         } else {
+            alert("You have arrested the innocent!");
             console.log("You have arrested the innocent!");
             $("#treats").trigger("reduce");
         }
         //Now make changes to localStorage to reflect the achievements
         $(document).trigger('stageCompletion', [$("#treats").attr("data-value"), $("#treats").attr("data-max")]);
+        window.location.href = "MainMenu.html";
     });
 
     $("#cluesWrapper").on("getNextClue", function () {
