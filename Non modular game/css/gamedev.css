@@ -64,11 +64,12 @@
 
 .innocent:after {
     color: rgba(100,20,20,0.6);
-    content: 'INNOCENT';
+    content: 'MARKED INNOCENT';
     font-size: 30px;
     position: absolute;
-    top: 100px;
-    left: 100px;
+    padding: 20px;
+    top: 50px;
+    left: 20px;
 }
 
 .innocent .checkbox_wrapper {
