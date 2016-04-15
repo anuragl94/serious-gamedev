@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
         <link rel="stylesheet" href="css/theme.css" />
         <script src="js/lib/jquery-1.11.3.min.js"></script>
+        <script src="js/levelTracker.js"></script>
     </head>
     <body onload="pop()">
         <div class="pageTitle">
@@ -69,8 +70,8 @@
                         if (stats.stages.hasOwnProperty(key)) {
                             if (stats.stages[key].perfect === true)
                                 document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/star.png' style='height:15px;padding-left:10px;' />");
-//                            else
-//                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/bstar.png' style='height:15px;padding-left:10px;' />");
+                            else
+                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/bstar.png' style='height:15px;padding-left:10px;' />");
                         }
                     }
                 }

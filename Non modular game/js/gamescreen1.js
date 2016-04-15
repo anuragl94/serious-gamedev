@@ -105,6 +105,7 @@ $(document).ready(function () {
         if ('correctAnswer' in gameData['options'][selectedOption]) {
             console.log("You have caught the culprit!");
             alert("You have caught the culprit!");
+            window.location.href = "MainMenu.html";
         } else {
             console.log("You have arrested the innocent!");
             $("#treats").trigger("reduce");
@@ -181,4 +182,8 @@ $(document).ready(function () {
         $(this).toggle();
     });
     gameData['solvedClues'] = [];
+    
+    $("#replay").click(function(){
+       window.location.reload(true); 
+    });
 });
