@@ -70,11 +70,13 @@ var questionGenerator = {
                         correctImage.src=correctImageSrc;
                         output.innerHTML = "{\n";
                         for(var clue in questionGenerated.q1){
+                            output.innerHTML += "{\n";
                             for(var atr in questionGenerated.q1[clue]){
                                 output.innerHTML += ("'"+atr+"' : '"+questionGenerated.q1[clue][atr]+"',\n");
                             }
+                            output.innerHTML +="}";
                         }
-                        output.innerHTML +="}";
+                        output.innerHTML +="\n}";
                     }
                     
                 }

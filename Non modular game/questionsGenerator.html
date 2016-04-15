@@ -9,6 +9,8 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Jquery Mobile-->
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/lib/jquery-1.11.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -43,11 +45,15 @@
             <input id="addClue" type="button" class="btn-primary" value="Add" />
             <input id="clearClue" type="button" class="btn-primary" value="Clear" />
         <!-- Sample Correct Answer Display -->
-        <div id="SampleCorrectAnswer" style="opacity:0;">
-            <h2>Sample Correct Answer</h2>
-            <img id="CorrectImage" width="250px" height="250px" style="border:1px red;"/>
-            <h2>Question Generated</h2>
-            <textarea id="Output" style="width:300px;height:200px;"></textarea>
+        <div id="SampleCorrectAnswer" style="opacity:0;" class="ui-grid-a">
+            <div class="ui-block-a">
+                <h2>Sample Correct Answer</h2>
+                <img id="CorrectImage" width="250px" height="250px" style="border:1px red;"/>
+            </div>
+            <div class="ui-block-b">
+                <h2>Question Generated</h2>
+                <textarea id="Output" style="width:300px;height:200px;"></textarea>
+            </div>
         </div>
     </form>
 </body>
