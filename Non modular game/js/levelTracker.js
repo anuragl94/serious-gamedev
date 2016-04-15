@@ -20,8 +20,8 @@ var levelTracker = {
             if (window.location.search !== "") {
                 var stage = window.location.search.split("stage=")[1].split("&")[0];
                 var stats = JSON.parse(localStorage.stats);
-                console.log(stats);
-                console.log(stage, stats.stages);
+//                console.log(stats);
+//                console.log(stage, stats.stages);
                 if (!(stage in stats.stages)) {
                     stats.stages[stage] = {
                         attempts: 0,

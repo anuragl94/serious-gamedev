@@ -4,6 +4,8 @@ $(document).ready(function () {
     optionsProducer.init();
     var returnValues = optionsProducer.render();
     $("#optionsWrapper").append(returnValues['options_markup']);
+    //Options are rendered. Render the vertices now.
+    toolkit.renderVertices($(".option"), coordinates);
 
     $("#optionsWrapper").on("change", function () {
         //Here we use statetracker module to capture the new state of the set of options
@@ -166,7 +168,7 @@ $(document).ready(function () {
     // The following lines render HTML markup for the clues. The code will be pushed into the relevant module
     var cluesBox = document.createElement("div");
     $(cluesBox).attr("id", "clues");
-    $(returnValue['clues']).each(function () {
+    $(returnValues['clues']).each(function () {
         //This next line must go through the language API for translation. Not translating into any language for now
         var clue_text = "Culprit has " + "<strong class='glossaryTerm'>" + this['attribute'] + "</strong>" + this['comparator'] + this['quantity'] + "<br />";
         clue_text = languageApi.translate(this['attribute'], this['comparator'], this['quantity']);

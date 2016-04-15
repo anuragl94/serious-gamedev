@@ -701,10 +701,10 @@ var optionsProducer = {
                 var stage = urlParse("stage");
                 if (stage === "Not found")
                     var stage = 6;
-                console.log("Stage: " + stage);
+//                console.log("Stage: " + stage);
                 if (qno === "Not found")
                     var qno = Math.floor(Math.random() * (3 - 0 + 1) + 0);
-                console.log("Question: " + qno);
+//                console.log("Question: " + qno);
                 var noOfClues = parseInt(config.questionsRepo[stage].noOfClues);
                 var noOfOptions = parseInt(config.questionsRepo[stage].noOfOptions);
                 var noOfCorrectOptions = parseInt(config.questionsRepo[stage].noOfCorrectOptions);
@@ -857,7 +857,7 @@ var optionsProducer = {
                     $(label).append(temp);
                     markup.appendChild(label);
                     optionsMarkup.appendChild(markup);
-                    console.log(Options[i].id + " : " + JSON.stringify(Options[i])); // Help to solve
+//                    console.log(Options[i].id + " : " + JSON.stringify(Options[i])); // Help to solve
                 }
 
                 //Fisher-Yates Shuffle.

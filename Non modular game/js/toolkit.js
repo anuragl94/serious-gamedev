@@ -9,18 +9,13 @@ var toolkit = {
         return theta;
     },
     renderVertices: function (shapes, coordinates) {
-        $.each($(shapes), function (index, option) {
+        $.each(shapes, function (index, option) {
             var figure = $(option).find("img").attr("src").split("/");
             figure = figure[figure.length - 1].split(".")[0];
-            console.log(figure);
             var target = this;
-            var imageOffset = $(this).offset();
-            var offset = $(this).find("img").offset();
-            offset.left = offset.left - imageOffset.left;
-            offset.top = offset.top - imageOffset.top;
+            var offset = $(this).find("img").position();
             $.each(coordinates[figure], function () {
                 var vertex = document.createElement("div");
-                //All vertices were off by 15px to the left. Unable to trace the reason. So, hardcoded the offset here.
                 $(vertex).addClass("vertex").css({"left": this[0] + offset.left + 15}).css({"top": this[1] + offset.top});
                 $(target).append(vertex);
             });
@@ -31,12 +26,12 @@ var toolkit = {
         var rotating = true;
         var toolActive = false;
         $(document).ready(function () {
-            $(".option").click(function (e) {
+            $("#optionsWrapper").on("click", ".option", function (e) {
                 if (!toolActive)
                     return;
                 e.preventDefault();
                 if ($(".activeTool").attr("id") === "perpTool") {
-                    console.log("I'm now tracing coordinates");
+//                    console.log("I'm now tracing coordinates");
                     var closest = null;
                     var closest_distance = 9999;
                     $(this).find(".vertex").each(function () {
@@ -46,14 +41,14 @@ var toolkit = {
                         var x = parseInt(vertex_coords["left"]) - event.pageX;
                         var y = parseInt(vertex_coords["top"]) - event.pageY;
                         var dist = Math.sqrt(x * x + y * y);
-                        console.log("Distance to point is ", dist);
+//                        console.log("Distance to point is ", dist);
                         if ((dist < closest_distance) && (dist < this.snap_offset)) {
                             closest_distance = dist;
                             closest = this;
                         }
                     });
                     if (closest !== null) {
-                        console.log("Found my soulmate. Now I'll be attached to it.");
+//                        console.log("Found my soulmate. Now I'll be attached to it.");
                         following = false;
                         var vertex_coords = $(closest).offset();
                         $(".activeTool").css({
@@ -81,7 +76,7 @@ var toolkit = {
                         var denominator = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
                         var dist = Math.abs((numerator) / (denominator));
                         if (dist < closest_distance) {
-                            console.log("closest distance", dist);
+//                            console.log("closest distance", dist);
                             closest1 = coord1;
                             closest2 = coord2;
                             closest_distance = dist;
@@ -151,7 +146,6 @@ var toolkit = {
                 if ($(".activeTool").attr("id") === $(this).attr("data-tool")) {
                     $(".activeTool").removeClass("activeTool").toggle(false);
                 } else {
-                    console.log("Nope");
                     $(".activeTool").removeClass("activeTool").toggle(false);
                     $("#" + $(this).attr("data-tool")).addClass("activeTool").toggle(true);
                 }

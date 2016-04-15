@@ -72,7 +72,7 @@ var languageApi = {
         var output = {
             plaintext: ""
         };
-        console.log(this);
+//        console.log(this);
         var structure = this.structure;
         var phrases = this.phrases;
         var raw = {
