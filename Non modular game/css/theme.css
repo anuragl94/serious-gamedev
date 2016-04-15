@@ -1,19 +1,25 @@
 body {
     padding: 0;
+    margin: 0;
     background-color: #efefef;
 }
 
 .option {
+    margin-bottom: 20px;
     background-color: white;
-    box-shadow: 0 1px 1px 0 #a8a8a8
+    box-shadow: 0 1px 1px 0 #a8a8a8;
+}
+
+.option:hover {
+    box-shadow: 2px 3px 3px 0 #a8a8a8;
 }
 
 .innocent {
     background-color: #eeeeee;
 }
 
-.option:hover {
-    box-shadow: 2px 3px 3px 0 #a8a8a8
+.innocent:hover {
+    box-shadow: 0 1px 1px 0 #a8a8a8;
 }
 
 .pageTitle {
@@ -21,11 +27,10 @@ body {
     position: relative;
     top: 0;
     color: white;
-    height: 80px;
-    width: 100%;
     background-color: #5593C7;
     vertical-align: middle;
     padding: 20px;
+    margin-bottom: 10px;
 }
 
 .pageTitle h1 {
