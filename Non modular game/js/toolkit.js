@@ -13,10 +13,9 @@ var toolkit = {
             var figure = $(option).find("img").attr("src").split("/");
             figure = figure[figure.length - 1].split(".")[0];
             var target = this;
-            var offset = $(this).find("img").position();
             $.each(coordinates[figure], function () {
                 var vertex = document.createElement("div");
-                $(vertex).addClass("vertex").css({"left": this[0] + offset.left + 15}).css({"top": this[1] + offset.top});
+                $(vertex).addClass("vertex").css({"left": this[0]}).css({"top": this[1]});
                 $(target).append(vertex);
             });
         });

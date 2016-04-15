@@ -5,7 +5,7 @@ $(document).ready(function () {
     var returnValues = optionsProducer.render();
     $("#optionsWrapper").append(returnValues['options_markup']);
     //Options are rendered. Render the vertices now.
-    toolkit.renderVertices($(".option"), coordinates);
+    toolkit.renderVertices($(".option .img_wrapper"), coordinates);
 
     $("#optionsWrapper").on("change", function () {
         //Here we use statetracker module to capture the new state of the set of options

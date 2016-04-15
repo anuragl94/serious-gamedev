@@ -852,7 +852,10 @@ var optionsProducer = {
                     var temp = document.createElement("img");
                     temp.class = "option"
                     temp.src = "../Modules/Generators/version3/" + Options[i].id;
-                    label.appendChild(temp);
+                    var wrapper = document.createElement("div");
+                    wrapper.className = "img_wrapper";
+                    wrapper.appendChild(temp);
+                    label.appendChild(wrapper);
                     temp = '<div class="checkbox_wrapper"><input type="checkbox" index="' + i + '" /><label></label></div>';
                     $(label).append(temp);
                     markup.appendChild(label);
