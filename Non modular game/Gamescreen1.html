@@ -6,10 +6,11 @@
         <!-- Bootstrap -->
         <link href="../Public/css/bootstrap.min.css" rel="stylesheet" />
         <link href="css/gamedev.css" rel="stylesheet" />
+        <link href="css/theme.css" rel="stylesheet" />
     </head>
     <body>
-        <div style="height:60px;color:white;background-color:rgba(31, 137, 224, 1);">
-            <center><h1 style="font-family:Lucida Calligraphy;padding-top:5px;padding-left:5px;">Police Quad</h1></center>
+        <div class="pageTitle">
+            <center><h1>Gamescreen 1</h1></center>
         </div>
         <div>
             <!--Special elements belong here-->
@@ -30,17 +31,17 @@
                     <h2>Actions</h2>
                     <div class="row actions">
                         <div class="col-lg-4 col-md-4">
-                            <button id="inspect">
+                            <button class="btn  btn-primary" id="inspect">
                                 Next clue
                             </button>
                         </div>
                         <div class="col-lg-4 col-md-4">
-                            <button id="replay">
+                            <button class="btn  btn-primary" id="replay">
                                 Replay
                             </button>
                         </div>
                         <div class="col-lg-4 col-md-4">
-                            <button id="arrest">
+                            <button class="btn  btn-primary" id="arrest">
                                 Done
                             </button>
                         </div>
@@ -54,7 +55,7 @@
                     <div class="row tools">
                         <div class="col-lg-4 col-md-4">
                             <div id="toolBox">
-                                <button class="toolButton" data-tool="perpTool">Angle tool</button>
+                                <button class="btn  btn-primary toolButton" data-tool="perpTool">Angle tool</button>
                             </div>
                         </div>
                     </div>
