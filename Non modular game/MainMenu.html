@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
         <script src="js/lib/jquery-1.11.3.min.js"></script>
+        <script src="js/levelTracker.js"></script>
     </head>
     <body onload="pop()">
         <div style="padding-top:0px;">
@@ -56,20 +57,27 @@
                 {
                     stats = JSON.parse(localStorage.stats);
                     var highestStage = Math.max.apply(null, stats.stagesCrossed);
-                    if (highestStage < 3)
-                        document.getElementById("lock2").src = "img/lock.png";
-                    else
-                        document.getElementById("lock2").src = "img/unlock.png";
-                    if (highestStage < 6)
-                        document.getElementById("lock3").src = "img/lock.png";
-                    else
+                    if (highestStage >= 4 )
+                    {
                         document.getElementById("lock3").src = "img/unlock.png";
+                        document.getElementById("lock2").src = "img/unlock.png";
+                    }
+                    else if (highestStage >= 1)
+                    {
+                        document.getElementById("lock2").src = "img/unlock.png";
+                        document.getElementById("lock3").src = "img/lock.png";
+                    }
+                    else
+                    {
+                        document.getElementById("lock2").src = "img/lock.png";
+                        document.getElementById("lock3").src = "img/lock.png";
+                    }
                     for (var key in stats.stages) {
                         if (stats.stages.hasOwnProperty(key)) {
                             if (stats.stages[key].perfect === true)
                                 document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/star.png' style='width:20px;padding-left:10px;' />");
-//                            else
-//                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/bstar.png' style='width:20px;padding-left:10px;' />");
+                            else
+                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/bstar.png' style='width:20px;padding-left:10px;' />");
                         }
                     }
                 }
@@ -78,20 +86,15 @@
             $("a").click(function (event) {
                 event.preventDefault();
                 var highestStage = Math.max.apply(null,stats.stagesCrossed);
-                if (highestStage >= 6) {
-//                    pop();
+                if (highestStage >= 4) {
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
-                } else if (highestStage >= 3 && this.id <= 6) {
-//                    pop();
+                } else if (highestStage >= 1 && this.id <= 6) {
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
-                }
-                else if (highestStage < 3 && this.id <= 3) {
-//                    pop();
-                    window.location.href = "Gamescreen1.html?stage=" + this.id;
+                } else if(this.id <= 3) {
+                     window.location.href = "Gamescreen1.html?stage=" + this.id;
                 }
                 else
                     alert("Sorry!, You haven't unlocked this level yet. Please finish the earlier stages.");
-//                pop();
                 
             });
         </script>
