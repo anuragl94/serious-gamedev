@@ -20,7 +20,7 @@ var staticText = {
         hindi: "उपकरण"
     },
     "next-clue": {
-        english: "Replay",
+        english: "Next clue",
         hindi: "undefined"
     },
     "replay": {
