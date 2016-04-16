@@ -4,13 +4,15 @@
         <title>Police Quad</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="css/theme.css" />
         <script src="js/lib/jquery-1.11.3.min.js"></script>
+        <script src="js/levelTracker.js"></script>
     </head>
     <body onload="pop()">
-        <div style="padding-top:0px;">
-            <div style="height:60px;color:white;background-color:rgba(31, 137, 224, 1);">
-                <h1 style="font-family:Lucida Calligraphy;padding-top:5px;padding-left:5px;">Main Menu</h1>
-            </div><!-- /header -->
+        <div class="pageTitle">
+            <center><h1>Main menu</h1></center>
+        </div>
+        <div>
             <div class="ui-grid-a">
                 <div class="ui-block-a" style="padding-left:10px">
                     <h2>Instructions</h2>
@@ -29,19 +31,19 @@
             </div>
             <div class="ui-grid-b" style="color:white;">
                 <div class="ui-block-a" style="background:darkgreen;">
-                    <center><h2>Level 1</h2><img id="lock1" src="img/unlock.png" style="height:50px; width:50px;"/></center>
+                    <center><h2>Level 1</h2><img id="lock1" src="img/unlock.png" style="height:50px;"/></center>
                     <a class="ui-btn" id="1" style="background-color:green; color:white;">Stage 1</a>
                     <a class="ui-btn" id="2" style="background-color:green; color:white;">Stage 2</a>
                     <a class="ui-btn" id="3" style="background-color:green; color:white;">Stage 3</a>
                 </div>
                 <div class="ui-block-b" style="background:darkgoldenrod;">
-                    <center><h2>Level 2</h2><img id="lock2" src="img/lock.png" style="height:50px; width:50px;"/></center>
+                    <center><h2>Level 2</h2><img id="lock2" src="img/lock.png" style="height:50px;"/></center>
                     <a class="ui-btn" id="4" style="background-color:goldenrod; color:white;">Stage 4</a>
                     <a class="ui-btn" id="5" style="background-color:goldenrod; color:white;">Stage 5</a>
                     <a class="ui-btn" id="6" style="background-color:goldenrod; color:white;">Stage 6</a>
                 </div>
                 <div class="ui-block-c" style="background:deepskyblue;">
-                    <center><h2>Level 3</h2><img id="lock3" src="img/lock.png" style="height:50px; width:50px;"/></center>
+                    <center><h2>Level 3</h2><img id="lock3" src="img/lock.png" style="height:50px;"/></center>
                     <a class="ui-btn" id="7" style="background-color:skyblue; color:white;">Stage 7</a>
                     <a class="ui-btn" id="8" style="background-color:skyblue; color:white;">Stage 8</a>
                     <a class="ui-btn" id="9" style="background-color:skyblue; color:white;">Stage 9</a>
@@ -56,43 +58,41 @@
                 {
                     stats = JSON.parse(localStorage.stats);
                     var highestStage = Math.max.apply(null, stats.stagesCrossed);
-                    if (highestStage < 3)
-                        document.getElementById("lock2").src = "img/lock.png";
-                    else
-                        document.getElementById("lock2").src = "img/unlock.png";
-                    if (highestStage < 6)
-                        document.getElementById("lock3").src = "img/lock.png";
-                    else
+                    if (highestStage >= 4)
+                    {
                         document.getElementById("lock3").src = "img/unlock.png";
+                        document.getElementById("lock2").src = "img/unlock.png";
+                    } else if (highestStage >= 1)
+                    {
+                        document.getElementById("lock2").src = "img/unlock.png";
+                        document.getElementById("lock3").src = "img/lock.png";
+                    } else
+                    {
+                        document.getElementById("lock2").src = "img/lock.png";
+                        document.getElementById("lock3").src = "img/lock.png";
+                    }
                     for (var key in stats.stages) {
                         if (stats.stages.hasOwnProperty(key)) {
                             if (stats.stages[key].perfect === true)
-                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/star.png' style='width:20px;padding-left:10px;' />");
-//                            else
-//                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/bstar.png' style='width:20px;padding-left:10px;' />");
+                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/star.png' style='height:15px;padding-left:10px;' />");
+                            else
+                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/bstar.png' style='height:15px;padding-left:10px;' />");
                         }
                     }
                 }
             }
-            
+
             $("a").click(function (event) {
                 event.preventDefault();
-                var highestStage = Math.max.apply(null,stats.stagesCrossed);
-                if (highestStage >= 6) {
-//                    pop();
+                var highestStage = Math.max.apply(null, stats.stagesCrossed);
+                if (highestStage >= 4) {
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
-                } else if (highestStage >= 3 && this.id <= 6) {
-//                    pop();
+                } else if (highestStage >= 1 && this.id <= 6) {
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
-                }
-                else if (highestStage < 3 && this.id <= 3) {
-//                    pop();
+                } else if (this.id <= 3) {
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
-                }
-                else
+                } else
                     alert("Sorry!, You haven't unlocked this level yet. Please finish the earlier stages.");
-//                pop();
-                
             });
         </script>
     </body>

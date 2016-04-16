@@ -25,14 +25,29 @@
     width: 100%;
     border:solid 1px #eeeeee;
     background-color: #fafafa;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
     text-align: center;
+    position: relative;
+}
+
+.img_wrapper {
+    display: inline-block;
+    position: relative;
 }
 
 .option img
 {
     position: relative;
-    margin: auto;
+    display: inline-block;
+}
+
+.vertex {
+    height: 3px;
+    width: 3px;
+    margin-top: -1px;
+    margin-left: -1px;
+    position: absolute;
+    z-index: 1;
 }
 
 .option input {
@@ -67,15 +82,6 @@
 
 .glossaryTerm {
     cursor: pointer;
-}
-
-.vertex {
-    height: 3px;
-    width: 3px;
-    margin-top: -1px;
-    margin-left: -1px;
-    position: absolute;
-    z-index: 1;
 }
 
 #perpTool, #parallelTool {

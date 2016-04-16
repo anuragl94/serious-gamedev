@@ -1,7 +1,11 @@
 $(document).ready(function () {
     /* Begin logic for the options */
     // Do what we must to render the options
-    $("#optionsWrapper").append(returnValue['options_markup']);
+    optionsProducer.init();
+    var returnValues = optionsProducer.render();
+    $("#optionsWrapper").append(returnValues['options_markup']);
+    //Options are rendered. Render the vertices now.
+    toolkit.renderVertices($(".option .img_wrapper"), coordinates);
 
     $("#optionsWrapper").on("change", function () {
         //Here we use statetracker module to capture the new state of the set of options
@@ -102,11 +106,13 @@ $(document).ready(function () {
             console.log("You have caught the culprit!");
             alert("You have caught the culprit!");
         } else {
+            alert("You have arrested the innocent!");
             console.log("You have arrested the innocent!");
             $("#treats").trigger("reduce");
         }
         //Now make changes to localStorage to reflect the achievements
         $(document).trigger('stageCompletion', [$("#treats").attr("data-value"), $("#treats").attr("data-max")]);
+        window.location.href = "MainMenu.html";
     });
 
     $("#cluesWrapper").on("getNextClue", function () {
@@ -164,7 +170,7 @@ $(document).ready(function () {
     // The following lines render HTML markup for the clues. The code will be pushed into the relevant module
     var cluesBox = document.createElement("div");
     $(cluesBox).attr("id", "clues");
-    $(returnValue['clues']).each(function () {
+    $(returnValues['clues']).each(function () {
         //This next line must go through the language API for translation. Not translating into any language for now
         var clue_text = "Culprit has " + "<strong class='glossaryTerm'>" + this['attribute'] + "</strong>" + this['comparator'] + this['quantity'] + "<br />";
         clue_text = languageApi.translate(this['attribute'], this['comparator'], this['quantity']);
@@ -177,4 +183,8 @@ $(document).ready(function () {
         $(this).toggle();
     });
     gameData['solvedClues'] = [];
+    
+    $("#replay").click(function(){
+       window.location.reload(true); 
+    });
 });
