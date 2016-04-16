@@ -58,14 +58,19 @@
                 {
                     stats = JSON.parse(localStorage.stats);
                     var highestStage = Math.max.apply(null, stats.stagesCrossed);
-                    if (highestStage < 3)
-                        document.getElementById("lock2").src = "img/lock.png";
-                    else
-                        document.getElementById("lock2").src = "img/unlock.png";
-                    if (highestStage < 6)
-                        document.getElementById("lock3").src = "img/lock.png";
-                    else
+                    if (highestStage >= 4)
+                    {
                         document.getElementById("lock3").src = "img/unlock.png";
+                        document.getElementById("lock2").src = "img/unlock.png";
+                    } else if (highestStage >= 1)
+                    {
+                        document.getElementById("lock2").src = "img/unlock.png";
+                        document.getElementById("lock3").src = "img/lock.png";
+                    } else
+                    {
+                        document.getElementById("lock2").src = "img/lock.png";
+                        document.getElementById("lock3").src = "img/lock.png";
+                    }
                     for (var key in stats.stages) {
                         if (stats.stages.hasOwnProperty(key)) {
                             if (stats.stages[key].perfect === true)
@@ -80,19 +85,14 @@
             $("a").click(function (event) {
                 event.preventDefault();
                 var highestStage = Math.max.apply(null, stats.stagesCrossed);
-                if (highestStage >= 6) {
-//                    pop();
+                if (highestStage >= 4) {
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
-                } else if (highestStage >= 3 && this.id <= 6) {
-//                    pop();
+                } else if (highestStage >= 1 && this.id <= 6) {
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
-                } else if (highestStage < 3 && this.id <= 3) {
-//                    pop();
+                } else if (this.id <= 3) {
                     window.location.href = "Gamescreen1.html?stage=" + this.id;
                 } else
                     alert("Sorry!, You haven't unlocked this level yet. Please finish the earlier stages.");
-//                pop();
-
             });
         </script>
     </body>
