@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="pageTitle">
-            <center><h1>Police Quad</h1></center>
+            <center><h1 data-translate="gs1-title">Police Quad</h1></center>
         </div>
         <div>
             <!--Special elements belong here-->
@@ -24,34 +24,34 @@
                 <div class="col-md-9 moduleWrapper" id="optionsWrapper">
                 </div>
                 <div class="col-md-3">
-                    <h2>Clues</h2>
-                    The culprit's shape marker has
+                    <h2 data-translate="clues">Clues</h2>
+                    <span data-translate="gs1-hint">The culprit's shape marker has</span>
                     <div class="moduleWrapper" id="cluesWrapper">
                     </div>
-                    <h2>Actions</h2>
+                    <h2 data-translate="actions">Actions</h2>
                     <div class="row actions">
                         <div class="col-lg-4 col-md-4">
-                            <button class="btn  btn-primary" id="inspect">
+                            <button class="btn  btn-primary" id="inspect" data-translate="next-clue">
                                 Next clue
                             </button>
                         </div>
                         <div class="col-lg-4 col-md-4">
-                            <button class="btn  btn-primary" id="replay">
+                            <button class="btn  btn-primary" id="replay" data-translate="replay">
                                 Replay
                             </button>
                         </div>
                         <div class="col-lg-4 col-md-4">
-                            <button class="btn  btn-primary" id="arrest">
+                            <button class="btn  btn-primary" id="arrest" data-translate="done">
                                 Done
                             </button>
                         </div>
                         <div class="col-lg-4 col-md-4">
-                            Treats left:
+                            <span  data-translate="treats-left">Treats left:</span>
                             <!--This image was used for representing a battery state, which was subsequently replaced by an accuracy monitoring system. So, leaving this image here so that in the future, if that accuracy should be displayed in-game, we can still do it-->
                             <p id="treats" data-value="5" data-max="5">5</p>
                         </div>
                     </div>
-                    <h2>Tools</h2>
+                    <h2 data-translate="tools">Tools</h2>
                     <div class="row tools">
                         <div class="col-lg-4 col-md-4">
                             <div id="toolBox">
@@ -81,6 +81,7 @@
         <script src="js/glossary.js"></script>
         <script src="js/languageApi.js"></script>
         <script src="js/levelTracker.js"></script>
+        <script src="js/staticText.js"></script>
         <script src="js/gamescreen1.js"></script>
     </body>
 </html>

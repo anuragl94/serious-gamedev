@@ -68,7 +68,8 @@ var languageApi = {
         }
     },
     translate: function (attribute, comparator, quantity, language) {
-        language = language || "english";
+        var language = localStorage.language || "english";
+        localStorage.language = language;
         var output = {
             plaintext: ""
         };
