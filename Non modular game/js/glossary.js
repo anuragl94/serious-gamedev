@@ -15,5 +15,6 @@ var glossary = {
         $(document).on("click", ".glossaryTerm", function () {
             showPopup($(this).html());
         });
+        return this;
     }
 }.init();

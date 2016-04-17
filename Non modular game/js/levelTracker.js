@@ -47,5 +47,6 @@ var levelTracker = {
                 localStorage.stats = JSON.stringify(stats);
             }
         });
+        return this;
     }
 }.init();
