@@ -105,6 +105,7 @@ $(document).ready(function () {
         if ('correctAnswer' in gameData['options'][selectedOption]) {
             console.log("You have caught the culprit!");
             alert("You have caught the culprit!");
+            var stage = window.location.search.split("stage=")[1].split("&")[0];
         } else {
             alert("You have arrested the innocent!");
             console.log("You have arrested the innocent!");
