@@ -71,7 +71,8 @@ var languageApi = {
         var language = localStorage.language || "english";
         localStorage.language = language;
         var output = {
-            plaintext: ""
+            plaintext: "",
+            highlightedText: ""
         };
 //        console.log(this);
         var structure = this.structure;
@@ -85,10 +86,12 @@ var languageApi = {
             structure = phrases[comparator][language].structure;
         $.each(structure[language], function () {
             var translatedWord = raw[this];
-            if (raw[this] in phrases)
+            if (raw[this] in phrases) {
                 translatedWord = phrases[raw[this]][language];
-            if (typeof translatedWord !== "string")
-                translatedWord = translatedWord.translation;
+                output.highlightedText += ' <span class="keyWord" data-property="' + raw[this] + '">' + translatedWord + '</span>';
+            } else {
+                output.highlightedText += " " + translatedWord;
+            }
             output[this] = translatedWord;
             output.plaintext += " " + translatedWord;
         });

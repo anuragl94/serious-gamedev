@@ -173,10 +173,9 @@ $(document).ready(function () {
     $(cluesBox).attr("id", "clues");
     $(returnValues['clues']).each(function () {
         //This next line must go through the language API for translation. Not translating into any language for now
-        var clue_text = "Culprit has " + "<strong class='glossaryTerm'>" + this['attribute'] + "</strong>" + this['comparator'] + this['quantity'] + "<br />";
-        clue_text = languageApi.translate(this['attribute'], this['comparator'], this['quantity']);
-        var property = "Culprit has " + clue_text['attribute'] + clue_text['comparator'] + clue_text['quantity'];
-        var clue = '<div class="clue" data-attr="' + property + '">' + clue_text.plaintext + '</div>';
+        var clue_text = languageApi.translate(this['attribute'], this['comparator'], this['quantity']);
+        var property = this['attribute'];
+        var clue = '<div class="clue">' + clue_text.highlightedText + '</div>';
         $(cluesBox).append(clue);
     });
     $("#cluesWrapper").append(cluesBox);
@@ -184,8 +183,8 @@ $(document).ready(function () {
         $(this).toggle();
     });
     gameData['solvedClues'] = [];
-    
-    $("#replay").click(function(){
-       window.location.reload(true); 
+
+    $("#replay").click(function () {
+        window.location.reload(true);
     });
 });

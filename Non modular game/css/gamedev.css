@@ -150,3 +150,12 @@ img {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */
 }
+
+.keyWord {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-title::first-letter {
+    text-transform: uppercase;
+}
