@@ -38,9 +38,14 @@ $(document).ready(function () {
         var selectedOption = $(this).find("input:checked").map(function () {
             return $(this).attr("index");
         });
+        var unSelectedOption = returnValues["options_markup"].childNodes.length - document.getElementsByClassName('innocent').length;
         if (selectedOption.length == 1) {
             $("#cluesWrapper").trigger("checkIfFinalAnswer", selectedOption);
+        } else if (unSelectedOption == 1) {
+            alert("Please select the culprit then click on done.");
+            //$("#cluesWrapper").trigger("checkIfFinalAnswer", selectedOption);
         } else {
+            alert("There can only be one culprit!");
             console.log("There can only be one culprit!");
         }
     });
@@ -121,6 +126,7 @@ $(document).ready(function () {
             $("#cluesWrapper").find(".clue:not(:visible)").first().toggle();
         } else {
             //Do nothing. You're out of clues!
+            alert("That was your last clue! Now you have enough clues to make an arrest");
         }
 
         if (!$("#cluesWrapper").find(".clue:not(:visible)").length) {
@@ -186,5 +192,8 @@ $(document).ready(function () {
 
     $("#replay").click(function () {
         window.location.reload(true);
+    });
+    $("#back").on('click', function () {
+        window.location.href = "MainMenu.html"; console.log("asd");
     });
 });
