@@ -194,6 +194,6 @@ $(document).ready(function () {
         window.location.reload(true);
     });
     $("#back").on('click', function () {
-        window.location.href = "MainMenu.html"; console.log("asd");
+        window.location.href = "MainMenu.html";
     });
 });
