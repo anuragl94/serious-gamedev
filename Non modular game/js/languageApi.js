@@ -5,29 +5,29 @@ var languageApi = {
     },
     phrases: {
         "<": {
-            "english": "lesser than",
+            "english": "Lesser than",
             "hindi": {
                 "structure": ["quantity", "comparator", "attribute"],
                 "translation": "से कम"
             }
         },
         "=": {
-            "english": "exactly",
+            "english": "Exactly",
             "hindi": "केवल"
         },
         ">": {
-            "english": "more than",
+            "english": "More than",
             "hindi": {
                 "structure": ["quantity", "comparator", "attribute"],
                 "translation": "से अधिक"
             }
         },
         "<=": {
-            "english": "at most",
+            "english": "At most",
             "hindi": "ज्यादा से ज्यादा"
         },
         ">=": {
-            "english": "at least",
+            "english": "At least",
             "hindi": "कम से कम"
         },
         "straightSides": {

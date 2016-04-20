@@ -60,16 +60,17 @@
 
 .disabled {
     background-color: #dedede;
+    opacity: 0.25;
 }
 
 .innocent:after {
     color: rgba(100,20,20,0.6);
-    content: 'MARKED INNOCENT';
+    content: 'INNOCENT';
     font-size: 30px;
     position: absolute;
     padding: 20px;
     top: 50px;
-    left: 20px;
+    left: 80px;
 }
 
 .innocent .checkbox_wrapper {

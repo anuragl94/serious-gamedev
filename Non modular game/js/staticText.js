@@ -47,6 +47,10 @@ var staticText = {
         english: "Level",
         hindi: "untranslated"
     },
+    "back":{
+        english: "Go Back&nbsp",
+        hindi: "untranslated"
+    },
     "main-menu": {
         english: "Main menu",
         hindi: "untranslated"
