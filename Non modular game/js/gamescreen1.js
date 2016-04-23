@@ -218,7 +218,7 @@ $(document).ready(function () {
         $("#optionsWrapper .row").shuffle();
         $("#treats").trigger("refresh");
         $("#cluesWrapper").find(".clue:not(:first-child)").each(function () {
-            $(this).toggle();
+            $(this).toggle(false);
         });
         alert("This case has been restarted. You will no longer get a star on this case now!");
     });
