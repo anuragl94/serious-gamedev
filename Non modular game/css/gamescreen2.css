@@ -1,0 +1,38 @@
+body {
+    padding: 0 0 0 0;
+}
+
+.shapes {
+    position: relative;
+    background-color: #fdfdfd;
+    text-align: center;
+    overflow: hidden;
+}
+
+.shape {
+    background-color: #fafafa;
+    padding: 5px;
+    margin-bottom: 5px;
+    max-height: 200px;
+}
+
+.clearfix { 
+    overflow: hidden;
+}
+
+.queries button {
+    height: 20px;
+    position: relative;
+    margin-top: -2px;
+    vertical-align: middle;
+}
+
+.querySelector {
+    margin: 5px;
+    padding: 5px;
+}
+
+.disabled {
+    color: #aaaaaa;
+    background-color: #dddddd;
+}

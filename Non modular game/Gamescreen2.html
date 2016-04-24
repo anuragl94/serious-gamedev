@@ -3,35 +3,42 @@
         <meta charset="utf-8">
         <title>Gamescreen 2</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/gamedev.css" rel="stylesheet" />
         <link href="css/gamescreen2.css" rel="stylesheet" />
+        <link href="css/theme.css" rel="stylesheet" />
     </head>
     <body>
         <div class="vertical-margin"><br><br></div>
         <div class="container">
-            
+
             <div class="row">
-                <div class="col-sm-10 col-sm-offset-1 col-lg-10 col-lg-offset-1">
+                <div class="col-lg-12">
                     <div class="shapes well">
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-10 col-sm-offset-1 col-lg-10 col-lg-offset-1">
+                <div class="col-lg-8">
                     <div class="queries well">
                     </div>
                 </div>
             </div>
 
             <div class="shapeTemplate" style="display:none;">
-                <div class="col-lg-2 col-md-2 col-sm-3">
-                    <div class="shape" data-id="">
-                        <img src="shapes/fig001.png" />
-                    </div>
+                <div class="col-lg-3 col-md-2 col-sm-3">
+                    <label class="shape option">
+                        <div class="img_wrapper" data-id="">
+                            <img src="img/shapes/fig01.png" />
+                        </div>
+                        <div class="checkbox_wrapper"><input type="checkbox" index="1">
+                            <label></label>
+                        </div>
+                    </label>
                 </div>
             </div>
             <div class="queryTemplate" style="display:none;">
                 <div class="querySelector well">
-                    Eliminate all shapes with
+                    Does the culprit have
                     <select class="comparatorSelector">
                         <option value="<">less than</option>
                         <option value="<=">at the most</option>
@@ -41,14 +48,14 @@
                     </select>
                     <select class="valueSelector" style="display:none;"></select>
                     <select class="attributeSelector"></select>
-                    <button style="display:none;">Go</button>
+                    <button class="btn btn-default" style="display:none;">?</button>
                 </div>
             </div>
         </div>
 
         <script src="js/lib/jquery-1.11.3.min.js"></script>
         <script src="js/lib/bootstrap.min.js"></script>
-        <script src="js/all_the_shapes.js"></script>
+        <script src="js/shapes.js"></script>
         <script src="js/gamescreen2.js"></script>
     </body>
 </html>

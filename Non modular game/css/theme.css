@@ -41,6 +41,22 @@ body {
     margin-bottom: 10px;
 }
 
+.shapes, .queries {
+    border: none;
+    background-color: rgba(200,200,200,0.1);
+}
+
+.querySelector select {
+    width: 160px;
+    text-align-last: center;
+}
+
+.querySelector button {
+    width: 60px;
+    height: 20px;
+    padding: 0px;
+}
+
 form {
     
 }
