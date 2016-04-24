@@ -851,7 +851,7 @@ var optionsProducer = {
                     $(label).addClass("option");
                     var temp = document.createElement("img");
                     temp.class = "option"
-                    temp.src = "../Modules/Generators/version3/" + Options[i].id;
+                    temp.src = "img/shapes/" + Options[i].id;
                     var wrapper = document.createElement("div");
                     wrapper.className = "img_wrapper";
                     wrapper.appendChild(temp);
