@@ -1,3 +1,4 @@
+// TODO Later
 (function () {
     question = document.getElementById("question").value();
     clues = document.getElementsByClassName("clues");

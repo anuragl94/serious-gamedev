@@ -2,11 +2,5 @@
 Project under Guide Dr. Viraj Kumar
 Carried out at PESIT, Bangalore. India.
 
-Note: This version is a hotfix that ignores modularity and contains all the game code in a single file.
-The development branch will not follow this pattern. Everything will be strictly modular on that branch.
-
-Generic structure of a module:
-Either renders some HTML, or updates the global variable gameData, or creates some event listeners
-
-IMPORTANT NOTE:
-Run "Non modular game/Gamescreen1.html", but with disable-web-security flag enabled on chrome.
+Note: This version ignores modularity and focuses on prototyping the gameplay.
+Download the zip file, navigate to "Non modular game" folder, and click on MainMenu.html to begin playing

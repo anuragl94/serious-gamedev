@@ -8,10 +8,6 @@
     color: goldenrod;
 }
 
-.tools button {
-    width: 100%;
-}
-
 .pageWrapper {
     padding: 10px;
     overflow: hidden;
@@ -28,19 +24,144 @@
     height: 230px;
     width: 100%;
     border:solid 1px #eeeeee;
+    background-color: #fafafa;
+    /*vertical-align: middle;*/
+    text-align: center;
+    position: relative;
+}
+
+.img_wrapper {
+    display: inline-block;
+    position: relative;
 }
 
 .option img
 {
-    margin: 10px;
-    max-height: 90%;
-    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+
+.vertex {
+    height: 3px;
+    width: 3px;
+    margin-top: -1px;
+    margin-left: -1px;
+    position: absolute;
+    z-index: 1;
+}
+
+.option input {
+    float: right;
 }
 
 .moduleWrapper {
-    border:solid 1px #dddddd;
+    /*border:solid 1px #dddddd;*/
 }
 
 .disabled {
-    background-color: #eeeeee;
+    background-color: #dedede;
+    opacity: 0.25;
+}
+
+.innocent:after {
+    color: rgba(100,20,20,0.6);
+    content: 'INNOCENT';
+    font-size: 30px;
+    position: absolute;
+    padding: 20px;
+    top: 50px;
+    left: 80px;
+}
+
+.innocent .checkbox_wrapper {
+    display: none;
+}
+
+.culprit {
+
+}
+
+.glossaryTerm {
+    cursor: pointer;
+}
+
+#perpTool, #parallelTool {
+    display: none;
+}
+
+#perpTool {
+    margin-top: -200px;
+}
+
+.activeTool {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    z-index: 1000;
+}
+
+.centredOrigin {
+    background-color: rgba(0,0,0,0.2);
+    transform-origin: 50% 50% 0;
+}
+
+.rotationHandle {
+    position: absolute;
+    height: 25px;
+    margin-left: 90%;
+    transform-origin: 50% 50% 0;
+    user-drag: none; 
+    -webkit-user-drag: none;
+    z-index: 10;
+}
+
+.checkbox_wrapper {
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    height: 20px;
+    width: 20px;
+}
+
+.checkbox_wrapper input[type="checkbox"] {
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+
+.checkbox_wrapper input[type="checkbox"] + label{
+    background: url('../img/checkbox_normal.png') no-repeat;
+    background-size: 20px;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    z-index: 1;
+}
+
+.checkbox_wrapper input[type="checkbox"]:checked + label{
+    background: url('../img/checkbox_crossed.png') no-repeat;
+    background-size: 20px;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+}
+
+img {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+}
+
+.keyWord {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-title::first-letter {
+    text-transform: uppercase;
+}
+
+#back {
+    background-color: gray;
+    border: none;
 }

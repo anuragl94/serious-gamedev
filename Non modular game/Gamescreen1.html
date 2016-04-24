@@ -1,46 +1,70 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Police Quad Question Generator</title>
+        <title>Police Quad</title>
         <!-- Bootstrap -->
         <link href="../Public/css/bootstrap.min.css" rel="stylesheet" />
         <link href="css/gamedev.css" rel="stylesheet" />
+        <link href="css/theme.css" rel="stylesheet" />
     </head>
     <body>
+        <div class="pageTitle">
+            <center><h1 data-translate="gs1-title">Police Quad</h1> Highscore: <span class="highscore">0</span></center>
+        </div>
+        <div>
+            <!--Special elements belong here-->
+            <div id="perpTool">
+                <img src="img/rotate.png" class="rotationHandle"/>
+                <img class="guiTool beginFollowing" src="img/perptool.png" />
+            </div>
+        </div>
         <div class="pageWrapper">
-            <div class="navbar">
-                <h1>PoliceQuad</h1>
-            </div>
-            <div class="question">
-                <h4>
-                    One of the shapes is the culprit.
-                    Click on the innocent shapes to ELIMINATE them.
-                    The last one left is the culprit – ARREST IT!<br><br>
-                </h4>
-            </div>
             <div class="row">
                 <div class="col-md-9 moduleWrapper" id="optionsWrapper">
                 </div>
                 <div class="col-md-3">
-                    <h2>Clues</h2>
+                    <h2 data-translate="clues">Clues</h2>
+                    <span data-translate="gs1-hint">The culprit's shape marker has</span>
                     <div class="moduleWrapper" id="cluesWrapper">
                     </div>
-                    <h2>Tools</h2>
-                    <!--Insert tools here-->
+                    <h2 data-translate="actions">Actions</h2>
+                    <div class="row actions">
+                        <div class="col-lg-4 col-md-4">
+                            <button class="btn  btn-primary" id="inspect" data-translate="next-clue">
+                                Next clue
+                            </button>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <button class="btn  btn-primary" id="replay" data-translate="replay">
+                                Replay
+                            </button>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <button class="btn  btn-primary" id="arrest" data-translate="done">
+                                Done
+                            </button>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <button class="btn  btn-primary" id="back">
+                                &#10094;
+                                <span data-translate="back">
+                                    Back
+                                </span>
+                            </button>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <span  data-translate="treats-left">Treats left:</span>
+                            <!--This image was used for representing a battery state, which was subsequently replaced by an accuracy monitoring system. So, leaving this image here so that in the future, if that accuracy should be displayed in-game, we can still do it-->
+                            <p id="treats" data-value="5" data-max="5">5</p>
+                        </div>
+                    </div>
+                    <h2 data-translate="tools">Tools</h2>
                     <div class="row tools">
                         <div class="col-lg-4 col-md-4">
-                            <button id="inspect">
-                                <img src="inspect.jpg" height=70 />
-                            </button>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <button id="arrest">
-                                <img src="makeArrest.gif" height=70 />
-                            </button>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <img id="battery" src="battery4.jpg" data-value="4" data-max="4" />
+                            <div id="toolBox">
+                                <button class="btn  btn-primary toolButton" data-tool="perpTool">Angle tool</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -55,177 +79,18 @@
                 'disabledOptions': []
             };
         </script>
-        <script src="../Public/js/jquery-1.11.3.min.js"></script>
-        <script src="../Public/js/bootstrap.min.js"></script>
-        <script src="js/jquery-1.11.3.min.js"></script>
-        <script src="../Engine/js/fetch.js"></script>
-        <script src="options_renderer.js"></script>
-        <script>
-            // Do what we must to render the options
-            $("#optionsWrapper").append(returnValue['options_markup']);
-
-            //~~These are the custom events for options
-            $("#optionsWrapper").on("change", function () {
-                //Here we use statetracker module to capture the new state of the set of options
-                //It may be heavy on the processor if we check state of ALL options at every interaction with a single option
-            });
-            $("#optionsWrapper").on("disableSelected", function () {
-                if (!('disabledOptions' in gameData))
-                    gameData['disabledOptions'] = [];
-                $(this).find("input:checked").each(function () {
-                    gameData['disabledOptions'].push($(this).attr("index"));
-                });
-                $(this).find("input:checked").prop('disabled', true);
-                $(this).find("input:checked").closest('label').addClass('disabled');
-                $(this).trigger("clearSelection");
-            });
-            $("#optionsWrapper").on("clearSelection", function () {
-                $(this).find("input:checked").prop('checked', false);
-            });
-            // This event listener comes from the tools section
-            $("#optionsWrapper").on("inspect", function () {
-                //Here we get a list of selected options along with their attributes
-                var selectedOptions = $(this).find("input:checked").map(function () {
-                    return $(this).attr("index");
-                });
-                $("#cluesWrapper").trigger("checkIfCorrectOptions", [selectedOptions]);
-            });
-            // This event listener comes from the tools section
-            $("#optionsWrapper").on("arrest", function () {
-                //Here we get a list of selected options along with their attributes
-                var selectedOption = $(this).find("input:checked").map(function () {
-                    return $(this).attr("index");
-                });
-                if (selectedOption.length == 1) {
-                    $("#cluesWrapper").trigger("checkIfFinalAnswer", selectedOption);
-                } else {
-                    console.log("There can only be one culprit!");
-                }
-            });
-
-            //~~These are the custom events for clues
-            $("#cluesWrapper").on("checkIfCorrectOptions", function (event, selectedOptions) {
-                //Here we get a list of selected options along with their attributes
-                var currentClueIndex = $("#cluesWrapper").find(".clue:visible").length - 1;
-                var currentClue = gameData['clues'][currentClueIndex];
-                var correctOptions = $(gameData['options']).map(function (index) {
-                    var option = this;
-                    switch (currentClue['comparator']) {
-                        case '=':
-                            if (option[currentClue['attribute']] != currentClue['quantity'])
-                                return index;
-                            break;
-                        case '>':
-                            if (option[currentClue['attribute']] <= currentClue['quantity'])
-                                return index;
-                            break;
-                        case '<':
-                            if (option[currentClue['attribute']] >= currentClue['quantity'])
-                                return index;
-                            break;
-                        default:
-                            break;
-                    }
-                    return null;
-                });
-                correctOptions = $(correctOptions).filter(function () {
-                    if ((this !== null) && ($.inArray(parseInt(this).toString(), gameData['disabledOptions']) == -1))
-                        return true;
-                });
-                //To convert pseudo array to regular array
-                selectedOptions = Array.prototype.slice.call(selectedOptions);
-                correctOptions = Array.prototype.slice.call(correctOptions);
-
-                if (selectedOptions.sort().join(',') === correctOptions.sort().join(',')) {
-                    //Success
-                    console.log("Investigation successful! Good job!");
-                    //$("#battery").trigger("refresh");
-                    $("#cluesWrapper").trigger("getNextClue");
-                    $("#optionsWrapper").trigger("disableSelected");
-                    gameData['solvedClues'].push(currentClueIndex);
-                } else {
-                    console.log("Investigation failed");
-                    $("#battery").trigger("drain");
-                    $("#cluesWrapper").find(".clue:visible").last().addClass("failure");
-                }
-            });
-
-            $("#cluesWrapper").on("checkIfFinalAnswer", function (event, selectedOption) {
-                if ('correctAnswer' in gameData['options'][selectedOption]) {
-                    console.log("You have caught the culprit!");
-                    alert("Win!");
-                } else {
-                    console.log("You have arrested the innocent!");
-                    $("#battery").trigger("drain");
-                }
-            });
-
-            $("#cluesWrapper").on("getNextClue", function () {
-                $("#cluesWrapper").find(".clue:visible").last().removeClass("failure").addClass("success");
-                if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
-                    $("#cluesWrapper").find(".clue:not(:visible)").first().toggle();
-                } else {
-                    //Do nothing. You're out of clues!
-                }
-            });
-
-            //~~These are the custom events for buttons
-            $("#inspect").on('click', function () {
-                if (gameData['solvedClues'].length < $("#cluesWrapper .clue").length) {
-                    $("#optionsWrapper").trigger("inspect");
-                } else {
-                    console.log("You have sufficient clues to make an arrest!");
-                }
-            });
-            $("#arrest").on('click', function () {
-                if (!($("#cluesWrapper").find(".clue:not(:visible)").length)) {
-                    $("#optionsWrapper").trigger("arrest");
-                } else {
-                    console.log("You do not have sufficient clues to make an arrest!");
-                }
-            });
-
-            //~~These are the custom events for battery
-            $("#battery").on("drain", function () {
-                var charge = parseInt($("#battery").attr("data-value")) - 1;
-                if (charge > 0) {
-                    $("#battery").attr("data-value", charge);
-                    $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
-                } else {
-                    alert("Game over! Battery was drained!");
-                    console.log("Game over! Battery was drained!!");
-                }
-            });
-            $("#battery").on("charge", function () {
-                var charge = parseInt($("#battery").attr("data-value")) + 1;
-                if (charge <= $("#battery").attr("data-max")) {
-                    $("#battery").attr("data-value", charge);
-                    $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
-                } else {
-                    console.log("You're overcharging the battery!");
-                }
-            });
-            $("#battery").on("refresh", function () {
-                var charge = $("#battery").attr("data-max");
-                $("#battery").attr("data-value", charge);
-                $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
-            });
-
-            // The following lines render HTML markup for the clues. The code will be pushed into the relevant module
-            var cluesBox = document.createElement("div");
-            $(cluesBox).attr("id", "clues");
-            $(returnValue['clues']).each(function () {
-                //This next line must go through the language API for translation. Not translating into any language for now
-                var clue_text = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'] + "<br />";
-                var property = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'] + "<br />";
-                var clue = '<div class="clue" data-attr="' + property + '">' + clue_text + '</div>';
-                $(cluesBox).append(clue);
-            });
-            $("#cluesWrapper").append(cluesBox);
-            $("#cluesWrapper").find(".clue:not(:first-child)").each(function () {
-                $(this).toggle();
-            });
-            gameData['solvedClues'] = [];
-        </script>
+        <script src="js/lib/jquery-1.11.3.min.js"></script>
+        <script src="js/lib/bootstrap.min.js"></script>
+        <script src="js/lib/jquery-1.11.3.min.js"></script>
+        <script src="js/lib/jQueryRotate.js"></script>
+        <script src="js/optionsProducer.js"></script>
+        <script src="js/toolkit.js"></script>
+        <script src="js/coordinates.js"></script>
+        <script src="js/glossary.js"></script>
+        <script src="js/languageApi.js"></script>
+        <script src="js/levelTracker.js"></script>
+        <script src="js/staticText.js"></script>
+        <script src="js/pointCalculator.js"></script>
+        <script src="js/gamescreen1.js"></script>
     </body>
 </html>

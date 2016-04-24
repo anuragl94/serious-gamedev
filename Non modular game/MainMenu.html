@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html style="height:100%;">
+    <head>
+        <title>Police Quad</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="css/theme.css" />
+        <script src="js/lib/jquery-1.11.3.min.js"></script>
+        <script src="js/levelTracker.js"></script>
+        <script src="js/staticText.js"></script>
+    </head>
+    <body onload="pop()">
+        <div class="pageTitle">
+            <center><h1 data-translate="main-menu">Main menu</h1></center>
+        </div>
+        <div class="options"></div>
+        <div>
+            <div class="ui-grid-a">
+                <div class="ui-block-a" style="padding-left:10px">
+                    <h2 data-translate="instructions">Instructions</h2>
+                    <div data-translate="instruction-text">
+                        You are a police officer, named "GEO".<br />
+                        You are the first alien police officer ever!!<br />
+                        Your strength is rational thinking , and your sense of justice drives you.<br />
+                        It is on you to save many innocents from being wrongly prosecuted!<br />
+                        Use the clues provided to you to find innocent beings disguised as shapes<br />
+                        Earn points and solve cases to get promoted.
+                    </div>
+                </div>
+                <div class="ui-block-b">
+                    <img src="img/Detective.jpg" style="height:250px;" />
+                </div>
+            </div>
+            <div class="ui-grid-b" style="color:white;">
+                <div class="ui-block-a" style="background:darkgreen;">
+                    <center><h2><span data-translate="level">Level</span> 1</h2><img id="lock1" src="img/unlock.png" style="height:50px;"/></center>
+                    <a class="ui-btn" id="1" style="background-color:green; color:white;"><span data-translate="stage">Stage</span> 1</a>
+                    <a class="ui-btn" id="2" style="background-color:green; color:white;"><span data-translate="stage">Stage</span> 2</a>
+                    <a class="ui-btn" id="3" style="background-color:green; color:white;"><span data-translate="stage">Stage</span> 3</a>
+                </div>
+                <div class="ui-block-b" style="background:darkgoldenrod;">
+                    <center><h2><span data-translate="level">Level</span> 2</h2><img id="lock2" src="img/lock.png" style="height:50px;"/></center>
+                    <a class="ui-btn" id="4" style="background-color:goldenrod; color:white;"><span data-translate="stage">Stage</span> 4</a>
+                    <a class="ui-btn" id="5" style="background-color:goldenrod; color:white;"><span data-translate="stage">Stage</span> 5</a>
+                    <a class="ui-btn" id="6" style="background-color:goldenrod; color:white;"><span data-translate="stage">Stage</span> 6</a>
+                </div>
+                <div class="ui-block-c" style="background:deepskyblue;">
+                    <center><h2><span data-translate="level">Level</span> 3</h2><img id="lock3" src="img/lock.png" style="height:50px;"/></center>
+                    <a class="ui-btn" id="7" style="background-color:skyblue; color:white;"><span data-translate="stage">Stage</span> 7</a>
+                    <a class="ui-btn" id="8" style="background-color:skyblue; color:white;"><span data-translate="stage">Stage</span> 8</a>
+                    <a class="ui-btn" id="9" style="background-color:skyblue; color:white;"><span data-translate="stage">Stage</span> 9</a>
+                </div>
+            </div>
+        </div>
+        <script>
+            var stats;
+            function pop()
+            {
+                if (localStorage.stats)
+                {
+                    stats = JSON.parse(localStorage.stats);
+                    var highestStage = Math.max.apply(null, stats.stagesCrossed);
+                    if (highestStage >= 4)
+                    {
+                        document.getElementById("lock3").src = "img/unlock.png";
+                        document.getElementById("lock2").src = "img/unlock.png";
+                    } else if (highestStage >= 1)
+                    {
+                        document.getElementById("lock2").src = "img/unlock.png";
+                        document.getElementById("lock3").src = "img/lock.png";
+                    } else
+                    {
+                        document.getElementById("lock2").src = "img/lock.png";
+                        document.getElementById("lock3").src = "img/lock.png";
+                    }
+                    for (var key in stats.stages) {
+                        if (stats.stages.hasOwnProperty(key)) {
+                            if (stats.stages[key].perfect === true)
+                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/star.png' style='height:15px;padding-left:10px;' />");
+                            else
+                                document.getElementById(key).insertAdjacentHTML("beforeend", "<img src='img/bstar.png' style='height:15px;padding-left:10px;' />");
+                        }
+                    }
+                }
+            }
+
+            $("a").click(function (event) {
+                event.preventDefault();
+                var highestStage = Math.max.apply(null, stats.stagesCrossed);
+                if (highestStage >= 4) {
+                    window.location.href = "Gamescreen1.html?stage=" + this.id;
+                } else if (highestStage >= 1 && this.id <= 6) {
+                    window.location.href = "Gamescreen1.html?stage=" + this.id;
+                } else if (this.id <= 3) {
+                    window.location.href = "Gamescreen1.html?stage=" + this.id;
+                } else
+                    alert("Sorry!, You haven't unlocked this level yet. Please finish the earlier stages.");
+            });
+
+            $(".options").append(staticText.renderLanguageSelect());
+            $("#languageSelect").val(localStorage.language);
+        </script>
+    </body>
+</html>
