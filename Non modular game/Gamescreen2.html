@@ -1,205 +1,54 @@
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Police Quad Question Generator</title>
-        <!-- Bootstrap -->
-        <link href="../Public/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="css/gamedev.css" rel="stylesheet" />
+        <title>Gamescreen 2</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/gamescreen2.css" rel="stylesheet" />
     </head>
     <body>
-        <div class="pageWrapper">
-            <div class="navbar">
-                <h1>PoliceQuad</h1>
-            </div>
-            <div class="question">
-                <h4>
-                    One of the shapes is the culprit.
-                    Click on the innocent shapes to ELIMINATE them.
-                    The last one left is the culprit – ARREST IT!<br><br>
-                </h4>
+        <div class="vertical-margin"><br><br></div>
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 col-lg-10 col-lg-offset-1">
+                    <div class="shapes well">
+                    </div>
+                </div>
             </div>
             <div class="row">
-                <div class="col-md-9 moduleWrapper" id="optionsWrapper">
+                <div class="col-sm-10 col-sm-offset-1 col-lg-10 col-lg-offset-1">
+                    <div class="queries well">
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <h2>Clues</h2>
-                    <div class="moduleWrapper" id="cluesWrapper">
+            </div>
+
+            <div class="shapeTemplate" style="display:none;">
+                <div class="col-lg-2 col-md-2 col-sm-3">
+                    <div class="shape" data-id="">
+                        <img src="shapes/fig001.png" />
                     </div>
-                    <h2>Tools</h2>
-                    <!--Insert tools here-->
-                    <div class="row tools">
-                        <div class="col-lg-4 col-md-4">
-                            <button id="inspect">
-                                <img src="inspect.jpg" height=70 />
-                            </button>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <button id="arrest">
-                                <img src="makeArrest.gif" height=70 />
-                            </button>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <img id="battery" src="battery4.jpg" data-value="4" data-max="4" />
-                        </div>
-                    </div>
+                </div>
+            </div>
+            <div class="queryTemplate" style="display:none;">
+                <div class="querySelector well">
+                    Eliminate all shapes with
+                    <select class="comparatorSelector">
+                        <option value="<">less than</option>
+                        <option value="<=">at the most</option>
+                        <option value="=">exactly</option>
+                        <option value=">">more than</option>
+                        <option value=">=">at least</option>
+                    </select>
+                    <select class="valueSelector" style="display:none;"></select>
+                    <select class="attributeSelector"></select>
+                    <button style="display:none;">Go</button>
                 </div>
             </div>
         </div>
 
-        <!-- Load scripts after the DOM is rendered -->
-        <script>
-            //Global gameData. Store all important attributes/module data here
-            gameData = {
-                'includedModules': []
-            };
-        </script>
-        <script src="../Public/js/jquery-1.11.3.min.js"></script>
-        <script src="../Public/js/bootstrap.min.js"></script>
-        <script src="js/jquery-1.11.3.min.js"></script>
-        <script src="../Engine/js/fetch.js"></script>
-        <script src="options_renderer.js"></script>
-        <script>
-            // Do what we must to render the options
-            $("#optionsWrapper").append(returnValue['options_markup']);
-
-            //~~These are the custom events for options
-            $("#optionsWrapper").on("change", function () {
-                //Here we use statetracker module to capture the new state of the set of options
-                //It may be heavy on the processor if we check state of ALL options at every interaction with a single option
-            });
-            $("#optionsWrapper").on("disableSelected", function () {
-                $(this).find("input:checked").prop('disabled', true);
-                $(this).trigger("clearSelection");
-            });
-            $("#optionsWrapper").on("clearSelection", function () {
-                $(this).find("input:checked").prop('checked', false);
-            });
-            // This event listener comes from the tools section
-            $("#optionsWrapper").on("inspect", function () {
-                //Here we get a list of selected options along with their attributes
-                var selectedOptions = $(this).find("input:checked").map(function () {
-                    return $(this).attr("index");
-                });
-                $("#cluesWrapper").trigger("checkIfCorrectOptions", [selectedOptions]);
-            });
-            // This event listener comes from the tools section
-            $("#optionsWrapper").on("arrest", function () {
-                //Here we get a list of selected options along with their attributes
-                var selectedOptions = $(this).find("input:checked").map(function () {
-                    return $(this).attr("index");
-                });
-            });
-
-            //~~These are the custom events for clues
-            $("#cluesWrapper").on("checkIfCorrectOptions", function (event, selectedOptions) {
-                //Here we get a list of selected options along with their attributes
-                var currentClueIndex = $("#cluesWrapper").find(".clue:visible").length - 1;
-                var currentClue = gameData['clues'][currentClueIndex];
-                var correctOptions = $(gameData['options']).map(function (index) {
-                    var option = this;
-                    switch (currentClue['comparator']) {
-                        case '=':
-                            if (option[currentClue['attribute']] === currentClue['quantity'])
-                                return index;
-                            break;
-                        case '>':
-                            if (option[currentClue['attribute']] > currentClue['quantity'])
-                                return index;
-                            break;
-                        case '<':
-                            if (option[currentClue['attribute']] < currentClue['quantity'])
-                                return index;
-                            break;
-                        default:
-                            break;
-                    }
-                    return null;
-                });
-                correctOptions = $(correctOptions).filter(function (index) {
-                    if (this !== null)
-                        return true;
-                });
-                //To convert pseudo array to regular array
-                selectedOptions = Array.prototype.slice.call(selectedOptions);
-                correctOptions = Array.prototype.slice.call(correctOptions);
-
-                if (selectedOptions.sort().join(',') === correctOptions.sort().join(',')) {
-                    //Success
-                    console.log("Investigation successful! Good job!");
-                    //$("#battery").trigger("refresh");
-                    $("#cluesWrapper").trigger("getNextClue");
-                    $("#optionsWrapper").trigger("disableSelected");
-                    gameData['solvedClues'].push(currentClueIndex);
-                } else {
-                    console.log("Investigation failed");
-                    $("#battery").trigger("drain");
-                    $("#cluesWrapper").find(".clue:visible").last().addClass("failure");
-                }
-            });
-
-            $("#cluesWrapper").on("getNextClue", function () {
-                $("#cluesWrapper").find(".clue:visible").last().removeClass("failure").addClass("success");
-                if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
-                    $("#cluesWrapper").find(".clue:not(:visible)").first().toggle();
-                } else {
-                    //Do nothing. You're out of clues!
-                }
-            });
-
-            //~~These are the custom events for buttons
-            $("#inspect").on('click', function () {
-                if ($("#cluesWrapper").find(".clue:not(:visible)").length) {
-                    $("#optionsWrapper").trigger("inspect");
-                } else {
-                    console.log("You have sufficient clues to make an arrest!");
-                }
-            });
-            $("#arrest").on('click', function () {
-                //Must write logic for arrest tool
-            });
-
-            //~~These are the custom events for battery
-            $("#battery").on("drain", function () {
-                var charge = parseInt($("#battery").attr("data-value")) - 1;
-                if (charge > 0) {
-                    $("#battery").attr("data-value", charge);
-                    $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
-                } else {
-                    alert("Game over! Battery was drained!");
-                    console.log("Game over! Battery was drained!!");
-                }
-            });
-            $("#battery").on("charge", function () {
-                var charge = parseInt($("#battery").attr("data-value")) + 1;
-                if (charge <= $("#battery").attr("data-max")) {
-                    $("#battery").attr("data-value", charge);
-                    $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
-                } else {
-                    console.log("You're overcharging the battery!");
-                }
-            });
-            $("#battery").on("refresh", function () {
-                var charge = $("#battery").attr("data-max");
-                $("#battery").attr("data-value", charge);
-                $("#battery").attr("src", "battery" + charge.toString() + ".jpg");
-            });
-
-            // The following lines render HTML markup for the clues. The code will be pushed into the relevant module
-            var cluesBox = document.createElement("div");
-            $(cluesBox).attr("id", "clues");
-            $(returnValue['clues']).each(function () {
-                //This next line must go through the language API for translation. Not translating into any language for now
-                var clue_text = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'] + "<br />";
-                var property = "Culprit has " + this['attribute'] + this['comparator'] + this['quantity'] + "<br />";
-                var clue = '<div class="clue" data-attr="' + property + '">' + clue_text + '</div>';
-                $(cluesBox).append(clue);
-            });
-            $("#cluesWrapper").append(cluesBox);
-            $("#cluesWrapper").find(".clue:not(:first-child)").each(function () {
-                $(this).toggle();
-            });
-            gameData['solvedClues'] = [];
-        </script>
+        <script src="js/lib/jquery-1.11.3.min.js"></script>
+        <script src="js/lib/bootstrap.min.js"></script>
+        <script src="js/all_the_shapes.js"></script>
+        <script src="js/gamescreen2.js"></script>
     </body>
 </html>

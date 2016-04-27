@@ -148,8 +148,8 @@
 }
 
 img {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
 }
 
 .keyWord {
@@ -159,4 +159,9 @@ img {
 
 .modal-title::first-letter {
     text-transform: uppercase;
+}
+
+#back {
+    background-color: gray;
+    border: none;
 }

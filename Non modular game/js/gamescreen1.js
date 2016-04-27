@@ -3,7 +3,7 @@ $(document).ready(function () {
     // Do what we must to render the options
     optionsProducer.init();
     var returnValues = optionsProducer.render();
-    $("#optionsWrapper").append(returnValues['options_markup']);
+    $("#optionsWrapper").append($(returnValues['options_markup']).clone());
     //Options are rendered. Render the vertices now.
     toolkit.renderVertices($(".option .img_wrapper"), coordinates);
 
@@ -42,8 +42,9 @@ $(document).ready(function () {
         if (selectedOption.length == 1) {
             $("#cluesWrapper").trigger("checkIfFinalAnswer", selectedOption);
         } else if (unSelectedOption == 1) {
-            alert("Please select the culprit then click on done.");
-            //$("#cluesWrapper").trigger("checkIfFinalAnswer", selectedOption);
+            var lastOption = $(".option:not(.innocent) input");
+            //alert("Please select the culprit then click on done.");
+            $("#cluesWrapper").trigger("checkIfFinalAnswer", lastOption.attr("index"));
         } else {
             alert("There can only be one culprit!");
             console.log("There can only be one culprit!");
@@ -126,7 +127,7 @@ $(document).ready(function () {
             $("#cluesWrapper").find(".clue:not(:visible)").first().toggle();
         } else {
             //Do nothing. You're out of clues!
-            alert("That was your last clue! Now you have enough clues to make an arrest");
+            console.log("That was your last clue! Now you have enough clues to make an arrest");
         }
 
         if (!$("#cluesWrapper").find(".clue:not(:visible)").length) {
@@ -190,8 +191,36 @@ $(document).ready(function () {
     });
     gameData['solvedClues'] = [];
 
+    (function ($) {
+
+        $.fn.shuffle = function () {
+            return this.each(function () {
+                var items = $(this).children().clone(true);
+                return (items.length) ? $(this).html($.shuffle(items)) : this;
+            });
+        }
+
+        $.shuffle = function (arr) {
+            for (var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x)
+                ;
+            return arr;
+        }
+
+    })(jQuery);
+
     $("#replay").click(function () {
-        window.location.reload(true);
+        console.log("Replaay");
+        var returnValues = optionsProducer.render();
+        $("#optionsWrapper").html($(returnValues['options_markup']).clone());
+        toolkit.renderVertices($(".option .img_wrapper"), coordinates);
+        gameData.disabledOptions = [];
+        gameData.solvedClues = [];
+        $("#optionsWrapper .row").shuffle();
+        $("#treats").trigger("refresh");
+        $("#cluesWrapper").find(".clue:not(:first-child)").each(function () {
+            $(this).toggle(false);
+        });
+        alert("This case has been restarted. You will no longer get a star on this case now!");
     });
     $("#back").on('click', function () {
         window.location.href = "MainMenu.html";
