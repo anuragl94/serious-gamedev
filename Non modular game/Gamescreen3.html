@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title>Gangs of Shapepur</title>
+    <!-- Bootstrap -->
+    <link href="../Public/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/gamedev.css" rel="stylesheet" />
+    <link href="css/theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="pageTitle">
+        <center><h1 data-translate="gs3-title">Gangs of Shapepur</h1> Highscore: <span class="highscore">0</span></center>
+    </div>
+    <div class="pageWrapper">
+        <div class="row">
+            <div class="col-md-9 moduleWrapper" id="optionsWrapper">
+            </div>
+            <div class="col-md-3">
+                <h2 data-translate="clues">Clues</h2>
+                <span data-translate="gs1-hint">Find the shape which doesn't belong to the gang</span>
+                <div class="moduleWrapper" id="cluesWrapper">
+                </div>
+                <h2 data-translate="actions">Actions</h2>
+                <div class="row actions">
+                    <div class="col-lg-4 col-md-4">
+                        <button class="btn  btn-primary" id="inspect" data-translate="next">
+                            Next
+                        </button>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <button class="btn  btn-primary" id="replay" data-translate="replay">
+                            Replay
+                        </button>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <button class="btn  btn-primary" id="arrest" data-translate="done">
+                            Done
+                        </button>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <button class="btn  btn-primary" id="back" data-translate="back">
+                            Back
+                        </button>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <span data-translate="treats-left">Treats left:</span>
+                        <!--This image was used for representing a battery state, which was subsequently replaced by an accuracy monitoring system. So, leaving this image here so that in the future, if that accuracy should be displayed in-game, we can still do it-->
+                        <p id="treats" data-value="5" data-max="5">5</p>
+                    </div>
+                </div>
+                <h2 data-translate="tools">Tools</h2>
+                <div class="row tools">
+                    <div class="col-lg-4 col-md-4">
+                        <div id="toolBox">
+                            <button class="btn  btn-primary toolButton" data-tool="perpTool">Angle tool</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 moduleWrapper hidden" id="optionsWrapper2">
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/lib/jquery-1.11.3.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/shapeInfo.js"></script>
+    <!--<script src="js/glossary.js"></script>
+    <script src="js/languageApi.js"></script>
+    <script src="js/levelTracker.js"></script>
+    <script src="js/staticText.js"></script>
+    <script src="js/pointCalculator.js"></script>-->
+    <script src="js/toolkit.js"></script>
+    <script src="js/coordinates.js"></script>
+    <script src="js/lib/jQueryRotate.js"></script>
+    <script src="js/gangProducer.js"></script>
+    <script src="js/gamescreen3.js"></script>
+
+</body>
+</html>
