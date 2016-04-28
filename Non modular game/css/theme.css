@@ -41,6 +41,9 @@ body {
     margin-bottom: 10px;
 }
 
+.hidden {
+    display:none;
+}
 form {
     
 }

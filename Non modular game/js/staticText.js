@@ -23,6 +23,10 @@ var staticText = {
         english: "Next clue",
         hindi: "अगले सुराग"
     },
+    "next": {
+        english: "Next",
+        hindi: "untranslated"
+    },
     "replay": {
         english: "Replay",
         hindi: "फिर से खेलना"
