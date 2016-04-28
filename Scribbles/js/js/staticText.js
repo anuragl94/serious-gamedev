@@ -20,24 +20,24 @@ var staticText = {
         hindi: "उपकरण"
     },
     "next-clue": {
-        english: "Next clue",
-        hindi: "अगले सुराग"
+        english: "Free these",
+        hindi: "untranslated"
     },
     "replay": {
         english: "Replay",
-        hindi: "फिर से खेलना"
+        hindi: "untranslated"
     },
     "done": {
         english: "Done",
-        hindi: "ख़त्म"
+        hindi: "untranslated"
     },
     "treats-left": {
         english: "Treats left",
-        hindi: "कैंडी"
+        hindi: "untranslated"
     },
     "angle-tool": {
         english: "Angle tool",
-        hindi: "कोण उपकरण"
+        hindi: "प्रक्रिया"
     },
     "stage": {
         english: "Stage",
@@ -45,23 +45,23 @@ var staticText = {
     },
     "level": {
         english: "Level",
-        hindi: "स्तर"
+        hindi: "untranslated"
     },
-    "back": {
+    "back":{
         english: "Go Back&nbsp",
-        hindi: "वापस जाओ&nbsp"
+        hindi: "untranslated"
     },
     "main-menu": {
         english: "Main menu",
-        hindi: "मुख्य मेनू"
+        hindi: "untranslated"
     },
     "instructions": {
         english: "Instructions",
-        hindi: "अनुदेश"
+        hindi: "untranslated"
     },
     "instruction-text": {
         english: 'You are a police officer, named "GEO". You are the first alien police officer ever! Your strength is rational thinking and your sense of justice drives you. It is on you to save many innocents from being wrongly prosecuted! Use the clues provided to you to find innocent beings disguised as shapes. Earn points and solve cases to get promoted.',
-        hindi: 'आप एक पुलिस अधिकारी, "जियो " नाम हैं । आप पहली बार विदेशी पुलिस अधिकारी कभी भी कर रहे हैं! अपनी ताकत तर्कसंगत सोच रही है और न्याय की अपनी भावना आप ड्राइव। यह गलत तरीके से मुकदमा चलाया जा रहा कई निर्दोष लोगों को बचाने के लिए आप पर है! आप के लिए प्रदान सुराग का प्रयोग आकार के वेश में निर्दोष प्राणी खोजने के लिए। अंक कमाने के लिए और मामलों को हल करने के लिए बढ़ावा दिया'
+        hindi: "untranslated"
     },
     renderLanguageSelect: function () {
         var languages = ["english", "hindi"];

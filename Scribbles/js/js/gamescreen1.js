@@ -2,11 +2,11 @@ $(document).ready(function () {
     /* Begin logic for the options */
     // Do what we must to render the options
     var returnValues = gameData['returnValues'];
-    if (returnValues === undefined) {
-        optionsProducer.init();
-        returnValues = optionsProducer.render();
+    if(returnValues === undefined) {
+      optionsProducer.init();
+      returnValues = optionsProducer.render();
     }
-    $("#optionsWrapper").append($(returnValues['options_markup']).clone());
+    $("#optionsWrapper").append(returnValues['options_markup']);
     //Options are rendered. Render the vertices now.
     toolkit.renderVertices($(".option .img_wrapper"), coordinates);
 
@@ -175,7 +175,6 @@ $(document).ready(function () {
     $("#treats").on("refresh", function () {
         var max = parseInt($("#treats").attr("data-max"));
         $("#treats").attr("data-value", max);
-        $("#treats").html(max);
     });
     /* End logic for the action buttons */
 
@@ -195,32 +194,17 @@ $(document).ready(function () {
     });
     gameData['solvedClues'] = [];
 
-    $.fn.shuffle = function () {
-        return this.each(function () {
-            var items = $(this).children().clone(true);
-            return (items.length) ? $(this).html($.shuffle(items)) : this;
-        });
-    }
-
-    $.shuffle = function (arr) {
-        for (var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x)
-            ;
-        return arr;
-    }
-
     $("#replay").click(function () {
-        console.log("Replay");
+        console.log("Replaay");
         var returnValues = optionsProducer.render();
         $("#optionsWrapper").html($(returnValues['options_markup']).clone());
         toolkit.renderVertices($(".option .img_wrapper"), coordinates);
         gameData.disabledOptions = [];
         gameData.solvedClues = [];
-        $("#optionsWrapper .row").shuffle();
         $("#treats").trigger("refresh");
         $("#cluesWrapper").find(".clue:not(:first-child)").each(function () {
-            $(this).toggle(false);
+            $(this).toggle(true);
         });
-        levelTracker.increaseAttempts();
         alert("This case has been restarted. You will no longer get a star on this case now!");
     });
     $("#back").on('click', function () {

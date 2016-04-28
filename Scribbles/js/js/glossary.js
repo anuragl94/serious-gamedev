@@ -9,7 +9,7 @@ var glossary = {
         "<=": "",
         "acuteAngles": "Explanation of the term 'acute'",
         "obtuseAngles": "Explanation of the term obtuse",
-        "straightSides": "A straight side is a line drawn between two points"
+        "straightSides": "A straight side is a side that is straight"
     },
     showPopup: function (keyword, text) {
         //alert(this.terms[target]);
